@@ -8,6 +8,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,54 +28,43 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @PropertySource(value = "classpath:/application-webservice.properties", ignoreResourceNotFound = true)
-public class TweetController {
+public class TweetController implements ITweetController{
 
 	@Autowired
 	private TweetRepository tweetRepository;
 
-//	@GetMapping(value = { "/tweets" })
-	@GetMapping(value = "${tweets.all-tweets}")
-	public Flux<Tweet> getAllTweets() {
+	public Flux<Tweet> getAllTweets(ServerHttpRequest request) {
 		return tweetRepository.findAll();
 	}
 
-//	@PostMapping(value = { "/tweets" })
-	@PostMapping(value = { "${tweets.all-tweets}" })
-	public Mono<Tweet> createTweets(@Valid @RequestBody Tweet tweet) {
+	public Mono<Tweet> createTweets(ServerHttpRequest request, @Valid @RequestBody Tweet tweet) {
 		return tweetRepository.save(tweet);
 	}
 
-//	@GetMapping(value = { "/tweets/{id}" })
-	@GetMapping(value = { "${tweets.detail}" })
-	public Mono<Tweet> getTweetById(@PathVariable String id) {
-		return tweetRepository.findById(id);	//.map(tweet -> ResponseEntity.ok(tweet))
-//				.defaultIfEmpty(ResponseEntity.notFound().build());
+	public Mono<Tweet> getTweetById(ServerHttpRequest request, @PathVariable String id) {
+		return tweetRepository.findById(id);
 	}
 
-//	@PutMapping("/tweets/{id}")
-	@PutMapping(value = { "${tweets.detail}" })
-	public Mono<ResponseEntity<Tweet>> updateTweet(@PathVariable(value = "id") String tweetId,
+	public Mono<ResponseEntity<Tweet>> updateTweet(ServerHttpRequest request, @PathVariable(value = "id") String tweetId,
 			@Valid @RequestBody Tweet tweet) {
-		return tweetRepository.findById(tweetId).flatMap(existingTweet -> {
-			existingTweet.setText(tweet.getText());
-			return tweetRepository.save(existingTweet);
-		}).map(updateTweet -> new ResponseEntity<>(updateTweet, HttpStatus.OK))
-				.defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+		return tweetRepository.findById(tweetId)
+							  .flatMap(existingTweet -> {
+										existingTweet.setText(tweet.getText());
+										return tweetRepository.save(existingTweet);
+							  })
+							  .map(updateTweet -> new ResponseEntity<>(updateTweet, HttpStatus.OK))
+							  .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
-//	@DeleteMapping("/tweets/{id}")
-	@DeleteMapping(value = { "${tweets.detail}" })
-	public Mono<ResponseEntity<Void>> deleteTweet(@PathVariable(value = "id") String tweetId) {
-
+	public Mono<ResponseEntity<Void>> deleteTweet(ServerHttpRequest request, @PathVariable(value = "id") String tweetId) {
 		return tweetRepository.findById(tweetId)
-				.flatMap(existingTweet -> tweetRepository.delete(existingTweet)
-						.then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK))))
-				.defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+							  .flatMap(existingTweet -> tweetRepository.delete(existingTweet)
+							  .then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK))))
+							  .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
 	// Tweets are Sent to the client as Server Sent Events
-	@GetMapping(value = "/stream/tweets", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-	public Flux<Tweet> streamAllTweets() {
+	public Flux<Tweet> streamAllTweets(ServerHttpRequest request) {
 		return tweetRepository.findAll();
 	}
 

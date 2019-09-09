@@ -28,7 +28,6 @@ public class Tweet {
 	private Date createdAt = new Date();
 	
 	public Tweet(String text) {
-		this.id = id;
 		this.text = text;
 	}
 }

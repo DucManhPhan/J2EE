@@ -2,8 +2,7 @@ package com.manhpd.webservice_webflux.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.manhpd.webservice_webflux.model.Employee;
@@ -14,18 +13,17 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @PropertySource(value = "classpath:/application-webservice.properties", ignoreResourceNotFound = true)
-public class EmployeeController {
+public class EmployeeController implements IEmployeeController {
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
-	
-	@GetMapping(value = { "${employees.all-employees}" })
-	public Flux<Employee> getEmployees() {
+
+	public Flux<Employee> getEmployees(ServerHttpRequest request) {
 		return employeeRepository.findAll();
 	}
-	
-	@GetMapping(value = { "${employees.detail}" })
-	public Mono<Employee> getById(@PathVariable String id) {
+
+	public Mono<Employee> findEmployeeById(ServerHttpRequest request, String id) {
 		return employeeRepository.findById(id);
 	}
+
 }

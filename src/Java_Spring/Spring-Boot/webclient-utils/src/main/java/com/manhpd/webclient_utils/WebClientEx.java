@@ -56,7 +56,7 @@ public class WebClientEx {
 										.bodyToMono(String.class);
 		String response = result.block();
 		System.out.println(response);
-		
+
 		// Use non-blocking
 //		Mono<String> result_response = webClient.get()
 //												.uri(path)

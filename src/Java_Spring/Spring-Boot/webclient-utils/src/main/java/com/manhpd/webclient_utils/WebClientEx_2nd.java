@@ -27,7 +27,7 @@ public class WebClientEx_2nd {
 		WebClient webClient = WebClientEx.createWebClient();
 
 		User user = new User("admin", "admin");
-		Mono<String> resultIronMan = webClient.post()
+		String resultIronMan = webClient.post()
 											.uri(path)
 											.contentType(MediaType.APPLICATION_JSON)
 											.syncBody(user)
@@ -39,11 +39,13 @@ public class WebClientEx_2nd {
 												System.out.println(clientResponse);
 												throw new WebClientResponseException("Internal Server Error", 0, null, null, null, null);
 											})
-											.bodyToMono(String.class);
+											.bodyToMono(String.class)
+											.block();
 //		String res = resultIronMan.block();
 //		System.out.println(res);
-		resultIronMan.subscribe(res -> {
-			System.out.println(res);
-		});
+//		resultIronMan.subscribe(res -> {
+//			System.out.println(res);
+//		});
+		System.out.println(resultIronMan);
 	}
 }

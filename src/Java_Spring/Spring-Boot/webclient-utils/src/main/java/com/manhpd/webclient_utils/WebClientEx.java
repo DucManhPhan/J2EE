@@ -4,6 +4,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -37,7 +39,7 @@ public class WebClientEx {
 //		get(path);
 	}
 
-	private static WebClient createWebClient() {
+	public static WebClient createWebClient() {
 		return WebClient.builder()
 				.baseUrl(BASE_URL)
 				.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -92,6 +94,24 @@ public class WebClientEx {
 																									.exchange()
 																									.flatMap(res -> res.toEntity(String.class));
 		resultResponseEntity.subscribe(System.out::println);
+
+		// fill request header with GET request
+		// https://stackoverflow.com/questions/50223891/how-to-extract-response-header-status-code-from-spring-5-webclient-clientrespo
+		// https://www.callicoder.com/spring-5-reactive-webclient-webtestclient-examples/
+		String basicAuth = "";
+		// Do something to get basic authentication
+
+		MultiValueMap<String, String> multiValueMap = new LinkedMultiValueMap<>();
+		// Do something to get values for request headers
+
+		webClient.get()
+				.uri(builder -> builder.path(path)
+										.queryParams(multiValueMap)
+										.build())
+				.accept(MediaType.APPLICATION_JSON)
+				.header(HttpHeaders.AUTHORIZATION, basicAuth)
+				.retrieve()
+				.bodyToMono(String.class);
 	}
 
 	private static void post(String path, Object data) throws InterruptedException {

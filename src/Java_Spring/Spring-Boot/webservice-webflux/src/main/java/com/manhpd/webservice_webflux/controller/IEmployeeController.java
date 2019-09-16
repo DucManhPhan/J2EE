@@ -1,6 +1,5 @@
 package com.manhpd.webservice_webflux.controller;
 
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

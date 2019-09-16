@@ -12,6 +12,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import com.manhpd.webclient_utils.model.Employee;
+import com.manhpd.webclient_utils.model.ResultData;
 import com.manhpd.webclient_utils.model.User;
 
 import reactor.core.publisher.Flux;
@@ -155,6 +156,43 @@ public class WebClientEx {
 											.retrieve()
 											.bodyToMono(Void.class);
 		resultIronMan.subscribe(System.out::println);
+		
+		// Convert String type to object type
+		Mono<String> res = webClient.post()
+				.uri(builder -> builder.path(path)
+						.queryParams(multiValueMap)
+						.build())
+				.contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON)
+				.header(HttpHeaders.AUTHORIZATION, basicAuth)
+				.syncBody(valueInput)
+//1st way:
+//                .retrieve()
+//                .bodyToMono(String.class);
+
+//Mono<ResultData> data = res.flatMap(s -> {
+//    return Mono.just(new ResultData("Success!", Constants.OK, true, s));
+//});
+//
+//return data;
+
+//2nd way:
+				.exchange()
+				.flatMap(clientResponse -> {
+					boolean isError = clientResponse.statusCode().isError();
+					if (isError) {
+						return Mono.empty();
+					} else {
+						Mono<String> bodyToMono = clientResponse.bodyToMono(String.class);
+						return bodyToMono;
+					}
+				});
+
+				Mono<ResultData> data1 = res.flatMap(s -> {
+				    return Mono.just(new ResultData("Success!", "OK", true, s));
+				});
+
+//				return data1;
 	}
 
 	public static void delete(String path) {

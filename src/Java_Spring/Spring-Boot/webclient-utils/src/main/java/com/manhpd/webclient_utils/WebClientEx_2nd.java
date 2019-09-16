@@ -18,34 +18,47 @@ import reactor.core.publisher.Mono;
  */
 public class WebClientEx_2nd {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		String uriLogin = "/users/auth";
 		post(uriLogin, null);
 	}
 	
-	public static void post(String path, Object obj) {
+	public static void post(String path, Object obj) throws InterruptedException {
 		WebClient webClient = WebClientEx.createWebClient();
 
+		// Use retrieve() method
 		User user = new User("admin", "admin");
-		String resultIronMan = webClient.post()
-											.uri(path)
-											.contentType(MediaType.APPLICATION_JSON)
-											.syncBody(user)
-											.retrieve()
-											.onStatus(HttpStatus::is4xxClientError, (ClientResponse clientResponse) -> {
-												throw new WebClientResponseException("Unauthorized", 0, null, null, null, null);
-											})
-											.onStatus(HttpStatus::is5xxServerError, (ClientResponse clientResponse) -> {
-												System.out.println(clientResponse);
-												throw new WebClientResponseException("Internal Server Error", 0, null, null, null, null);
-											})
-											.bodyToMono(String.class)
-											.block();
+//		Mono<String> resultIronMan = webClient.post()
+//											.uri(path)
+//											.contentType(MediaType.APPLICATION_JSON)
+//											.syncBody(user)
+//											.retrieve()
+//											.onStatus(HttpStatus::is4xxClientError, (ClientResponse clientResponse) -> {
+//												throw new WebClientResponseException("Unauthorized", 0, null, null, null, null);
+//											})
+//											.onStatus(HttpStatus::is5xxServerError, (ClientResponse clientResponse) -> {
+//												System.out.println(clientResponse);
+//												throw new WebClientResponseException("Internal Server Error", 0, null, null, null, null);
+//											})
+//											.bodyToMono(String.class);
 //		String res = resultIronMan.block();
 //		System.out.println(res);
 //		resultIronMan.subscribe(res -> {
 //			System.out.println(res);
 //		});
-		System.out.println(resultIronMan);
+
+//		Thread.sleep(10000);
+//		System.out.println(resultIronMan);
+		
+		// Use exchange() method
+		Mono<String> resultAdmin = webClient.post()
+											.uri(path)
+											.contentType(MediaType.APPLICATION_JSON)
+											.syncBody(user)
+											.exchange()
+											.flatMap(res -> res.bodyToMono(String.class));
+		resultAdmin.subscribe(res -> {
+			System.out.println(res);
+		});
 	}
 }

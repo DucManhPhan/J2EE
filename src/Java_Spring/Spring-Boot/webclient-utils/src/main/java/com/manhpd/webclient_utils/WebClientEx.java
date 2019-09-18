@@ -24,20 +24,10 @@ public class WebClientEx {
 	private static final String BASE_URL = "http://dev.travelcells.com.vn:9999";
 
 	public static void main(String[] args) throws InterruptedException {
-		
-		// authentication
-//		String uriLogin = "/users/auth";
-//		String data = "{\"username\":\"admin\",\"password\":\"admin\"}";
-//		User user = new User("admin", "admin");
-//		post(uriLogin, user);
-		
 		// create employee
 		String path = "/students";
 		Employee emp = new Employee(1, "Obama", 24, 24.0);
 		post(path, emp);
-		
-//		String path = "/nslcm/v1/ns_instances";
-//		get(path);
 	}
 
 	public static WebClient createWebClient() {
@@ -99,11 +89,11 @@ public class WebClientEx {
 		// fill request header with GET request
 		// https://stackoverflow.com/questions/50223891/how-to-extract-response-header-status-code-from-spring-5-webclient-clientrespo
 		// https://www.callicoder.com/spring-5-reactive-webclient-webtestclient-examples/
-		String basicAuth = "";
 		// Do something to get basic authentication
+		String basicAuth = "";
 
-		MultiValueMap<String, String> multiValueMap = new LinkedMultiValueMap<>();
 		// Do something to get values for request headers
+		MultiValueMap<String, String> multiValueMap = new LinkedMultiValueMap<>();
 
 		webClient.get()
 				.uri(builder -> builder.path(path)
@@ -157,6 +147,13 @@ public class WebClientEx {
 											.bodyToMono(Void.class);
 		resultIronMan.subscribe(System.out::println);
 		
+		// Do something to get basic authentication
+		String basicAuth = "";
+
+		// Do something to get values for request headers
+		MultiValueMap<String, String> multiValueMap = new LinkedMultiValueMap<>();
+		String jsonBody = "";
+		
 		// Convert String type to object type
 		Mono<String> res = webClient.post()
 				.uri(builder -> builder.path(path)
@@ -165,7 +162,7 @@ public class WebClientEx {
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON)
 				.header(HttpHeaders.AUTHORIZATION, basicAuth)
-				.syncBody(valueInput)
+				.syncBody(jsonBody)
 //1st way:
 //                .retrieve()
 //                .bodyToMono(String.class);

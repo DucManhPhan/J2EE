@@ -2,16 +2,18 @@ package com.manhpd.reactor.schedulers;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Scheduler;
 import reactor.core.scheduler.Schedulers;
 
-import java.util.ArrayList;
+import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class SchedulerUtils {
 
     public static void main(String[] args) {
-        List<Integer> squares = new ArrayList<>();
+        Integer[] arr = {1, 2, 3, 4, 5};
+        List<Integer> squares = Arrays.asList(arr);
         Flux.range(1, 64).flatMap(v -> Mono.just(v)
                                                         .subscribeOn(Schedulers.newSingle("comp"))
                                                         .map(w -> w * w))
@@ -19,6 +21,36 @@ public class SchedulerUtils {
                                     .doOnComplete(() -> System.out.println("Completed"))
                                     .subscribeOn(Schedulers.immediate())
                                     .subscribe(squares::add);
+    }
+
+    /**
+     * Flux#delayElements(Duration) uses the Schedulers.parallel() instance.
+     *
+     * The Schedulers.parallel() creates as many threads as there are CPUs but at least 4.
+     */
+    public static void testDelayElements() {
+        Flux<Integer> flux2 = Flux.range(0, 2).delayElements(Duration.ofMillis(1));
+        SchedulerUtils.createSubscribers(flux2);
+    }
+
+    public static void createSubscribers(Flux<Integer> flux) {
+        IntStream.range(1, 5).forEach(value ->
+                flux.subscribe(integer -> System.out.println(value + " consumer processed "
+                        + integer + " using thread: " + Thread.currentThread().getName())));
+    }
+
+    /**
+     * With the map operator we create another Flux (flux2) and when we subscribe to this flux2 instance,
+     * then flux2 implicitly subscribes to flux1 as well.
+     * And when the flux1 starts to emit elements it will call flux2 which will call our Subscriber.
+     * We can notice that there is a subscription process and emitting process.
+     * In Reactor terminology the flux1 would be the upstream and flux2 the downstream.
+     *
+     */
+    public static void useMultipleFlux() {
+        Flux<String> flux1 = Flux.just("foo", "bar");
+        Flux<String> flux2 = flux1.map(s -> s.toUpperCase());
+        flux2.subscribe(s -> System.out.println(s));
     }
 
 }

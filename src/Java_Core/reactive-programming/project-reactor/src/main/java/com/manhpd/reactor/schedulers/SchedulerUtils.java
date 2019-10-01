@@ -9,6 +9,18 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
+
+/**
+ * The publishOn() method influences the emitting process. It takes an emitted element from the upstream and
+ * replays it downstream while executing the  callback on a worker from the associated Scheduler. This means it will also
+ * affect where the subsequent operators will execute (until another publishOn() is chained in).
+ *
+ * The subscribeOn() rather influences the subscription process. It does not matter where it is put in the reactive
+ * pipeline, it always affects the context of the source emission, and does not affect the behavior of subsequent calls to
+ * publishOn() method. If there are multiple subscribeOn() method in the chain the earliest subscribeOn() call in the chain
+ * is actually taken into account.
+ *
+ */
 public class SchedulerUtils {
 
     public static void main(String[] args) {
@@ -42,7 +54,7 @@ public class SchedulerUtils {
     /**
      * With the map operator we create another Flux (flux2) and when we subscribe to this flux2 instance,
      * then flux2 implicitly subscribes to flux1 as well.
-     * And when the flux1 starts to emit elements it will call flux2 which will call our Subscriber.
+     * And when the flux1 starts to emit elements --> it will call flux2 which will call our Subscriber.
      * We can notice that there is a subscription process and emitting process.
      * In Reactor terminology the flux1 would be the upstream and flux2 the downstream.
      *
@@ -51,6 +63,19 @@ public class SchedulerUtils {
         Flux<String> flux1 = Flux.just("foo", "bar");
         Flux<String> flux2 = flux1.map(s -> s.toUpperCase());
         flux2.subscribe(s -> System.out.println(s));
+    }
+
+    public static void testPublishOnMethod() {
+        Flux<Integer> flux3 = Flux.range(0, 2)
+                // this is influenced by subscribeOn() method
+                .doOnNext(s -> System.out.println(s + "before publishOn() using thread: " + Thread.currentThread().getName()))
+                .publishOn(Schedulers.single())
+
+                // the rest is influenced by subscription
+                .doOnNext(s -> System.out.println(s + "after publishOn() using thread: " + Thread.currentThread().getName()))
+                .subscribeOn(Schedulers.single());
+
+        SchedulerUtils.createSubscribers(flux3);
     }
 
 }

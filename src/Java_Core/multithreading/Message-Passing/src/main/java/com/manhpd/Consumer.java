@@ -1,4 +1,4 @@
-package com.manhpd.message_passing;
+package com.manhpd;
 
 public class Consumer extends Thread {
 

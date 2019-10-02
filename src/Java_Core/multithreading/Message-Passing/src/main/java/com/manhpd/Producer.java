@@ -1,4 +1,4 @@
-package com.manhpd.message_passing;
+package com.manhpd;
 
 import java.util.Date;
 import java.util.Vector;

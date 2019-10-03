@@ -1,15 +1,22 @@
 package com.manhpd.utils;
 
 import java.io.*;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class FileUtils {
 
     public static void create() throws UnsupportedEncodingException, FileNotFoundException {
-        double wantedSize = Double.parseDouble(System.getProperty("size", "1.5"));
+        double wantedSize = Double.parseDouble(System.getProperty("size", "0.5"));
 
         Random random = new Random();
         File file = new File("large-random-number.txt");
@@ -18,13 +25,8 @@ public class FileUtils {
                 new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8")), false);
         int counter = 0;
         while (true) {
-            String sep = "";
-            for (int i = 0; i < 100; i++) {
-                int number = random.nextInt(1000) + 1;
-                writer.print(sep);
-                writer.print(number / 1e3);
-                sep = " ";
-            }
+            int number = random.nextInt(10000) + 1;
+            writer.print(number);
 
             writer.println();
             // Check to see if the current size is what we want it to be
@@ -74,7 +76,7 @@ public class FileUtils {
 
         char solution = 'E';
         char answer = 'F';
-        String line = null;
+        String line = "";
 
         while (scanner.hasNextLine() || line != "") {
             if (scanner.hasNextLine()) {
@@ -107,8 +109,56 @@ public class FileUtils {
         }
     }
 
-    public static void readByBufferReader(String path) {
+    /**
+     * We need to use BufferReader.readLine() - it can read millions of lines a second
+     * BufferReader has high performance that is better than Scanner
+     * The default buffer size of it is 8192 bytes
+     * We should use BufferReader to read large file
+     *
+     * https://stackoverflow.com/questions/4638974/what-is-the-buffer-size-in-bufferedreader
+     *
+     * @param path
+     */
+    public static void readByBufferReader(String path) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
+        String line = "";
 
+        while ((line = bufferedReader.readLine()) != null) {
+            System.out.println(line);
+        }
+    }
+
+    public static void readByStreams(String path) throws IOException {
+        Files.lines(Paths.get(path))
+             .forEach(line -> System.out.println(line));
+
+//        List<String> contents = Files.lines(Paths.get(path))
+//                                     .filter(line -> line.contains("1"))
+//                                     .collect(Collectors.toList());
+    }
+
+    public static void readBinaryFile(String path) throws FileNotFoundException, IOException {
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(new File(path)));
+        byte[] buf = new byte[4096];
+        int len;
+
+        while ((len = bufferedInputStream.read(buf)) != -1) {
+            // do something with data
+        }
+    }
+
+    /**
+     * If file's size is small, we can use nio, or MappedByteBuffer
+     *
+     * @param path
+     */
+    public static String readWholeFile(String path) throws IOException {
+        File file = new File(path);
+        RandomAccessFile randomAccessFile = new RandomAccessFile(path, "r");
+        MappedByteBuffer buffer = randomAccessFile.getChannel().map(FileChannel.MapMode.READ_ONLY, 0, file.length());
+
+        randomAccessFile.close();
+        return new StringBuilder(StandardCharsets.UTF_8.decode(buffer)).toString();
     }
 
     public static void write(String path) {

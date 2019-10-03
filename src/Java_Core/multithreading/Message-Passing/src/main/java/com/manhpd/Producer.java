@@ -1,36 +1,36 @@
 package com.manhpd;
 
-import java.util.Date;
+import java.io.*;
 import java.util.Vector;
 
 public class Producer extends Thread {
 
 	static final int MAX = 7;
+
 	private Vector<String> messages = new Vector();
+
+	private static final String path = "./test-file.txt";
 
 	@Override
 	public void run() {
 		try {
-			while (true) {
 				// producing a message to send the consumer
-				putMessage();
 				System.out.println("Put message to block queue.");
-
-				// producer goes to sleep when the queue is full
-				sleep(100);
-			}
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+				readFile(path);
+		} catch (InterruptedException ex) {
+			ex.printStackTrace();
+		} catch (IOException ex) {
+			ex.printStackTrace();
 		}
 	}
 
-	private synchronized void putMessage() throws InterruptedException {
+	private synchronized void putMessage(String message) throws InterruptedException {
 		// check whether the queue is full or not
 		while (messages.size() == MAX) {
 			wait();
 		}
 
-		messages.addElement(new Date().toString());
+		messages.addElement(message);
 		notify();
 	}
 
@@ -45,10 +45,12 @@ public class Producer extends Thread {
 		return message;
 	}
 
-//	public static void main(String[] args) {
-//		Producer producer = new Producer();
-//		producer.start();
-//
-//		new Consumer(producer).start();
-//	}
+	public synchronized void readFile(String path) throws IOException, InterruptedException {
+		BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(path)));
+		String line = "";
+
+		while ((line = bufferedReader.readLine()) != null) {
+			this.putMessage(line);
+		}
+	}
 }

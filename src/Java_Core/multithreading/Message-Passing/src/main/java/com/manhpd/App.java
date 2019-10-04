@@ -12,7 +12,7 @@ public class App {
 
     private static final String path = "./large-random-number.txt";
 
-    public static void main( String[] args ) throws IOException {
+    public static void main( String[] args ) throws IOException, InterruptedException {
         // Creat large file with numbers
 //        FileUtils.create();
 
@@ -34,6 +34,10 @@ public class App {
         Producer producer = new Producer();
 		producer.start();
 
-		new Consumer(producer).start();
+		Consumer consumer = new Consumer(producer);
+		consumer.start();
+
+		producer.join();
+        consumer.join();
     }
 }

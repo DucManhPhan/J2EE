@@ -34,6 +34,17 @@ public class Producer extends Thread {
 		notify();
 	}
 
+	/**
+	 * When the wait() method is called in getMessage() method.
+	 * Firstly, it releases the lock it holds on Producer object.
+	 * Secondly it makes the Consumer thread to go on a waiting state until
+	 * all other threads have terminated,
+	 * that is it can again acquire a lock on Producer object
+	 * and some other method wakes it up by invoking notify or notifyAll on the same object.
+	 *
+	 * @return
+	 * @throws InterruptedException
+	 */
 	public synchronized String getMessage() throws InterruptedException {
 		notify();
 		while (messages.size() == 0) {

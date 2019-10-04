@@ -31,7 +31,7 @@ public class SchedulerUtils {
     public static void testDelayElements() {
         Flux<Integer> flux2 = Flux.range(0, 2).delayElements(Duration.ofMillis(1));
         SchedulerUtils.createSubscribers(flux2);
-    }
+}
 
     public static void createSubscribers(Flux<Integer> flux) {
         IntStream.range(1, 5).forEach(value ->

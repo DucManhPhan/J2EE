@@ -1,4 +1,4 @@
-package com.manhpd.message_passing;
+package com.manhpd;
 
 public class Consumer extends Thread {
 
@@ -16,11 +16,9 @@ public class Consumer extends Thread {
 
 				// sends a reply to producer got a message
 				System.out.println("Got message: " + message);
-				sleep(200);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
-
 }

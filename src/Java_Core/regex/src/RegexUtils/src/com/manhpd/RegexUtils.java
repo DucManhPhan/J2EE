@@ -78,7 +78,7 @@ public class RegexUtils {
      * @return
      */
     public static List<String> extractWords(String str) {
-        String regex = "(\\b[a-zA-Z]*\\b)[^\\w]";
+        String regex = "[a-zA-Z]+";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(str);
 

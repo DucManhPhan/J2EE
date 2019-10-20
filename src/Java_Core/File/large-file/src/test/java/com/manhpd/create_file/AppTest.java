@@ -1,4 +1,4 @@
-package com.manhpd.large_file;
+package com.manhpd.create_file;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

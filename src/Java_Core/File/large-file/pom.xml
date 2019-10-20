@@ -9,7 +9,6 @@
 	<packaging>jar</packaging>
 
 	<name>large-file</name>
-	<url>http://maven.apache.org</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,6 +21,7 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>com.github.javafaker</groupId>
 			<artifactId>javafaker</artifactId>

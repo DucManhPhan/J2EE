@@ -1,4 +1,4 @@
-package com.manhpd.large_file;
+package com.manhpd.create_file;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Random;
 
-public class ProcessingFile {
+public class CreationLargeFile {
 
 	private final static String pathFile = "";
 
@@ -47,6 +47,4 @@ public class ProcessingFile {
 		long time = System.currentTimeMillis() - start;
 		System.out.printf("Took %.1f seconds to create a file of %.3f GB", time / 1e3, file.length() / 1e9);
 	}
-	
-	
 }

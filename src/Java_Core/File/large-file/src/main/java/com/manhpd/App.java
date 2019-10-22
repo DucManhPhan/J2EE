@@ -5,11 +5,18 @@ import java.io.UnsupportedEncodingException;
 
 import com.github.javafaker.Faker;
 import com.manhpd.create_file.CreationLargeFile;
+import com.manhpd.read_file.multithreding.ReadLargeFileMultithreading;
+import com.manhpd.read_file.sync.ReadLargeFile;
 
 
 public class App {
 	public static void main(String[] args) throws UnsupportedEncodingException, FileNotFoundException {
-		new CreationLargeFile().create();
+		long start = System.currentTimeMillis();
+//		new CreationLargeFile().create();
+//		new ReadLargeFile().readFile();
+		new ReadLargeFileMultithreading().readFile();
+		long time = System.currentTimeMillis() - start;
+		System.out.printf("\nTook %.1f seconds to read all content of a file", time / 1e3);
 	}
 
 	public static void createFakeDate() {

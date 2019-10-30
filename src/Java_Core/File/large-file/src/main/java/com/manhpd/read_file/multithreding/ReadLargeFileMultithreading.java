@@ -19,14 +19,16 @@ public class ReadLargeFileMultithreading {
         this.path = path;
     }
 
-    public void readFile() {
+    public void readFile() throws InterruptedException {
         BlockingQueue<String> blockingQueue = new ArrayBlockingQueue<String>(5);
         ExecutorService service = Executors.newFixedThreadPool(2);
 
-        service.submit(new Producer(blockingQueue, this.path));
-        service.submit(new Consumer(blockingQueue));
+        service.execute(new Producer(blockingQueue, this.path));
+        Thread.sleep(5000);
+        service.execute(new Consumer(blockingQueue));
 
         service.shutdown();
+        System.out.println("The end - Two threads will be destroyed.");
     }
 
 }

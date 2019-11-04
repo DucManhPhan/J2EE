@@ -1,4 +1,4 @@
-package com.manhpd.lock_framework;
+package com.manhpd;
 
 import java.util.Date;
 import java.util.concurrent.locks.Lock;

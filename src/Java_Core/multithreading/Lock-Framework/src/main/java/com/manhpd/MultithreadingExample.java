@@ -1,8 +1,5 @@
 package com.manhpd;
 
-import com.manhpd.lock_framework.DisplayJob;
-import com.manhpd.lock_framework.ReadJob;
-import com.manhpd.lock_framework.Resources;
 
 public class MultithreadingExample {
 

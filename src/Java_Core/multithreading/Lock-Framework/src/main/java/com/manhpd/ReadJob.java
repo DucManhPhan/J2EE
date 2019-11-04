@@ -1,4 +1,4 @@
-package com.manhpd.lock_framework;
+package com.manhpd;
 
 public class ReadJob implements Runnable {
 

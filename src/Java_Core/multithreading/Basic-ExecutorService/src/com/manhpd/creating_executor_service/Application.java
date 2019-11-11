@@ -2,6 +2,8 @@ package com.manhpd.creating_executor_service;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
 public class Application {
@@ -33,12 +35,46 @@ public class Application {
         // creates an Executor that uses a single worker thread
         // It means that if in our thread pool definitely have only 1 threads, but we want to run 10 threads.
         // After the first thread will be ran completely, the next threads will run sequence.
-        ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
-        IntStream.range(0, 10)
-                 .forEach(item -> {
-                     singleThreadExecutor.execute(new Worker(item));
-                 });
-        singleThreadExecutor.shutdown();
+//        ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
+//        IntStream.range(0, 10)
+//                 .forEach(item -> {
+//                     singleThreadExecutor.execute(new Worker(item));
+//                 });
+//        singleThreadExecutor.shutdown();
+
+        // (4) - use newScheduledThreadPool
+        // creates an Executor that will repeat command at one or multiple times.
+
+        // run task at once time
+//        Runnable taskAtOnce = () -> {
+//            System.out.println("Running this task at once time.");
+//        };
+//
+//        ScheduledExecutorService scheduleService = Executors.newScheduledThreadPool(1);
+//        scheduleService.schedule(taskAtOnce, 5, TimeUnit.SECONDS);
+//        System.out.println("Running immediately.");
+//
+//        scheduleService.shutdown();
+
+        // run task repeatedly after the given delay time: initialDelay + (n * period)
+        Runnable taskRepeatedlyDelayTime = () -> {
+            System.out.println("Running this task repeatedly.");
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        };
+
+        ScheduledExecutorService scheduledExecutor = Executors.newScheduledThreadPool(1);
+        scheduledExecutor.scheduleAtFixedRate(taskRepeatedlyDelayTime, 5, 1, TimeUnit.SECONDS);
+        System.out.println("Running immediately.");
+
+//        scheduledExecutor.shutdown();
+
+        // run task repeatedly after the give delay time. But the first time is ran after the initialDelay.
+
+
     }
 }
 

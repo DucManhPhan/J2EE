@@ -31,16 +31,15 @@ public class MainProcess {
 
     public static void main(String[] args) {
 
-        //============================
-        String connection = "http://10.58.71.187:9092"; //
-        String group = "console-consumer-70275"; //
-        String topic = "testTopic";//
-        //============================
+        String connection = "http://10.58.71.187:9092";
+        String group = "console-consumer-70275";
+        String topic = "testTopic";
+        
         KafkaProducer producer = KafkaUtil.initProducer(connection, 1);
-      //  KafkaConsumer consumer = KafkaUtil.initConsumer(connection, group, topic);
         long time = System.currentTimeMillis();
         Scanner sc = new Scanner(System.in);
         int i = 0;
+
         try {
             while (true) {
                 System.out.print("Enter message: ");
@@ -50,13 +49,12 @@ public class MainProcess {
 
                 List topics = new ArrayList();
                 topics.add(topic);
-//             
+
                 KafkaConsumer consumer = KafkaUtil.initConsumer(connection, group, topic);
                  consumer.subscribe(Collections.singletonList(topic));
                   final ConsumerRecords<String, String> consumerRecords = consumer.poll(10);
                 for (ConsumerRecord<String, String> record : consumerRecords) {
                     System.out.println(String.format("Topic - %s, Partition - %d, Value: %s", ((ConsumerRecord) record).topic(), ((ConsumerRecord) record).partition(), ((ConsumerRecord) record).value()));
-                    // System.out.println(abc.get(key));
                 }
                 consumer.commitAsync();
                 

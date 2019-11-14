@@ -31,7 +31,6 @@ public class ConsumerThread  {
        // KafkaProducer kproc = kf.initProducer(connection, 16380);
         KafkaConsumer consumer = KafkaUtil.initConsumer(connection, group, topic);
         
-        
         try {
           List topics = new ArrayList();
             topics.add(topic);

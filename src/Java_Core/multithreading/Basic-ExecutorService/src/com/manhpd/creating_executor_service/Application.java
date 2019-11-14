@@ -56,25 +56,33 @@ public class Application {
 //
 //        scheduleService.shutdown();
 
-        // run task repeatedly after the given delay time: initialDelay + (n * period)
+        // run task repeatedly after the periodic time: initialDelay + (n * period)
+//        Runnable taskRepeatedlyPeriodicTime = () -> {
+//            System.out.println("Running this task repeatedly.");
+//            try {
+//                Thread.sleep(10);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        };
+//
+//        ScheduledExecutorService scheduledExecutor = Executors.newScheduledThreadPool(1);
+//        scheduledExecutor.scheduleAtFixedRate(taskRepeatedlyPeriodicTime, 5, 1, TimeUnit.SECONDS);
+//        System.out.println("Running immediately.");
+
+        // run task repeatedly after the give delay time. But the first time is ran after the initialDelay.
         Runnable taskRepeatedlyDelayTime = () -> {
-            System.out.println("Running this task repeatedly.");
+            System.out.println("Running this task repeatedly,");
             try {
-                Thread.sleep(10);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         };
 
-        ScheduledExecutorService scheduledExecutor = Executors.newScheduledThreadPool(1);
-        scheduledExecutor.scheduleAtFixedRate(taskRepeatedlyDelayTime, 5, 1, TimeUnit.SECONDS);
-        System.out.println("Running immediately.");
-
-//        scheduledExecutor.shutdown();
-
-        // run task repeatedly after the give delay time. But the first time is ran after the initialDelay.
-
-
+        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+        executorService.scheduleWithFixedDelay(taskRepeatedlyDelayTime, 10, 1, TimeUnit.SECONDS);
+        System.out.println("Running");
     }
 }
 

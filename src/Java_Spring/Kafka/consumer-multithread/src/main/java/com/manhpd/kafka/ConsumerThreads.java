@@ -7,7 +7,6 @@ import java.net.URISyntaxException;
 import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
 
 public class ConsumerThreads {
 

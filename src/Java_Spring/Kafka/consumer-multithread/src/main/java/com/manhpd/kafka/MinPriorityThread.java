@@ -36,29 +36,30 @@ public class MinPriorityThread implements Runnable {
             KafkaConsumer<String, String> consumer = KafkaUtils.createConsumer(connection.get(), topicMinPriority);
 
             logger.info("Running ...");
-            synchronized (monitor) {
-                logger.info("Step into synchronized block of MinPriorityThread.");
-                while (true) {
-                    ConsumerRecords<String, String> records = consumer.poll(100);
 
-                    try {
-                        if (!ConsumerThreads.isMinPriorityThreadRunnable || records.isEmpty()) {
-                            Thread.sleep(1000);
-                            continue;
-                        }
+            while (true) {
+                ConsumerRecords<String, String> records = consumer.poll(100);
+                try {
+                    if (!ConsumerThreads.isMinPriorityThreadRunnable || records.isEmpty()) {
+//                        logger.info("MinPriorityThread will sleep for 1s.");
+                        Thread.sleep(1000);
+                        continue;
+                    }
 
+                    synchronized (this.monitor) {
+                        logger.info("Step into synchronized block of MinPriorityThread.");
                         for (ConsumerRecord record : records) {
-                            if (!ConsumerThreads.isMinPriorityThreadRunnable) {
+                            while (!ConsumerThreads.isMinPriorityThreadRunnable) {
                                 this.monitor.wait();
                             }
 
-                            logger.info(String.format("Topic - %s, Partition - %d, Value: %s", ((ConsumerRecord) record).topic(), ((ConsumerRecord) record).partition(), ((ConsumerRecord) record).value()) + " in " + MediumPriorityThread.class.getName());
+                            logger.info(String.format("Topic - %s, Partition - %d, Value: %s", ((ConsumerRecord) record).topic(), ((ConsumerRecord) record).partition(), ((ConsumerRecord) record).value()) + " in " + MinPriorityThread.class.getName());
                         }
 
                         consumer.commitAsync();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
                     }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         } catch (URISyntaxException e) {

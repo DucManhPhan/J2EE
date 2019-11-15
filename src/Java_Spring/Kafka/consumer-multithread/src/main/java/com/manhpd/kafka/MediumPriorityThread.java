@@ -35,19 +35,21 @@ public class MediumPriorityThread implements Runnable {
             KafkaConsumer<String, String> consumer = KafkaUtils.createConsumer(connection.get(), topicMediumPriority);
 
             logger.info("Running ...");
-            synchronized (monitor) {
-                logger.info("Step into synchronized block of MediumPriorityThread.");
-                while (true) {
-                    ConsumerRecords<String, String> records = consumer.poll(100);
-                    if (records.isEmpty()) {
-                        ConsumerThreads.isMinPriorityThreadRunnable = true;
-                        this.monitor.notify();
-                        continue;
-                    }
+            while (true) {
+                    synchronized (this.monitor) {
+//                    logger.info("Step into synchronized block of MediumPriorityThread.");
+                        ConsumerRecords<String, String> records = consumer.poll(100);
+                        if (records.isEmpty()) {
+//                        logger.info("Records of MediumPriorityThread is empty.");
+                            ConsumerThreads.isMinPriorityThreadRunnable = true;
+                            this.monitor.notify();
+                            continue;
+                        }
 
-                    KafkaUtils.displayKafkaMessage(records, Priority.MEDIUM_PRIORITY);
-                    consumer.commitAsync();
-                }
+                        ConsumerThreads.isMinPriorityThreadRunnable = false;
+                        KafkaUtils.displayKafkaMessage(records, Priority.MEDIUM_PRIORITY);
+                        consumer.commitAsync();
+                    }
             }
         } catch (URISyntaxException e) {
             logger.info("Do not get absoluate path of kafka properties file.");

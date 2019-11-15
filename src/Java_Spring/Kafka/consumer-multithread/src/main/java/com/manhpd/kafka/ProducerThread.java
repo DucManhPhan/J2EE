@@ -34,8 +34,8 @@ public class ProducerThread {
                     producer.send(record);
                 });
 
-        producer.flush();
-        producer.close();
+//        producer.flush();
+//        producer.close();
     }
 
 }

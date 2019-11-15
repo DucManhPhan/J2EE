@@ -112,4 +112,17 @@ public class CreationOfStream {
         intStream.forEach(item -> System.out.println(item));
     }
 
+    /**
+     * A mutable reduction operation accumulates input elements into a mutable result container,
+     * such as a Collection or StringBuilder,
+     * as it processes the elements in the stream.
+     *
+     */
+    private static void createStreamWithMutableReduction() {
+
+    }
+
+    private static void doReductionOperation() {
+
+    }
 }

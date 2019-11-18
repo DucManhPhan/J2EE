@@ -77,6 +77,7 @@ public class KafkaUtils {
         prop.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
         prop.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         prop.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+        prop.put(ConsumerConfig.AUTO_OFFSET_RESET_DOC, "earliest");
 
         return prop;
     }

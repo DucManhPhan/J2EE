@@ -1,6 +1,8 @@
-package com.manhpd.kafka;
+package com.manhpd.kafka.old_threads;
 
 import com.manhpd.dto.KafkaConnection;
+import com.manhpd.dto.MonitorObject;
+import com.manhpd.kafka.ConsumerThreads;
 import com.manhpd.util.KafkaUtils;
 import com.manhpd.util.PropertiesUtils;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -16,9 +18,15 @@ public class MinPriorityThread implements Runnable {
 
     private static final Logger logger = LogManager.getLogger(MinPriorityThread.class);
 
-    private Object monitor;
+//    private Object monitor;
 
-    public MinPriorityThread(Object monitor) {
+    private MonitorObject monitor;
+
+//    public MinPriorityThread(Object monitor) {
+//        this.monitor = monitor;
+//    }
+
+    public MinPriorityThread(MonitorObject monitor) {
         this.monitor = monitor;
     }
 

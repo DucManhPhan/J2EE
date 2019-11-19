@@ -44,14 +44,10 @@ public class FirstPriorityThread implements Runnable {
             while (true) {
                 ConsumerRecords<String, String> records = consumer.poll(100);
                 if (records.isEmpty()) {
-//                        logger.info("Records of MediumPriorityThread is empty.");
-//                    ConsumerThreads.isMinPriorityThreadRunnable = true;
-//                    this.monitor.notify();
                     ConsumerThreads.concurrentHashMap.put(this.priority, false);
                     continue;
                 }
 
-//                ConsumerThreads.isMinPriorityThreadRunnable = false;
                 ConsumerThreads.concurrentHashMap.put(this.priority, true);
                 KafkaUtils.displayKafkaMessage(records, this.priority);
                 consumer.commitAsync();

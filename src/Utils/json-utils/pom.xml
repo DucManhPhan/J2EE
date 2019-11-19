@@ -16,28 +16,38 @@
 
     <version.gson>2.8.6</version.gson>
     <version.json-simple>1.1</version.json-simple>
+    <version.jackson>1.9.12</version.jackson>
     <version.junit>4.11</version.junit>
     <version.lombok>1.18.10</version.lombok>
     <version.commons-lang3>3.9</version.commons-lang3>
   </properties>
 
   <dependencies>
+    <!-- Use gson library -->
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
       <version>${version.gson}</version>
     </dependency>
 
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>${version.lombok}</version>
-    </dependency>
-
+    <!-- Use json simple library -->
     <dependency>
       <groupId>com.googlecode.json-simple</groupId>
       <artifactId>json-simple</artifactId>
       <version>${version.json-simple}</version>
+    </dependency>
+
+    <!-- Use Jackson library -->
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-xc</artifactId>
+      <version>1.9.12</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${version.lombok}</version>
     </dependency>
 
     <dependency>

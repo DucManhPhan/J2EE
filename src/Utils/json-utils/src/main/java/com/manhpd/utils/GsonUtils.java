@@ -12,6 +12,22 @@ import java.util.List;
 
 public class GsonUtils {
 
+    /**
+     * Accept format json with object and array
+     *
+     * @param jsonInString
+     * @return
+     */
+    public static boolean isJsonValid(String jsonInString) {
+        Gson gson = new Gson();
+        try {
+            gson.fromJson(jsonInString, Object.class);
+            return true;
+        } catch(JsonSyntaxException ex) {
+            return false;
+        }
+    }
+
     public static String createJsonSample() {
         return "{ \"pageInfo\": { \"pageName\": \"abc\", \"pagePic\": \"http://example.com/content.jpg\" }, \"posts\": [ { \"post_id\": \"123456789012_123456789012\", \"actor_id\": \"1234567890\", \"picOfPersonWhoPosted\": \"http://example.com/photo.jpg\", \"nameOfPersonWhoPosted\": \"Jane Doe\", \"message\": \"Sounds cool. Can't wait to see it!\", \"likesCount\": \"2\", \"comments\": [\"Hello\", \"Hi\", \"I am Tony Stark\", \"Obama president\"], \"timeOfPost\": \"1234567890\" } ] }";
     }

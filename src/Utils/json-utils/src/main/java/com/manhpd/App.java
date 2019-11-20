@@ -2,6 +2,9 @@ package com.manhpd;
 
 import com.google.gson.JsonElement;
 import com.manhpd.utils.GsonUtils;
+import com.manhpd.utils.JacksonUtils;
+import com.manhpd.utils.JsonSimpleUtils;
+import org.json.simple.parser.ParseException;
 
 /**
  * Hello world!
@@ -9,7 +12,7 @@ import com.manhpd.utils.GsonUtils;
  */
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         String data = GsonUtils.createJsonSample();
 //        String comments = JsonUtils.getDataBasedOnField(data, "comments");
 //
@@ -33,8 +36,12 @@ public class App {
 //        System.out.println(lst);
 
         // Use gson to get spedific path's field
-        JsonElement comments = GsonUtils.getDataBasedOnFields(data, "posts/comments");
-        System.out.println(comments.toString());
+//        JsonElement comments = GsonUtils.getDataBasedOnFields(data, "posts/comments");
+//        System.out.println(comments.toString());
+
+        // check json is valid
+        String tmp = "[\"hello\", \"hi\", \"bongzuo\"]";
+        System.out.println("Is valid json: " + JsonSimpleUtils.isJsonValid(tmp));
     }
 
 }

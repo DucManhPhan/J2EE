@@ -9,6 +9,22 @@ import java.util.Map;
 
 public class JacksonUtils {
 
+    /**
+     * Accept only format json with object
+     *
+     * @param data
+     * @return
+     */
+    public static boolean isJsonValid(String data) {
+        try {
+            final ObjectMapper mapper = new ObjectMapper();
+            mapper.readTree(data);
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
     public static Map<String, Object> readJsonFile(String path) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         File jsonFile = new File(path);

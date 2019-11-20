@@ -7,25 +7,55 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+
+/**
+ * https://github.com/fangyidong/json-simple/tree/master/src/main/java/org/json/simple
+ *
+ */
 public class JsonSimpleUtils {
 
-    public static boolean isJsonValid(String data) {
+    /**
+     * Accept format json with object and array
+     * @param data
+     * @return
+     * @throws ParseException
+     */
+    public static boolean isJsonValid(String data) throws ParseException {
+        JSONParser parser = new JSONParser();
+
         try {
-            new JSONObject(data);
-        } catch (JSONException ex) {
-            // edited, to include @Arthur's comment
-            // e.g. in case JSONArray is valid as well...
+            JSONObject jsonObject = (JSONObject) parser.parse(data);
+            return true;
+        } catch (ParseException | ClassCastException exception) {
+            System.out.println("Can not convert json data to JSONObject");
             try {
-                new JSONArray(data);
-            } catch (JSONException ex1) {
+                JSONArray jsonArray = (JSONArray) parser.parse(data);
+                return true;
+            } catch (ParseException e) {
+                System.out.println("Can not convert json data to JSONArray");
                 return false;
             }
         }
-        return true;
+    }
+
+    public static void writeFile(String data) {
+
+    }
+
+    public static JSONObject readFile() throws IOException, ParseException {
+        JSONParser parser = new JSONParser();
+        Reader reader = new FileReader("data.json");
+
+        Object jsonObj = parser.parse(reader);
+
+        return (JSONObject) jsonObj;
     }
 
     /**

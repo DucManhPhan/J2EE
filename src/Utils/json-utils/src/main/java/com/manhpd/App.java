@@ -6,13 +6,15 @@ import com.manhpd.utils.JacksonUtils;
 import com.manhpd.utils.JsonSimpleUtils;
 import org.json.simple.parser.ParseException;
 
+import java.io.FileNotFoundException;
+
 /**
  * Hello world!
  *
  */
 public class App {
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, FileNotFoundException {
         String data = GsonUtils.createJsonSample();
 //        String comments = JsonUtils.getDataBasedOnField(data, "comments");
 //
@@ -40,8 +42,11 @@ public class App {
 //        System.out.println(comments.toString());
 
         // check json is valid
-        String tmp = "[\"hello\", \"hi\", \"bongzuo\"]";
-        System.out.println("Is valid json: " + JsonSimpleUtils.isJsonValid(tmp));
+//        String tmp = "[\"hello\", \"hi\", \"bongzuo\"]";
+//        System.out.println("Is valid json: " + JsonSimpleUtils.isJsonValid(tmp));
+
+        // write file
+//        JsonSimpleUtils.writeFile(data, "./data.json");
     }
 
 }

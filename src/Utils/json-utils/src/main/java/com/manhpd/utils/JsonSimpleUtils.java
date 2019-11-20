@@ -7,9 +7,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -45,8 +43,22 @@ public class JsonSimpleUtils {
         }
     }
 
-    public static void writeFile(String data) {
+    public static void writeFile(String data, String path) throws ParseException, FileNotFoundException {
+        boolean isJsonValid = JsonSimpleUtils.isJsonValid(data);
+        if (!isJsonValid) {
+            return;
+        }
 
+        JSONParser parser = new JSONParser();
+        JSONObject jsonObject = (JSONObject) parser.parse(data);
+
+        try (BufferedWriter bf = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path)))) {
+            bf.write(jsonObject.toString());
+        } catch (IOException ex) {
+            System.out.println("Exception when writing data to file in " + path + " : " + ex.toString());
+        }
+
+        System.out.println("Successfully write file");
     }
 
     public static JSONObject readFile() throws IOException, ParseException {

@@ -13,6 +13,21 @@ import java.util.List;
 
 public class JsonSimpleUtils {
 
+    public static boolean isJsonValid(String data) {
+        try {
+            new JSONObject(data);
+        } catch (JSONException ex) {
+            // edited, to include @Arthur's comment
+            // e.g. in case JSONArray is valid as well...
+            try {
+                new JSONArray(data);
+            } catch (JSONException ex1) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * Get data based on field path in json data
      *

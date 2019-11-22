@@ -19,6 +19,11 @@ public class FileUtils {
 
     private static final ExecutorService deleteService = Executors.newSingleThreadExecutor();
 
+    /**
+     * Remove file and folder
+     *
+     * @param pathFile
+     */
     public static void removeFileSync(String pathFile) {
         File file = new File(pathFile);
         FileUtils.removeFileSync(file);
@@ -86,6 +91,11 @@ public class FileUtils {
         FileUtils.removeFileAsync(file);
     }
 
+    /**
+     * list all files in a folder
+     *
+     * @param path
+     */
     public static void listAllFiles(String path) {
         File folder = new File(path);
         for (final File fileEntry : folder.listFiles()) {
@@ -97,26 +107,17 @@ public class FileUtils {
         }
     }
 
-    public static List<File> listDrivers() {
-        File[] drivers = File.listRoots();
-        for (File driver : drivers) {
-            System.out.println(driver.getAbsolutePath());
-        }
-
-        return Arrays.asList(drivers);
-    }
-
     public static void listAllFilesOnConsole(String path) {
         File dir = new File(path);
         FileUtils.listChild(dir, 0);
     }
 
     private static void listChild(File file, int level) {
-        if (file.isDirectory()) { // Dừng nếu là tập tin
+        if (file.isDirectory()) {
             System.out.println(getPadding(level) + " - " + file.getName());
             File[] children = file.listFiles();
             for (File child : children) {
-                FileUtils.listChild(child, level + 1); // Gọi đệ quy
+                FileUtils.listChild(child, level + 1);
             }
         } else {
             System.out.println(getPadding(level) + " + " + file.getName());
@@ -130,5 +131,28 @@ public class FileUtils {
         }
         return sb.toString();
     }
+
+    /**
+     * List all drivers in OS
+     *
+     * @return
+     */
+    public static List<File> listDrivers() {
+        File[] drivers = File.listRoots();
+        for (File driver : drivers) {
+            System.out.println(driver.getAbsolutePath());
+        }
+
+        return Arrays.asList(drivers);
+    }
+
+    /**
+     * Delete duplicate lines in a file
+     *
+     */
+    public static void deleteDuplicateLines(String pathTextFile) {
+
+    }
+
 
 }

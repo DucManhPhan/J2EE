@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="LOG_PATTERN"><[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %L %c{1} - %msg%n</Property>
+        <Property name="APP_LOG_ROOT">./logs</Property>
+    </Properties>
+    <Appenders>
+        <!-- Console appender -->
+        <Console name="consoleLogger" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+
+        <!-- File appender for debug mode -->
+        <RollingFile name="debugLogger" fileName="${APP_LOG_ROOT}/debug-log/app-debug.log" filePattern="${APP_LOG_ROOT}/debug-log/app-debug-%d{yyyy-MM-dd}-%i.log.gz">
+            <LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout>
+                <pattern>${LOG_PATTERN}</pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20MB" />
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />	<!-- interval = 1 means one day -->
+            </Policies>
+            <DefaultRolloverStrategy max="10" />
+        </RollingFile>
+
+        <!-- File appender for error mode -->
+        <RollingFile name="errorLogger" fileName="${APP_LOG_ROOT}/error-log/app-error.log" filePattern="${APP_LOG_ROOT}/error-log/app-error-%d{yyyy-MM-dd}-%i.log" >
+            <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="warn">
+            <AppenderRef ref="consoleLogger"/>
+        </Root>
+
+        <!-- Should have additivity = false for named loggers -->
+        <Logger name="com.manhpd" additivity="false" level="trace">
+            <AppenderRef ref="debugLogger" />
+            <AppenderRef ref="errorLogger" />
+        </Logger>
+    </Loggers>
+</Configuration>

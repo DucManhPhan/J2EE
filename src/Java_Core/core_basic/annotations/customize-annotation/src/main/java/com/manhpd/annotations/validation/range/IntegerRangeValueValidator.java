@@ -6,7 +6,7 @@ import javax.validation.constraintvalidation.SupportedValidationTarget;
 import javax.validation.constraintvalidation.ValidationTarget;
 
 
-//@SupportedValidationTarget(ValidationTarget.PARAMETERS)
+@SupportedValidationTarget(ValidationTarget.PARAMETERS)
 public class IntegerRangeValueValidator implements ConstraintValidator<IntegerRangeValue, Object[]> {
 
     private int min;

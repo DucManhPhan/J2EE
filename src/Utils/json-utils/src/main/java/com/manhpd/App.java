@@ -47,6 +47,8 @@ public class App {
 
         // write file
 //        JsonSimpleUtils.writeFile(data, "./data.json");
+
+        System.out.println(GsonUtils.createJsonObjectBasedField(Integer.toString(3044021)));
     }
 
 }

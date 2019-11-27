@@ -142,4 +142,19 @@ public class GsonUtils {
         return null;
     }
 
+    /**
+     * create json object with format
+     * Ex: "{"3044021":1}"
+     *
+     * @param id
+     * @return
+     */
+    public static String createJsonObjectBasedField(String id) {
+        JsonObject notificationsJson = new JsonObject();
+        notificationsJson.addProperty(id, "0");
+        String newNotify = notificationsJson.toString();
+
+        return newNotify;
+    }
+
 }

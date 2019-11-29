@@ -11,7 +11,7 @@
         </Console>
 
         <!-- File appender for debug mode -->
-        <RollingFile name="debugLogger" fileName="${APP_LOG_ROOT}/debug-log/app-debug.log" filePattern="${APP_LOG_ROOT}/app-debug-%d{yyyy-MM-dd}-%i.log.gz">
+        <RollingFile name="debugLogger" fileName="${APP_LOG_ROOT}/app-debug.log" filePattern="${APP_LOG_ROOT}/app-debug-%d{yyyy-MM-dd}-%i.log.gz">
             <LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout>
                 <pattern>${LOG_PATTERN}</pattern>
@@ -25,14 +25,9 @@
     </Appenders>
     <Loggers>
         <Root level="warn">
-            <AppenderRef ref="console"/>
-        </Root>
-
-        <!-- Should have additivity = false for named loggers -->
-        <Logger name="com.manhpd" additivity="false" level="trace">
+            <AppenderRef ref="consoleLogger"/>
             <AppenderRef ref="debugLogger" />
-            <AppenderRef ref="consoleLogger" />
-        </Logger>
+        </Root>
 
         <Logger name="com.manhpd" additivity="false" level="debug">
             <AppenderRef ref="debugLogger" />

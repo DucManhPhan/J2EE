@@ -54,8 +54,8 @@ public class App {
 
 //        System.out.println(GsonUtils.createJsonObjectBasedField(Integer.toString(3044021)));
 
-        String nameOfClass = "This is main class.";
-        logger.info("{}", nameOfClass);
+        String nameOfClass = "Hello, this is main class.";
+        logger.debug("{}", nameOfClass);
     }
 
 }

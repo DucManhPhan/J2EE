@@ -1,0 +1,28 @@
+
+Tsquid:S1118":Add a private constructor to hide the implicit public one.(–›¦½øÿÿÿÿ
+Ssquid:S1854">Remove this useless assignment to local variable "jsonObject".(ŞÍ¹­
+Wsquid:S1854"=Remove this useless assignment to local variable "jsonArray".(¨ÈË×ùÿÿÿÿ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(ø‡´ûÿÿÿÿ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(‘ÛÒ–
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(ßìÒš
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(Öëüùÿÿÿÿ
+Ssquid:S1854">Remove this useless assignment to local variable "fieldPaths".(³æ–Œ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(á´œ
+e
+squid:S128"LEnd this switch case with an unconditional break, return or throw statement.(à¬—ÿÿÿÿÿ
+Ksquid:S1751"6Remove this "return" statement or make it conditional.(‘¸¥“
+isquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ü¿Á¹ıÿÿÿÿ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(”Êõáùÿÿÿÿ
+dsquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÑÅÈÌ
+Nsquid:S2864"4Iterate over the "entrySet" instead of the "keySet".(Îœœøùÿÿÿÿ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(”Êõáùÿÿÿÿ
+Asquid:S1602",Remove useless curly braces around statement(Å…ñÙ
+Dsquid:S1481"/Remove this unused "jsonObject" local variable.(ŞÍ¹­
+Hsquid:S1481".Remove this unused "jsonArray" local variable.(¨ÈË×ùÿÿÿÿ

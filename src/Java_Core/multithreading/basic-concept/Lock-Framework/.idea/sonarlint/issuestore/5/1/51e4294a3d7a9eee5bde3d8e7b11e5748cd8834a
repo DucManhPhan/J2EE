@@ -1,0 +1,23 @@
+
+Fsquid:S1172 "/Remove this unused method parameter "document".(ÕÏŠ•
+]squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+O
+squid:S106"9Replace this use of System.out or System.err by a logger.(ïµËØ
+?squid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+N
+squid:S106"9Replace this use of System.out or System.err by a logger.(ÃÖÈ"
+V
+squid:S106&"9Replace this use of System.out or System.err by a logger.(¤ò·Û8èÔý¢ë-
+V
+squid:S106"9Replace this use of System.out or System.err by a logger.(‰Àä¦8Ùõ÷¢ë-
+V
+squid:S106"9Replace this use of System.out or System.err by a logger.(‹µ©Ù8éÒô¢ë-
+Esquid:S1172"/Remove this unused method parameter "document".(ôˆ˜1
+T
+squid:S106'"9Replace this use of System.out or System.err by a logger.(þä„Ãøÿÿÿÿ
+?squid:S1148+"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+V
+squid:S106$"9Replace this use of System.out or System.err by a logger.(¤ë¯µ8Øîü¢ë-
+N
+squid:S106-"9Replace this use of System.out or System.err by a logger.(¼òür
+]squid:S2142*"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€

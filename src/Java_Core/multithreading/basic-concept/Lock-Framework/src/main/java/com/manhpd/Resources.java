@@ -12,7 +12,9 @@ public class Resources {
 
 	public void display(Object document) {
 		final Lock lock = this.displayJobLock;
+		System.out.println("The " + Thread.currentThread().getName() + " is waiting in display job.");
 		lock.lock();
+		System.out.println("The " + Thread.currentThread().getName() + " is acquiring this lock in display job.");
 		try {
 			Long duration = (long) (Math.random() * 10000);
 			System.out.println(Thread.currentThread().getName() + ": Resources: display a Job during "
@@ -31,7 +33,9 @@ public class Resources {
 		final Lock lock = this.readJobLock;
 		try {
 			Long duration = (long) (Math.random() * 10000);
+			System.out.println("The " + Thread.currentThread().getName() + " is waiting in read job.");
 			lock.lock();
+			System.out.println("The " + Thread.currentThread().getName() + " is acquiring this lock in read job.");
 			System.out.println(Thread.currentThread().getName() + ": Resources: reading a Job during "
 					+ (duration / 1000) + " seconds :: Time - " + new Date());
 			Thread.sleep(duration);

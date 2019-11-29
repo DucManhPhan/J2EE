@@ -4,6 +4,8 @@ import com.google.gson.JsonElement;
 import com.manhpd.utils.GsonUtils;
 import com.manhpd.utils.JacksonUtils;
 import com.manhpd.utils.JsonSimpleUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.simple.parser.ParseException;
 
 import java.io.FileNotFoundException;
@@ -13,6 +15,8 @@ import java.io.FileNotFoundException;
  *
  */
 public class App {
+
+    private static final Logger logger = LogManager.getLogger(App.class);
 
     public static void main(String[] args) throws ParseException, FileNotFoundException {
         String data = GsonUtils.createJsonSample();
@@ -48,7 +52,10 @@ public class App {
         // write file
 //        JsonSimpleUtils.writeFile(data, "./data.json");
 
-        System.out.println(GsonUtils.createJsonObjectBasedField(Integer.toString(3044021)));
+//        System.out.println(GsonUtils.createJsonObjectBasedField(Integer.toString(3044021)));
+
+        String nameOfClass = "This is main class.";
+        logger.info("{}", nameOfClass);
     }
 
 }

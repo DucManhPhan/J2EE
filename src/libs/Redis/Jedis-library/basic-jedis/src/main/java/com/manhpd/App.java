@@ -1,7 +1,10 @@
 package com.manhpd;
 
+import com.manhpd.connection.RedisConnection;
+
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        RedisConnection redisConnection = RedisConnection.getInstance();
+        redisConnection.checkPool();
     }
 }

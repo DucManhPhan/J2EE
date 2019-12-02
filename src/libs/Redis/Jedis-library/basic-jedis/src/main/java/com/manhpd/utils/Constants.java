@@ -6,44 +6,44 @@ public class Constants {
 
     public static final String REDIS_MASTER_NAME = "REDIS_MASTER_NAME";
 
-    public static final String REDIS_DB = "1";
+    public static final String REDIS_DB = "REDIS_DB";
 
-    public static final String REDIS_PASS = "";
+    public static final String REDIS_PASS = "REDIS_PASS";
 
-    public static String REDIS_CHECK = "60000";
+    public static String REDIS_CHECK = "REDIS_CHECK";
 
-    public static String REDIS_TIMEOUT = "60000";
+    public static String REDIS_TIMEOUT = "REDIS_TIMEOUT";
 
-    public static String REDIS_MAX_WAIT_MILLIS = "30000";
+    public static String REDIS_MAX_WAIT_MILLIS = "REDIS_MAX_WAIT_MILLIS";
 
-    public static String REDIS_MAX_TOTAL = "10";
+    public static String REDIS_MAX_TOTAL = "REDIS_MAX_TOTAL";
 
-    public static String REDIS_MAX_IDLE = "5";
+    public static String REDIS_MAX_IDLE = "REDIS_MAX_IDLE";
 
-    public static String REDIS_MIN_IDLE = "1";
+    public static String REDIS_MIN_IDLE = "REDIS_MIN_IDLE";
 
-    public static String REDIS_NUM_TESTS_PER_EVICTION_RUN = "3";
+    public static String REDIS_NUM_TESTS_PER_EVICTION_RUN = "REDIS_NUM_TESTS_PER_EVICTION_RUN";
 
-    public static String REDIS_TIME_BETWEEN_EVICTION_RUN_MILLIS = "30000";
+    public static String REDIS_TIME_BETWEEN_EVICTION_RUN_MILLIS = "REDIS_TIME_BETWEEN_EVICTION_RUN_MILLIS";
 
-    public static String REDIS_MIN_EVICTABLE_IDLE_TIME_MILLIS = "5000";
+    public static String REDIS_MIN_EVICTABLE_IDLE_TIME_MILLIS = "REDIS_MIN_EVICTABLE_IDLE_TIME_MILLIS";
 
-    public static String REDIS_VALUE_THIS_INSTANCE = "NODE_01";
+    public static String REDIS_VALUE_THIS_INSTANCE = "REDIS_VALUE_THIS_INSTANCE";
 
-    public static String REDIS_KEY_UNIQUE_DEVICE = "Unique_Device";
+    public static String REDIS_KEY_UNIQUE_DEVICE = "REDIS_KEY_UNIQUE_DEVICE";
 
-    public static String REDIS_TTL_UNIQUE_DEVICE_DAY = "10";
+    public static String REDIS_TTL_UNIQUE_DEVICE_DAY = "REDIS_TTL_UNIQUE_DEVICE_DAY";
 
-    public static String REDIS_KEY_TOTAL_SUCCESS = "Total_Success";
+    public static String REDIS_KEY_TOTAL_SUCCESS = "REDIS_KEY_TOTAL_SUCCESS";
 
-    public static String REDIS_TTL_TOTAL_SUCCESS_DAY = "100";
+    public static String REDIS_TTL_TOTAL_SUCCESS_DAY = "REDIS_TTL_TOTAL_SUCCESS_DAY";
 
-    public static String REDIS_KEY_TOTAL_FAILURE = "Total_Failure";
+    public static String REDIS_KEY_TOTAL_FAILURE = "REDIS_KEY_TOTAL_FAILURE";
 
-    public static String REDIS_TTL_TOTAL_FAILURE_DAY = "100";
+    public static String REDIS_TTL_TOTAL_FAILURE_DAY = "REDIS_TTL_TOTAL_FAILURE_DAY";
 
-    public static String REDIS_KEY_TOTAL_NOTSEND = "Total_Notsend";
+    public static String REDIS_KEY_TOTAL_NOTSEND = "REDIS_KEY_TOTAL_NOTSEND";
 
-    public static String REDIS_TTL_TOTAL_NOTSEND_DAY = "100";
+    public static String REDIS_TTL_TOTAL_NOTSEND_DAY = "REDIS_TTL_TOTAL_NOTSEND_DAY";
 
 }

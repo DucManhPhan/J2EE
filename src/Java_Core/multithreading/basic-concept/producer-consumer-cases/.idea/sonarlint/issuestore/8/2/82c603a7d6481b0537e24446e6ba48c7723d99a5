@@ -1,13 +1,13 @@
 
+Msquid:S2696"6Make the enclosing method "static" or remove this set.(²êÙÞ
 Asquid:S00108")Either remove or fill this block of code.(³†‡ˆ
-Msquid:S2696"6Make the enclosing method "static" or remove this set.(²êÙÞ
-Msquid:S2696"6Make the enclosing method "static" or remove this set.(²êÙÞ
-Rsquid:S2696"6Make the enclosing method "static" or remove this set.(“æ¥’ûÿÿÿÿ
 Rsquid:S2696"6Make the enclosing method "static" or remove this set.(“æ¥’ûÿÿÿÿ
 Dsquid:S1172"-Remove this unused method parameter "buffer".(¾»Ó‚
 O
 squid:S106,"9Replace this use of System.out or System.err by a logger.(¥ãî¼
+Msquid:S2696"6Make the enclosing method "static" or remove this set.(²êÙÞ
 O
 squid:S1064"9Replace this use of System.out or System.err by a logger.(ïõÆí
+Rsquid:S2696"6Make the enclosing method "static" or remove this set.(“æ¥’ûÿÿÿÿ
 T
 squid:S106@"9Replace this use of System.out or System.err by a logger.(÷×“ ùÿÿÿÿ

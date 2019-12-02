@@ -1,0 +1,56 @@
+
+squid:S3008"qRename this field "REDIS_TIME_BETWEEN_EVICTION_RUN_MILLIS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£­ğÉ8Ö÷ì-
+§"squid:ClassVariableVisibilityCheck"rMake REDIS_TIME_BETWEEN_EVICTION_RUN_MILLIS a static final constant or non-public and provide accessors if needed.(£­ğÉ8Ö÷ì-
+¡"squid:ClassVariableVisibilityCheck#"gMake REDIS_TTL_UNIQUE_DEVICE_DAY a static final constant or non-public and provide accessors if needed.(³ó›œıÿÿÿÿ8Ö÷ì-
+_squid:S1444/"AMake this "public static REDIS_TTL_TOTAL_NOTSEND_DAY" field final(àÊéŞ8Ö÷ì-
+˜"squid:ClassVariableVisibilityCheck%"cMake REDIS_KEY_TOTAL_SUCCESS a static final constant or non-public and provide accessors if needed.(şª¯8Ö÷ì-
+squid:S3008"oRename this field "REDIS_MIN_EVICTABLE_IDLE_TIME_MILLIS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§ô§8Ö÷ì-
+”"squid:ClassVariableVisibilityCheck"ZMake REDIS_MAX_IDLE a static final constant or non-public and provide accessors if needed.(ã¾Öæÿÿÿÿÿ8Ö÷ì-
+¡"squid:ClassVariableVisibilityCheck+"gMake REDIS_TTL_TOTAL_FAILURE_DAY a static final constant or non-public and provide accessors if needed.(÷È¸€ùÿÿÿÿ8Ö÷ì-
+€squid:S3008%"bRename this field "REDIS_KEY_TOTAL_SUCCESS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(şª¯8Ö÷ì-
+”"squid:ClassVariableVisibilityCheck"ZMake REDIS_MIN_IDLE a static final constant or non-public and provide accessors if needed.(•¹Çóùÿÿÿÿ8Ö÷ì-
+dsquid:S1444#"AMake this "public static REDIS_TTL_UNIQUE_DEVICE_DAY" field final(³ó›œıÿÿÿÿ8Ö÷ì-
+‹"squid:ClassVariableVisibilityCheck"WMake REDIS_CHECK a static final constant or non-public and provide accessors if needed.(É•ğh8Ö÷ì-
+jsquid:S1444"LMake this "public static REDIS_TIME_BETWEEN_EVICTION_RUN_MILLIS" field final(£­ğÉ8Ö÷ì-
+"squid:ClassVariableVisibilityCheck!"cMake REDIS_KEY_UNIQUE_DEVICE a static final constant or non-public and provide accessors if needed.(­šÄ²ÿÿÿÿÿ8Ö÷ì-
+{squid:S3008"XRename this field "REDIS_TIMEOUT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëë¡‡ıÿÿÿÿ8Ö÷ì-
+squid:S3008"kRename this field "REDIS_NUM_TESTS_PER_EVICTION_RUN" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“¶Âøşÿÿÿÿ8Ö÷ì-
+¦"squid:ClassVariableVisibilityCheck"lMake REDIS_NUM_TESTS_PER_EVICTION_RUN a static final constant or non-public and provide accessors if needed.(“¶Âøşÿÿÿÿ8Ö÷ì-
+Vsquid:S1444"3Make this "public static REDIS_TIMEOUT" field final(ëë¡‡ıÿÿÿÿ8Ö÷ì-
+`squid:S1444!"=Make this "public static REDIS_KEY_UNIQUE_DEVICE" field final(­šÄ²ÿÿÿÿÿ8Ö÷ì-
+Nsquid:S1444"1Make this "public static REDIS_CHECK" field final(É•ğh8Ö÷ì-
+¡"squid:ClassVariableVisibilityCheck'"gMake REDIS_TTL_TOTAL_SUCCESS_DAY a static final constant or non-public and provide accessors if needed.(³€ì¶üÿÿÿÿ8Ö÷ì-
+‰squid:S3008+"fRename this field "REDIS_TTL_TOTAL_FAILURE_DAY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷È¸€ùÿÿÿÿ8Ö÷ì-
+[squid:S1444)"=Make this "public static REDIS_KEY_TOTAL_FAILURE" field final(ğıë€8Ö÷ì-
+Wsquid:S1444"4Make this "public static REDIS_MAX_IDLE" field final(ã¾Öæÿÿÿÿÿ8Ö÷ì-
+–"squid:ClassVariableVisibilityCheck"aMake REDIS_MAX_WAIT_MILLIS a static final constant or non-public and provide accessors if needed.(ÁÆøü8Ö÷ì-
+dsquid:S1444'"AMake this "public static REDIS_TTL_TOTAL_SUCCESS_DAY" field final(³€ì¶üÿÿÿÿ8Ö÷ì-
+‚squid:S3008"dRename this field "REDIS_VALUE_THIS_INSTANCE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ºõÌ‹8Ö÷ì-
+ssquid:S3008"VRename this field "REDIS_CHECK" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(É•ğh8Ö÷ì-
+œ"squid:ClassVariableVisibilityCheck/"gMake REDIS_TTL_TOTAL_NOTSEND_DAY a static final constant or non-public and provide accessors if needed.(àÊéŞ8Ö÷ì-
+"squid:ClassVariableVisibilityCheck-"cMake REDIS_KEY_TOTAL_NOTSEND a static final constant or non-public and provide accessors if needed.(„ÏŸ ùÿÿÿÿ8Ö÷ì-
+hsquid:S1444"JMake this "public static REDIS_MIN_EVICTABLE_IDLE_TIME_MILLIS" field final(§ô§8Ö÷ì-
+…squid:S3008!"bRename this field "REDIS_KEY_UNIQUE_DEVICE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­šÄ²ÿÿÿÿÿ8Ö÷ì-
+~squid:S3008"`Rename this field "REDIS_MAX_WAIT_MILLIS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÁÆøü8Ö÷ì-
+˜"squid:ClassVariableVisibilityCheck)"cMake REDIS_KEY_TOTAL_FAILURE a static final constant or non-public and provide accessors if needed.(ğıë€8Ö÷ì-
+|squid:S3008"YRename this field "REDIS_MAX_IDLE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ã¾Öæÿÿÿÿÿ8Ö÷ì-
+¥"squid:ClassVariableVisibilityCheck"pMake REDIS_MIN_EVICTABLE_IDLE_TIME_MILLIS a static final constant or non-public and provide accessors if needed.(§ô§8Ö÷ì-
+‰squid:S3008#"fRename this field "REDIS_TTL_UNIQUE_DEVICE_DAY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³ó›œıÿÿÿÿ8Ö÷ì-
+“"squid:ClassVariableVisibilityCheck"YMake REDIS_TIMEOUT a static final constant or non-public and provide accessors if needed.(ëë¡‡ıÿÿÿÿ8Ö÷ì-
+]squid:S1118":Add a private constructor to hide the implicit public one.(“³±ûÿÿÿÿ8§ÁÅì-
+‰squid:S3008'"fRename this field "REDIS_TTL_TOTAL_SUCCESS_DAY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³€ì¶üÿÿÿÿ8Ö÷ì-
+[squid:S1444%"=Make this "public static REDIS_KEY_TOTAL_SUCCESS" field final(şª¯8Ö÷ì-
+}squid:S3008"ZRename this field "REDIS_MAX_TOTAL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉŒÒ‘úÿÿÿÿ8Ö÷ì-
+`squid:S1444-"=Make this "public static REDIS_KEY_TOTAL_NOTSEND" field final(„ÏŸ ùÿÿÿÿ8Ö÷ì-
+„squid:S3008/"fRename this field "REDIS_TTL_TOTAL_NOTSEND_DAY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(àÊéŞ8Ö÷ì-
+dsquid:S1444+"AMake this "public static REDIS_TTL_TOTAL_FAILURE_DAY" field final(÷È¸€ùÿÿÿÿ8Ö÷ì-
+Xsquid:S1444"5Make this "public static REDIS_MAX_TOTAL" field final(ÉŒÒ‘úÿÿÿÿ8Ö÷ì-
+|squid:S3008"YRename this field "REDIS_MIN_IDLE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•¹Çóùÿÿÿÿ8Ö÷ì-
+•"squid:ClassVariableVisibilityCheck"[Make REDIS_MAX_TOTAL a static final constant or non-public and provide accessors if needed.(ÉŒÒ‘úÿÿÿÿ8Ö÷ì-
+€squid:S3008)"bRename this field "REDIS_KEY_TOTAL_FAILURE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğıë€8Ö÷ì-
+…squid:S3008-"bRename this field "REDIS_KEY_TOTAL_NOTSEND" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„ÏŸ ùÿÿÿÿ8Ö÷ì-
+š"squid:ClassVariableVisibilityCheck"eMake REDIS_VALUE_THIS_INSTANCE a static final constant or non-public and provide accessors if needed.(ºõÌ‹8Ö÷ì-
+]squid:S1444"?Make this "public static REDIS_VALUE_THIS_INSTANCE" field final(ºõÌ‹8Ö÷ì-
+Ysquid:S1444";Make this "public static REDIS_MAX_WAIT_MILLIS" field final(ÁÆøü8Ö÷ì-
+Wsquid:S1444"4Make this "public static REDIS_MIN_IDLE" field final(•¹Çóùÿÿÿÿ8Ö÷ì-
+isquid:S1444"FMake this "public static REDIS_NUM_TESTS_PER_EVICTION_RUN" field final(“¶Âøşÿÿÿÿ8Ö÷ì-

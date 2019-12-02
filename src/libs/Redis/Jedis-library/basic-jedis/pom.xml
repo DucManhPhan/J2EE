@@ -16,10 +16,29 @@
     <maven.compiler.target>1.7</maven.compiler.target>
 
     <version.junit>4.11</version.junit>
+    <version.jedis>2.9.0</version.jedis>
+    <version.lombok>1.18.10</version.lombok>
+    <version.commons-pool2>2.7.0</version.commons-pool2>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-pool2</artifactId>
+      <version>${version.commons-pool2}</version>
+    </dependency>
 
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${version.lombok}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>redis.clients</groupId>
+      <artifactId>jedis</artifactId>
+      <version>${version.jedis}</version>
+    </dependency>
 
     <dependency>
       <groupId>junit</groupId>

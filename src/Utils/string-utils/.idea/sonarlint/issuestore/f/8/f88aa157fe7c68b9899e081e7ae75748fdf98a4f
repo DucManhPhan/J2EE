@@ -1,3 +1,3 @@
 
-V
-squid:S106"9Replace this use of System.out or System.err by a logger.(Ã•8ÍÍß´ë-
+isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ª§Üé8™Ïœµë-
+gsquid:UselessImportCheck"<Remove this unused import 'javax.sound.sampled.AudioFormat'.(ÑĞèè8¶³µë-

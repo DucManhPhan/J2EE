@@ -1,10 +1,12 @@
 
+isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ç´ûÍ8ş¦´µë-
+nsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(‘Ÿüôÿÿÿÿÿ8ş¦´µë-
+msquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éÿ´8äğŒµë-
 V
-squid:S106
-"9Replace this use of System.out or System.err by a logger.(Ğ¯¯¥8úÚ´ë-
-Xsquid:S1118":Add a private constructor to hide the implicit public one.(È¯Úµ8İèÙ´ë-
-Wsquid:S4719
-"9Replace charset name argument with StandardCharsets.UTF_8(Ğ¯¯¥8úÚ´ë-
-dsquid:S1192	"FDefine a constant instead of duplicating this literal "UTF-8" 3 times.(€¸ıì8ğ¼Ü´ë-
-\squid:S4719"9Replace charset name argument with StandardCharsets.UTF_8(¯èà¿ùÿÿÿÿ8ğ¼Ü´ë-
-Wsquid:S4719	"9Replace charset name argument with StandardCharsets.UTF_8(€¸ıì8ñ¤ß´ë-
+squid:S106'"9Replace this use of System.out or System.err by a logger.(Ãî€8ÔÁ´µë-
+\squid:S4719&">Replace charset name argument with StandardCharsets.ISO_8859_1(Á”†Ñ8Í¹µë-
+nsquid:CommentedOutCodeLine!"<This block of commented-out lines of code should be removed.(î¶î¹üÿÿÿÿ8ş¦´µë-
+isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(á‚à 8–¬¦µë-
+Xsquid:S1118	":Add a private constructor to hide the implicit public one.(È¯Úµ8İèÙ´ë-
+Zsquid:S4719'"<Replace charset name argument with StandardCharsets.UTF_16BE(Ãî€8©ì¹µë-
+Zsquid:S4719)"<Replace charset name argument with StandardCharsets.UTF_16BE(™ÙÓœ8«ó¾µë-

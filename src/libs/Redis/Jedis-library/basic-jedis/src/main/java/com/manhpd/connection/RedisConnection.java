@@ -1,6 +1,7 @@
 package com.manhpd.connection;
 
 import com.manhpd.dto.RedisConfig;
+import com.manhpd.utils.Constants;
 import com.manhpd.utils.RedisUtils;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import redis.clients.jedis.HostAndPort;
@@ -21,13 +22,16 @@ public class RedisConnection {
     private Pool<Jedis> pool;
 
     private RedisConnection() {
-
         this.redisConfig = RedisUtils.readRedisConfigFile("redis.conf");
     }
 
     public static RedisConnection getInstance() {
         if (redisConnection == null) {
-            redisConnection = new RedisConnection();
+            synchronized (RedisConnection.class) {
+                if (redisConnection == null) {
+                    redisConnection = new RedisConnection();
+                }
+            }
         }
 
         return redisConnection;
@@ -47,7 +51,7 @@ public class RedisConnection {
 
     private void initPool() {
         // 1st way
-        this.pool = new JedisPool("127.0.0.1", 6379);
+        this.pool = new JedisPool(Constants.FIXED_HOST, Constants.FIXED_PORT);
 
         // 2nd way
 //        try {

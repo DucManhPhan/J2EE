@@ -46,4 +46,8 @@ public class Constants {
 
     public static String REDIS_TTL_TOTAL_NOTSEND_DAY = "REDIS_TTL_TOTAL_NOTSEND_DAY";
 
+    public static String FIXED_HOST = "127.0.0.1";
+
+    public static int FIXED_PORT = 6379;
+
 }

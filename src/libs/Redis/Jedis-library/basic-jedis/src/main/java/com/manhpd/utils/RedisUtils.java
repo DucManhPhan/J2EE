@@ -191,29 +191,12 @@ public class RedisUtils {
         return redisConfig;
     }
 
-    public static long expireAt(String keyCache, long expireTime) {
-        long result = 0;
-        Jedis jedis = null;
-        try {
-            jedis = redisConnection.getPool().getResource();
-            if (jedis != null) {
-                result = jedis.expireAt(keyCache, expireTime);
-            }
-        } catch (Exception ex) {
-            System.out.println(ex.toString());
-        } finally {
-            try {
-                if (jedis != null) {
-                    jedis.close();
-                }
-            } catch (Exception e) {
-                System.out.println(e.toString());
-            }
-        }
-
-        return result;
-    }
-
+    /**
+     * query commands
+     *
+     * @param keyPattern
+     * @return
+     */
     public static Set<String> keys(String keyPattern) {
         Set<String> result = null;
         Jedis jedis = null;
@@ -236,6 +219,84 @@ public class RedisUtils {
         return result;
     }
 
+    public static String get(String keyCache) {
+        String result = null;
+        Jedis jedis = null;
+        try {
+            jedis = redisConnection.getPool().getResource();
+            if (jedis != null) {
+                result = jedis.get(keyCache);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        } finally {
+            try {
+                if (jedis != null) {
+                    jedis.close();
+                }
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }
+        return result;
+    }
+
+    public static void set(String keyCache, String value) {
+        String status = "";
+        Jedis jedis = null;
+        try {
+            jedis = redisConnection.getPool().getResource();
+            if (jedis != null) {
+                status = jedis.set(keyCache, value);
+                System.out.println("Status of set operations with string: " + status);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        } finally {
+            try {
+                if (jedis != null) {
+                    jedis.close();
+                }
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }
+    }
+
+    /**
+     * Check whether key is existed or not
+     *
+     * @param keyCache
+     * @return
+     */
+    public static boolean exists(String keyCache) {
+        boolean result = false;
+        Jedis jedis = null;
+        try {
+            jedis = redisConnection.getPool().getResource();
+            if (jedis != null) {
+                result = jedis.exists(keyCache);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        } finally {
+            try {
+                if (jedis != null) {
+                    jedis.close();
+                }
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }
+        return result;
+    }
+
+    /**
+     * List data structure commands
+     *
+      * @param keyCache
+     * @return
+     */
     public static String rpop(String keyCache) {
         String result = null;
         Jedis jedis = null;
@@ -302,28 +363,6 @@ public class RedisUtils {
         return result;
     }
 
-    public static String get(String keyCache) {
-        String result = null;
-        Jedis jedis = null;
-        try {
-            jedis = redisConnection.getPool().getResource();
-            if (jedis != null) {
-                result = jedis.get(keyCache);
-            }
-        } catch (Exception ex) {
-            System.out.println(ex.toString());
-        } finally {
-            try {
-                if (jedis != null) {
-                    jedis.close();
-                }
-            } catch (Exception e) {
-                System.out.println(e.toString());
-            }
-        }
-        return result;
-    }
-
     public static long lpush(String keyCache, String valueCache) {
         long result = 0;
         Jedis jedis = null;
@@ -346,28 +385,13 @@ public class RedisUtils {
         return result;
     }
 
-    public static boolean exists(String keyCache) {
-        boolean result = false;
-        Jedis jedis = null;
-        try {
-            jedis = redisConnection.getPool().getResource();
-            if (jedis != null) {
-                result = jedis.exists(keyCache);
-            }
-        } catch (Exception ex) {
-            System.out.println(ex.toString());
-        } finally {
-            try {
-                if (jedis != null) {
-                    jedis.close();
-                }
-            } catch (Exception e) {
-                System.out.println(e.toString());
-            }
-        }
-        return result;
-    }
-
+    /**
+     * Hash table data structure commands
+     *
+     * @param keyCache
+     * @param fieldName
+     * @return
+     */
     public static boolean hexists(String keyCache, String fieldName) {
         boolean result = false;
         Jedis jedis = null;
@@ -456,6 +480,13 @@ public class RedisUtils {
         return result;
     }
 
+    /**
+     * Set data structure commands
+     *
+     * @param keyCache
+     * @param valueCache
+     * @return
+     */
     public long sadd(String keyCache, String valueCache) {
         long result = 0;
         Jedis jedis = null;
@@ -500,6 +531,13 @@ public class RedisUtils {
         return result;
     }
 
+    /**
+     * Operations with integer
+     *
+     * @param keyCache
+     * @param valueCache
+     * @return
+     */
     public long incrBy(String keyCache, int valueCache) {
         long result = 0;
         Jedis jedis = null;
@@ -519,6 +557,58 @@ public class RedisUtils {
                 System.out.println(e.toString());
             }
         }
+        return result;
+    }
+
+    /**
+     * Expire key
+     *
+     * @param keyCache
+     * @param expireTime
+     * @return
+     */
+    public long expire(String keyCache, int expireTime) {
+        long result = 0;
+        Jedis jedis = null;
+        try {
+            jedis = redisConnection.getPool().getResource();
+            if (jedis != null) {
+                result = jedis.expire(keyCache, expireTime);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        } finally {
+            try {
+                if (jedis != null) {
+                    jedis.close();
+                }
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }
+        return result;
+    }
+
+    public static long expireAt(String keyCache, long expireTime) {
+        long result = 0;
+        Jedis jedis = null;
+        try {
+            jedis = redisConnection.getPool().getResource();
+            if (jedis != null) {
+                result = jedis.expireAt(keyCache, expireTime);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        } finally {
+            try {
+                if (jedis != null) {
+                    jedis.close();
+                }
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }
+
         return result;
     }
 
@@ -543,27 +633,4 @@ public class RedisUtils {
         }
         return result;
     }
-
-    public long expire(String keyCache, int expireTime) {
-        long result = 0;
-        Jedis jedis = null;
-        try {
-            jedis = redisConnection.getPool().getResource();
-            if (jedis != null) {
-                result = jedis.expire(keyCache, expireTime);
-            }
-        } catch (Exception ex) {
-            System.out.println(ex.toString());
-        } finally {
-            try {
-                if (jedis != null) {
-                    jedis.close();
-                }
-            } catch (Exception e) {
-                System.out.println(e.toString());
-            }
-        }
-        return result;
-    }
-
 }

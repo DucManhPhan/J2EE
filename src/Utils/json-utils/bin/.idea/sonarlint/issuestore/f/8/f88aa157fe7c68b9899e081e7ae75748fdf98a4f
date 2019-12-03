@@ -1,0 +1,16 @@
+
+esquid:UselessImportCheck":Remove this unused import 'com.manhpd.utils.JacksonUtils'.(¨ßÀÁ8Úê¡¨ë-
+nsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(²´»®øÿÿÿÿ8Úê¡¨ë-
+nsquid:CommentedOutCodeLine-"<This block of commented-out lines of code should be removed.(Ãä¹Ëûÿÿÿÿ8Úê¡¨ë-
+isquid:CommentedOutCodeLine%"<This block of commented-out lines of code should be removed.(È÷øƒ8Úê¡¨ë-
+hsquid:CommentedOutCodeLine("<This block of commented-out lines of code should be removed.(ë÷Ò8Úê¡¨ë-
+isquid:CommentedOutCodeLine7"<This block of commented-out lines of code should be removed.(¸ç«ï8Ñ²¢¨ë-
+³%squid:RedundantThrowsDeclarationCheck"vRemove the declaration of thrown exception 'java.io.FileNotFoundException', as it cannot be thrown from method's body.(ÁªìÌùÿÿÿÿ8¤Æ·¨ë-
+nsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¼›åìøÿÿÿÿ8Úê¡¨ë-
+nsquid:CommentedOutCodeLine1"<This block of commented-out lines of code should be removed.(Å¤ò§ýÿÿÿÿ8Úê¡¨ë-
+nsquid:CommentedOutCodeLine5"<This block of commented-out lines of code should be removed.(ƒ¨‡ûÿÿÿÿ8Úê¡¨ë-
+Lsquid:S1481")Remove this unused "data" local variable.(ò¿Å’ÿÿÿÿÿ8Úê¡¨ë-
+[squid:S1854"8Remove this useless assignment to local variable "data".(ò¿Å’ÿÿÿÿÿ8Úê¡¨ë-
+isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÆõÙê8Úê¡¨ë-
+»%squid:RedundantThrowsDeclarationCheck"~Remove the declaration of thrown exception 'org.json.simple.parser.ParseException', as it cannot be thrown from method's body.(ÁªìÌùÿÿÿÿ8¤Æ·¨ë-
+nsquid:CommentedOutCodeLine!"<This block of commented-out lines of code should be removed.(û€¸©ûÿÿÿÿ8Úê¡¨ë-

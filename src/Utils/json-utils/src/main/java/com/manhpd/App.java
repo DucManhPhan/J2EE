@@ -1,6 +1,7 @@
 package com.manhpd;
 
 import com.google.gson.JsonElement;
+import com.manhpd.dto.DataPush;
 import com.manhpd.utils.GsonUtils;
 import com.manhpd.utils.JacksonUtils;
 import com.manhpd.utils.JsonSimpleUtils;
@@ -10,16 +11,14 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileNotFoundException;
 
-/**
- * Hello world!
- *
- */
+
+
 public class App {
 
     private static final Logger logger = LogManager.getLogger(App.class);
 
     public static void main(String[] args) throws ParseException, FileNotFoundException {
-        String data = GsonUtils.createJsonSample();
+//        String data = GsonUtils.createJsonSample();
 //        String comments = JsonUtils.getDataBasedOnField(data, "comments");
 //
 //        System.out.println(comments);
@@ -54,8 +53,16 @@ public class App {
 
 //        System.out.println(GsonUtils.createJsonObjectBasedField(Integer.toString(3044021)));
 
-        String nameOfClass = "Hello, this is main class.";
-        logger.debug("{}", nameOfClass);
+//        String nameOfClass = "Hello, this is main class.";
+//        logger.debug("{}", nameOfClass);
+        
+        try {
+            String data = "{\"type\":2,\"title\":\"Thứ tư vui vẻ! Khuyến mại thẻ đã về!\",\"body\":\"Viettel khuyến mại 20% giá trị tất cả thẻ nạp cho thuê bao Di động và Homephone trả trước trong ngày 20/11/2019. Tiền khuyến mại dùng để liên lạc nội mạng, ngoại mạng và có thời hạn sử dụng đến hết ngày 05/12/2019.\",\"message\":\"Viettel khuyến mại 20% giá trị tất cả thẻ nạp cho thuê bao Di động và Homephone trả trước trong ngày 20/11/2019. Tiền khuyến mại dùng để liên lạc nội mạng, ngoại mạng và có thời hạn sử dụng đến hết ngày 05/12/2019.\",\"description\":\"Viettel khuyến mại 20% giá trị tất cả thẻ nạp cho thuê bao Di động và Homephone trả trước trong ngày 20/11/2019. Tiền khuyến mại dùng để liên lạc nội mạng, ngoại mạng và có thời hạn sử dụng đến hết ngày 05/12/2019.\",\"action_button\":\"Nạp thẻ ngay\",\"object_id\":\"\",\"promotion_id\":\"\",\"id\":\"\",\"campaignCode\":\"13365\",\"campaignPush\":\"13298\"}";
+            DataPush dataPush = DataPush.of(data);
+            System.out.println("Result of data push is: " + dataPush.toString());
+        } catch(Exception ex) {
+            System.out.println("Error: " + ex.toString());
+        }
     }
 
 }

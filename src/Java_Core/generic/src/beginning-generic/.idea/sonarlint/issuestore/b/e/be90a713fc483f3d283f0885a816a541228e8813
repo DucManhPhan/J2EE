@@ -1,0 +1,6 @@
+
+Vsquid:S1118":Add a private constructor to hide the implicit public one.(â™ð¸ýÿÿÿÿ
+usquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(„¢Áòÿÿÿÿÿ
+usquid:S3012"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(ù²ùèøÿÿÿÿ
+usquid:S2293&"YReplace the type specification in this constructor call with the diamond operator ("<>").(„¢Áòÿÿÿÿÿ
+usquid:S3012("YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(ù²ùèøÿÿÿÿ

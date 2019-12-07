@@ -7,6 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="main" />
+        <module name="func-employee" />
+        <module name="shared" />
+        <module name="configuration" />
+        <module name="webservice" />
       </profile>
     </annotationProcessing>
   </component>

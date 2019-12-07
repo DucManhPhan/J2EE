@@ -6,12 +6,13 @@
 
   <groupId>com.manhpd</groupId>
   <artifactId>parent-project</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>${version.parent-project}</version>
 
   <name>parent-project</name>
   <packaging>pom</packaging>
 
   <properties>
+    <version.parent-project>1.0-SNAPSHOT</version.parent-project>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
@@ -25,7 +26,194 @@
     <version.maven-deploy-plugin>2.8.2</version.maven-deploy-plugin>
     <version.maven-site-plugin>3.7.1</version.maven-site-plugin>
     <version.maven-project-info-reports-plugin>3.0.0</version.maven-project-info-reports-plugin>
+    <version.exec.maven.plugin>1.6.0</version.exec.maven.plugin>
+
+    <version.security.oauth2>2.3.4.RELEASE</version.security.oauth2>
+    <version.security.jwt>1.0.9.RELEASE</version.security.jwt>
+    <version.httpclient>4.5.6</version.httpclient>
+    <version.httpcore>4.4.10</version.httpcore>
+    <version.springframework>5.1.4.RELEASE</version.springframework>
+    <version.springframework.security>5.1.3.RELEASE</version.springframework.security>
+    <version.springframework.session>2.0.5.RELEASE</version.springframework.session>
+    <version.spring.boot>2.1.1.RELEASE</version.spring.boot>
+    <version.spring.cloud>2.1.0.RELEASE</version.spring.cloud>
+    <version.spring.data.elasticsearch>3.2.0.M1</version.spring.data.elasticsearch>
+    <version.lombok>1.18.2</version.lombok>
+    <version.validation-api>2.0.1.Final</version.validation-api>
+    <version.gson>2.8.5</version.gson>
+    <version.javafx-controls>11.0.1-ea+1</version.javafx-controls>
   </properties>
+
+  <modules>
+    <module>main</module>
+    <module>configuration</module>
+    <module>shared</module>
+    <module>webservice</module>
+    <module>func-employee</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- For Spring Boot-->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-webflux</artifactId>
+        <version>${version.spring.boot}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-security</artifactId>
+        <version>${version.spring.boot}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        <version>${version.spring.boot}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+        <version>${version.spring.boot}</version>
+        <scope>runtime</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+        <version>${version.spring.boot}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-aop</artifactId>
+        <version>${version.spring.boot}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+        <version>${version.spring.boot}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+        <version>${version.spring.boot}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <version>${version.spring.boot}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <!-- For spring boot & elasticsearch -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+        <version>${version.spring.boot}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-elasticsearch</artifactId>
+        <version>${version.spring.data.elasticsearch}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-test</artifactId>
+        <version>${version.springframework.security}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-core</artifactId>
+        <version>${version.springframework.security}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-config</artifactId>
+        <version>${version.springframework.security}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-web</artifactId>
+        <version>${version.springframework.security}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aop</artifactId>
+        <version>${version.springframework}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${version.springframework}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>${version.springframework}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-web</artifactId>
+        <version>${version.springframework}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>${version.springframework}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.session</groupId>
+        <artifactId>spring-session-core</artifactId>
+        <version>${version.springframework.session}</version>
+      </dependency>
+
+      <!-- For Apache HTTP -->
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${version.httpclient}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpcore</artifactId>
+        <version>${version.httpcore}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${version.lombok}</version>
+      </dependency>
+
+      <!-- For security -->
+      <dependency>
+        <groupId>org.springframework.security.oauth</groupId>
+        <artifactId>spring-security-oauth2</artifactId>
+        <version>${version.security.oauth2}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-jwt</artifactId>
+        <version>${version.security.jwt}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.jaxb</groupId>
+        <artifactId>jaxb-runtime</artifactId>
+        <version>${version.jaxb-runtime}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>${version.gson}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.xml.bind</groupId>
+        <artifactId>jaxb-api</artifactId>
+        <version>${version.jaxb.api}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <build>
     <pluginManagement>
@@ -65,6 +253,16 @@
         <plugin>
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>${version.maven-project-info-reports-plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${version.spring.boot}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>${version.exec.maven.plugin}</version>
         </plugin>
       </plugins>
     </pluginManagement>

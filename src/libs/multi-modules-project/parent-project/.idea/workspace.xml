@@ -1,12 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f312f0eb-4c16-42ce-afdb-50f6613c7846" name="Default Changelist" comment="" />
+    <list default="true" id="f312f0eb-4c16-42ce-afdb-50f6613c7846" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../Java_Core/generic/src/beginning-generic/.idea/sonarlint/issuestore/b/2/b2fe561e4dfa58276a85d3564980a897b92bc1af" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Java_Core/generic/src/beginning-generic/.idea/sonarlint/issuestore/b/e/be90a713fc483f3d283f0885a816a541228e8813" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Java_Core/generic/src/beginning-generic/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configuration/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configuration/src/main/java/com/manhpd/pdMultiProj/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configuration/src/test/java/com/manhpd/pdMultiProj/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/func-employee/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/func-employee/src/main/java/com/manhpd/pdMultiProj/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/func-employee/src/test/java/com/manhpd/pdMultiProj/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/shared.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/src/main/java/com/manhpd/pdMultiProj/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/src/test/java/com/manhpd/pdMultiProj/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webservice/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webservice/src/main/java/com/manhpd/pdMultiProj/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webservice/src/test/java/com/manhpd/pdMultiProj/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webservice/webservice.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/configuration.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/main/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parent-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/func-employee/func-employee.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manhpd/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/manhpd/AppTest.java" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -16,7 +48,12 @@
     </option>
   </component>
   <component name="ProjectId" id="1UbTsuCk35OEdHiS7AAHWNQgVs0" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -46,10 +83,25 @@
       <option name="presentableId" value="Default" />
       <updated>1575624504770</updated>
       <workItem from="1575624505927" duration="1573000" />
+      <workItem from="1575640003446" duration="4993000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

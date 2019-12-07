@@ -1,0 +1,11 @@
+
+Usquid:S4973]"9Use the "equals" method if value comparison was intended.(ÑµÏ¦şÿÿÿÿ
+˜squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Çµí‘
+gsquid:S1764]"KCorrect one of the identical sub-expressions on both sides of operator "!="(ÑµÏ¦şÿÿÿÿ
+Psquid:S1854‚"8Remove this useless assignment to local variable "objs".(€÷ š
+Usquid:S1854"8Remove this useless assignment to local variable "ints".(Éşÿÿÿÿ
+Fsquid:S1481")Remove this unused "ints" local variable.(Éşÿÿÿÿ
+Asquid:S1481‚")Remove this unused "objs" local variable.(€÷ š
+^squid:UnusedPrivateMethod("4Remove this unused private "originalGeneric" method.(•‡œ»úÿÿÿÿ
+gsquid:CommentedOutCodeLine*"<This block of commented-out lines of code should be removed.(×Ÿï’ÿÿÿÿÿ
+bsquid:CommentedOutCodeLine."<This block of commented-out lines of code should be removed.(ü‰Ğ

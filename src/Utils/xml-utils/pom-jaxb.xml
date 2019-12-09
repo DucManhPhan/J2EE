@@ -24,7 +24,7 @@
   </properties>
 
   <dependencies>
-    <!-- start - For JAXB of Java 11 -->
+    <!-- For JAXB of Java 11 -->
     <dependency>
       <groupId>com.sun.activation</groupId>
       <artifactId>javax.activation</artifactId>
@@ -48,7 +48,6 @@
       <artifactId>jaxb-impl</artifactId>
       <version>${version.jaxb.api}</version>
     </dependency>
-    <!-- end - For JAXB of Java 11 -->
 
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -67,37 +66,27 @@
 
   <build>
     <plugins>
-      <!-- Maven-assembly-plugin for JAXB -->
-<!--      <plugin>-->
-<!--        <groupId>org.apache.maven.plugins</groupId>-->
-<!--        <artifactId>maven-assembly-plugin</artifactId>-->
-<!--        <version>${version.maven-assembly-plugin}</version>-->
-<!--        <executions>-->
-<!--          <execution>-->
-<!--            <phase>package</phase>-->
-<!--            <goals>-->
-<!--              <goal>single</goal>-->
-<!--            </goals>-->
-<!--          </execution>-->
-<!--        </executions>-->
-<!--        <configuration>-->
-<!--          <descriptorRefs>-->
-<!--            <descriptorRef>jar-with-dependencies</descriptorRef>-->
-<!--          </descriptorRefs>-->
-<!--          <archive>-->
-<!--            <manifest>-->
-<!--              <mainClass>com.manhpd.JaxbApp</mainClass>-->
-<!--            </manifest>-->
-<!--          </archive>-->
-<!--        </configuration>-->
-<!--      </plugin>-->
-
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>${version.exec-maven-plugin}</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>${version.maven-assembly-plugin}</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
         <configuration>
-          <mainClass>com.manhpd.SaxApp</mainClass>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <archive>
+            <manifest>
+              <mainClass>com.manhpd.JaxbApp</mainClass>
+            </manifest>
+          </archive>
         </configuration>
       </plugin>
 

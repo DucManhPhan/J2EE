@@ -1,4 +1,4 @@
-package com.manhpd.dto;
+package com.manhpd.dto.purchase_order;
 
 public class Item {
 

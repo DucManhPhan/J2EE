@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="purchaseOrder">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="items" type="Items" />
+                <xs:element name="customer" type="Customer" />
+                <xs:element ref="comment" minOccurs="0" />
+            </xs:sequence>
+            <xs:attribute name="orderDate" type="xs:date" use="required" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Items">
+        <xs:sequence>
+            <xs:element name="item" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="productName" type="xs:string" />
+                        <xs:element name="quantity">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:positiveInteger">
+                                    <xs:maxExclusive value="100">
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="price" type="xs:decimal" />
+                        <xs:element ref="comment" minOccurs="0" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Customer">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string" />
+            <xs:element name="shippingAddress" type="Address" />
+            <xs:element name="billingAddress" type="Address" />
+            <xs:element name="loyalty" type="Loyalty" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Address">
+        <xs:sequence>
+            <xs:element name="street" type="xs:string" />
+            <xs:element name="city" type="xs:string" />
+            <xs:element name="postalCode" type="xs:string" />
+            <xs:element name="country" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Loyalty">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BRONZE">
+            <xs:enumeration value="SILVER">
+            <xs:enumeration value="GOLD">
+        </xs:restriction>
+    </xs:complexType>
+
+    <xs:element name="comment">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="1000">
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+</xs:schema>

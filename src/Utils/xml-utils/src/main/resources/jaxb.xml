@@ -20,7 +20,7 @@
                         <xs:element name="quantity">
                             <xs:simpleType>
                                 <xs:restriction base="xs:positiveInteger">
-                                    <xs:maxExclusive value="100">
+                                    <xs:maxExclusive value="100" />
                                 </xs:restriction>
                             </xs:simpleType>
                         </xs:element>
@@ -50,18 +50,18 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="Loyalty">
+    <xs:simpleType name="Loyalty">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="BRONZE">
-            <xs:enumeration value="SILVER">
-            <xs:enumeration value="GOLD">
+            <xs:enumeration value="BRONZE" />
+            <xs:enumeration value="SILVER" />
+            <xs:enumeration value="GOLD" />
         </xs:restriction>
-    </xs:complexType>
+    </xs:simpleType>
 
     <xs:element name="comment">
         <xs:simpleType>
             <xs:restriction base="xs:string">
-                <xs:maxLength value="1000">
+                <xs:maxLength value="1000" />
             </xs:restriction>
         </xs:simpleType>
     </xs:element>

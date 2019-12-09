@@ -1,4 +1,11 @@
 package com.manhpd.dto;
 
-public class Loyalty {
+public enum Loyalty {
+
+    BRONZE,
+
+    SILVER,
+
+    GOLD;
+
 }

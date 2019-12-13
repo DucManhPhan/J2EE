@@ -4,6 +4,6 @@ public class CommonThread implements Runnable {
 
     @Override
     public void run() {
-        
+
     }
 }

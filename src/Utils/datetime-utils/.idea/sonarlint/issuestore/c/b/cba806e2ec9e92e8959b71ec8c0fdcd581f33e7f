@@ -1,0 +1,13 @@
+
+|squid:S00116""XRename this field "action_button" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”›¦úùÿÿÿÿ8Êî °ğ-
+zsquid:S00116&"VRename this field "object_code" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ìº†ıÿÿÿÿ8Êî °ğ-
+tsquid:S00116"URename this field "feature_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õÁæ¹8Êî °ğ-
+U
+squid:S106U"9Replace this use of System.out or System.err by a logger.(ñ‹ÕD8Êî °ğ-
+ysquid:S00116<"ZRename this field "flash_sale_link" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†Ÿõí8Êî °ğ-
+U
+squid:S106W"9Replace this use of System.out or System.err by a logger.(¥®¥8Êî °ğ-
+ssquid:S00116$"TRename this field "object_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´È÷ç8Êî °ğ-
+¥%squid:RedundantThrowsDeclarationCheck]"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(®»ˆ´8Êî °ğ-
+|squid:S00116:"XRename this field "flash_sale_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(çØŸÕøÿÿÿÿ8Êî °ğ-
+{squid:S00116("WRename this field "promotion_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿÔ×”ûÿÿÿÿ8Êî °ğ-

@@ -5,35 +5,18 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.manhpd</groupId>
-  <artifactId>DateTimeUtils</artifactId>
+  <artifactId>annotation-utils</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <name>DateTimeUtils</name>
+
+  <name>annotation-utils</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
-
-    <version.lombok>1.18.6</version.lombok>
-    <version.gson>2.8.5</version.gson>
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-      <version>${version.gson}</version>
-    </dependency>
-
-
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>${version.lombok}</version>
-      <scope>provided</scope>
-    </dependency>
-
-
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -83,15 +66,5 @@
         </plugin>
       </plugins>
     </pluginManagement>
-      <plugins>
-          <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-compiler-plugin</artifactId>
-              <configuration>
-                  <source>8</source>
-                  <target>8</target>
-              </configuration>
-          </plugin>
-      </plugins>
   </build>
 </project>

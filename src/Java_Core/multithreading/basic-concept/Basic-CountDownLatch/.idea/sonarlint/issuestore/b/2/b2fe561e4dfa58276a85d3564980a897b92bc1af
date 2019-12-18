@@ -1,6 +1,7 @@
 
-Hsquid:S1602",Remove useless curly braces around statement(ùæ€«øÿÿÿÿ
-O
-squid:S106"9Replace this use of System.out or System.err by a logger.(ò½Ï¬
-T
-squid:S106"9Replace this use of System.out or System.err by a logger.(ƒø‘ùÿÿÿÿ
+Hsquid:S1068"*Remove this unused "logger" private field.(õ‘ãÈ8‚ãÄ¸ñ-
+V
+squid:S106"9Replace this use of System.out or System.err by a logger.(ò½Ï¬8ªŠÅ¸ñ-
+[
+squid:S106"9Replace this use of System.out or System.err by a logger.(ƒø‘ùÿÿÿÿ8ªŠÅ¸ñ-
+Osquid:S1602",Remove useless curly braces around statement(ùæ€«øÿÿÿÿ8ªŠÅ¸ñ-

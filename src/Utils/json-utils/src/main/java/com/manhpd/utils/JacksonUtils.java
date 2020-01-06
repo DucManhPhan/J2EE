@@ -1,6 +1,8 @@
 package com.manhpd.utils;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.codehaus.jackson.node.ArrayNode;
 import org.codehaus.jackson.type.TypeReference;
 
 import java.io.File;
@@ -31,6 +33,20 @@ public class JacksonUtils {
         Map<String, Object> mapObject = objectMapper.readValue(jsonFile, new TypeReference<Map<String, Object>>(){});
 
         return mapObject;
+    }
+
+    public static String toJsonString(Object data) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setSerializationInclusion(JsonSerialize.Inclusion.NON_NULL);
+        String json = objectMapper.writeValueAsString(data);
+
+        return json;
+    }
+
+    public static ArrayNode toJsonArray(String data) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setSerializationInclusion(JsonSerialize.Inclusion.NON_NULL);
+        return (ArrayNode) objectMapper.readTree(data);
     }
 
 }

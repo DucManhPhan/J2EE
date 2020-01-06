@@ -2,6 +2,8 @@ package com.manhpd.utils;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import com.manhpd.dto.ChartData;
+import com.manhpd.dto.ChartResponse;
 import com.manhpd.dto.JsonType;
 import com.manhpd.dto.Person;
 import org.apache.commons.lang3.StringUtils;
@@ -53,6 +55,11 @@ public class GsonUtils {
 
         Gson gson = new Gson();
         return gson.fromJson(data, Person.class);
+    }
+
+    public static ChartData toChartResponseWithGson(String data) {
+        Gson converter = new Gson();
+        return converter.fromJson(data, ChartData.class);
     }
 
     public static JsonElement getDataBasedOnFields(String data, String path) {
@@ -155,6 +162,11 @@ public class GsonUtils {
         String newNotify = notificationsJson.toString();
 
         return newNotify;
+    }
+
+    public static String convertListStringToJson(List<String> data) {
+        Gson converter = new Gson();
+        return converter.toJson(data);
     }
 
 }

@@ -1,8 +1,8 @@
 
-bsquid:S2184#"FCast one of the operands of this multiplication operation to a "long".(΅θμ¶ÿÿÿÿÿ
 ?squid:S1148%"#Use a logger to log this exception.(€ΙΤ…ύÿÿÿÿ
-T
-squid:S106!"9Replace this use of System.out or System.err by a logger.(―½ƒΎωÿÿÿÿ
 ]squid:S2142$"FEither re-interrupt this method or rethrow the "InterruptedException".(δ Ή€
 T
 squid:S106'"9Replace this use of System.out or System.err by a logger.(²·ªϊÿÿÿÿ
+bsquid:S2184#"FCast one of the operands of this multiplication operation to a "long".(΅θμ¶ÿÿÿÿÿ
+T
+squid:S106!"9Replace this use of System.out or System.err by a logger.(―½ƒΎωÿÿÿÿ

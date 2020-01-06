@@ -1,6 +1,11 @@
 
-Hsquid:S1602",Remove useless curly braces around statement(ùæ€«øÿÿÿÿ
-O
-squid:S106"9Replace this use of System.out or System.err by a logger.(ò½Ï¬
-T
-squid:S106"9Replace this use of System.out or System.err by a logger.(ƒø‘ùÿÿÿÿ
+®%squid:RedundantThrowsDeclarationCheck"wRemove the declaration of thrown exception 'java.lang.InterruptedException', as it cannot be thrown from method's body.(º™Ú78ø‹–ìñ-
+nsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¢‹¤Èşÿÿÿÿ8ø‹–ìñ-
+Isquid:S1481"&Remove this unused "a" local variable.(¾Ÿ“ÿÿÿÿÿ8ø‹–ìñ-
+Xsquid:S1854"5Remove this useless assignment to local variable "a".(¾Ÿ“ÿÿÿÿÿ8ø‹–ìñ-
+isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(£ş¯Š8ø‹–ìñ-
+nsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ï¥“üÿÿÿÿÿ8ø‹–ìñ-
+Hsquid:S1068"*Remove this unused "logger" private field.(õ‘ãÈ8‚ãÄ¸ñ-
+fsquid:S3518"CMake sure this expression can't be zero before doing this division.(¾Ÿ“ÿÿÿÿÿ8ø‹–ìñ-
+isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¹›Ï¤8ø‹–ìñ-
+Msquid:S00108 ")Either remove or fill this block of code.(±Ÿ—±ÿÿÿÿÿ8–½—ìñ-

@@ -1,0 +1,28 @@
+
+Xsquid:S1141&"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8€­Ð¢ø-
+Fsquid:S1148@"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8€­Ð¢ø-
+Fsquid:S1148R"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8€­Ð¢ø-
+isquid:S21420"FEither re-interrupt this method or rethrow the "InterruptedException".(²ý…¦ûÿÿÿÿ8€­Ð¢ø-
+[
+squid:S106:"9Replace this use of System.out or System.err by a logger.(Æ›ç´üÿÿÿÿ8€­Ð¢ø-
+[
+squid:S106)"9Replace this use of System.out or System.err by a logger.(×ð¦áøÿÿÿÿ8€­Ð¢ø-
+[
+squid:S106I"9Replace this use of System.out or System.err by a logger.(¿Û¯ýýÿÿÿÿ8€­Ð¢ø-
+isquid:S2142?"FEither re-interrupt this method or rethrow the "InterruptedException".(²ý…¦ûÿÿÿÿ8€­Ð¢ø-
+vsquid:S1192-"SDefine a constant instead of duplicating this literal "Lock Hold Count - " 3 times.(Æ›ç´üÿÿÿÿ8€­Ð¢ø-
+Fsquid:S11481"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8€­Ð¢ø-
+[
+squid:S106"9Replace this use of System.out or System.err by a logger.(×ð¦áøÿÿÿÿ8€­Ð¢ø-
+V
+squid:S1065"9Replace this use of System.out or System.err by a logger.(Ÿ’÷³8€­Ð¢ø-
+U
+squid:S106E"9Replace this use of System.out or System.err by a logger.(âËÂD8€­Ð¢ø-
+isquid:S2142Q"FEither re-interrupt this method or rethrow the "InterruptedException".(²ý…¦ûÿÿÿÿ8€­Ð¢ø-
+V
+squid:S106;"9Replace this use of System.out or System.err by a logger.(ìñ¯²8€­Ð¢ø-
+V
+squid:S106M"9Replace this use of System.out or System.err by a logger.(ÐÂù­8€­Ð¢ø-
+[
+squid:S106-"9Replace this use of System.out or System.err by a logger.(Æ›ç´üÿÿÿÿ8€­Ð¢ø-
+psquid:S1192"MDefine a constant instead of duplicating this literal "task name - " 6 times.(×ð¦áøÿÿÿÿ8€­Ð¢ø-

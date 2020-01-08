@@ -1,0 +1,14 @@
+
+V
+squid:S106"9Replace this use of System.out or System.err by a logger.(¨È ·8üƒ’¢ø-
+Msquid:S1444"/Make this "public static agePerson" field final(èÃ›¾8ëÎÙŸø-
+V
+squid:S106"9Replace this use of System.out or System.err by a logger.(ıç«8ğ¡ø-
+V
+squid:S106"9Replace this use of System.out or System.err by a logger.(ˆ¼éÔ8³†“¡ø-
+Š"squid:ClassVariableVisibilityCheck"UMake agePerson a static final constant or non-public and provide accessors if needed.(èÃ›¾8ëÎÙŸø-
+fsquid:S2276"CReplace the call to "Thread.sleep(...)" with a call to "wait(...)".(Ë¥Øøÿÿÿÿ8Ï»­ ø-
+Nsquid:S1068"+Remove this unused "address" private field.(÷§ùÿÿÿÿ8€„ÖŸø-
+Fsquid:S1068"(Remove this unused "name" private field.(Ë¥¼8€„ÖŸø-
+[
+squid:S106"9Replace this use of System.out or System.err by a logger.(àö†ßûÿÿÿÿ8ïÁş ø-

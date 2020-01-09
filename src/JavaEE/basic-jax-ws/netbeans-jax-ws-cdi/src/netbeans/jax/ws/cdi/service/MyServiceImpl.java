@@ -1,8 +1,7 @@
-package com.manhpd.service;
+package netbeans.jax.ws.cdi.service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.enterprise.context.Dependent;
 import javax.inject.Singleton;
 
 //@Dependent

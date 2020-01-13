@@ -11,28 +11,37 @@
         </Console>
 
         <!-- File appender for debug mode -->
-        <RollingFile name="debugLogger" fileName="${APP_LOG_ROOT}/debug-log/app-debug.log" filePattern="${APP_LOG_ROOT}/debug-log/app-debug-%d{yyyy-MM-dd}-%i.log.gz">
-            <LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+<!--        <RollingFile name="debugLogger" fileName="${APP_LOG_ROOT}/debug-log/app-debug.log" filePattern="${APP_LOG_ROOT}/debug-log/app-debug-%d{yyyy-MM-dd}-%i.log.gz">-->
+<!--            <LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>-->
+<!--            <PatternLayout>-->
+<!--                <pattern>${LOG_PATTERN}</pattern>-->
+<!--            </PatternLayout>-->
+<!--            <Policies>-->
+<!--                <SizeBasedTriggeringPolicy size="20MB" />-->
+<!--                <TimeBasedTriggeringPolicy interval="1" modulate="true" />	&lt;!&ndash; interval = 1 means one day &ndash;&gt;-->
+<!--            </Policies>-->
+<!--            <DefaultRolloverStrategy max="10" />-->
+<!--        </RollingFile>-->
+
+        <File name="LogToFile" fileName="${APP_LOG_ROOT}/app.log">
             <PatternLayout>
-                <pattern>${LOG_PATTERN}</pattern>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
             </PatternLayout>
-            <Policies>
-                <SizeBasedTriggeringPolicy size="20MB" />
-                <TimeBasedTriggeringPolicy interval="1" modulate="true" />	<!-- interval = 1 means one day -->
-            </Policies>
-            <DefaultRolloverStrategy max="10" />
-        </RollingFile>
+        </File>
     </Appenders>
 
     <Loggers>
-        <Root level="warn">
-            <AppenderRef ref="consoleLogger"/>
-        </Root>
-
         <!-- Should have additivity = false for named loggers -->
-        <Logger name="com.manhpd" additivity="false" level="trace">
+        <Logger name="com.manhpd" additivity="false" level="debug">
             <AppenderRef ref="debugLogger" />
             <AppenderRef ref="consoleLogger" />
+            <AppenderRef ref="LogToFile" />
         </Logger>
+
+        <Root level="trace">
+            <AppenderRef ref="consoleLogger"/>
+<!--            <AppenderRef ref="debugLogger" />-->
+            <AppenderRef ref="LogToFile" />
+        </Root>
     </Loggers>
 </Configuration>

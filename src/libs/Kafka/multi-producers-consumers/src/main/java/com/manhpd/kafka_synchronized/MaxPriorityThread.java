@@ -25,19 +25,23 @@ public class MaxPriorityThread implements Runnable {
 
     @Override
     public void run() {
+        logger.info("Running in a MaxPriorityThread.");
         while (true) {
             try {
                 ConsumerRecords<String, String> records = this.consumer.poll(100);
                 synchronized (this.savedState) {
                     if (records.isEmpty()) {
                         logger.info(this.savedState.toString());
+                        logger.info("Sleeping in max priority thread.");
                         this.savedState.isMaxPriorityThreadRunnable = false;
                         this.savedState.notifyAll();
+                        logger.info("Notify for all other threads.");
                         continue;
                     }
                 }
 
-                logger.info("Recors of max priority thread is: " + records.count());
+                logger.info("Continue running max priority thread.");
+                logger.info("Records of max priority thread is: " + records.count());
                 this.savedState.isMaxPriorityThreadRunnable = true;
                 for (ConsumerRecord<String, String> record : records) {
                     logger.info(String.format("Topic - %s, Partition - %d, Value: %s",

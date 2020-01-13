@@ -28,7 +28,7 @@ public class MinPriorityThread implements Runnable {
         logger.info("Running in a MinPriorityThread.");
         while (true) {
             try {
-                ConsumerRecords<String, String> records = consumer.poll(100);
+                ConsumerRecords<String, String> records = this.consumer.poll(100);
                 synchronized (this.savedState) {
                     while (this.savedState.isNotMinPriorityThreadRunnable() || records.isEmpty()) {
                         logger.info("Sleeping in min priority thread.");
@@ -36,10 +36,11 @@ public class MinPriorityThread implements Runnable {
 //                        Thread.sleep(1000);
                         this.savedState.wait();
 //                        continue;
-                        records = consumer.poll(100);
+                        records = this.consumer.poll(100);
                     }
 
-                    logger.info("Continue running in min priority thread.");
+                    logger.info("Continue running min priority thread.");
+                    logger.info("Records of min priority thread is: " + records.count());
                     for (ConsumerRecord<String, String> record : records) {
                         while (this.savedState.isNotMinPriorityThreadRunnable()) {
                             this.savedState.wait();

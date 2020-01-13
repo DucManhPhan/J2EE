@@ -51,8 +51,8 @@ public class App {
         executor.shutdown();
 
         Random random = new Random();
-        for (int i = 0; i < 100000; ++i) {
-            int rand = random.nextInt(100000);
+        for (int i = 0; i <= 10; ++i) {
+            int rand = i; // random.nextInt(6);
             logger.info("Random number is: " + rand);
 
 
@@ -62,17 +62,15 @@ public class App {
                 ProducerRecord<String, String> record = new ProducerRecord<>(Priority.MAX_PRIORITY.getNameTopic(), String.valueOf(rand));
                 logger.info("Data is sent to Max Priority Thread: " + record.value());
                 producers.get(Priority.MAX_PRIORITY).send(record);
-            } else if ((rand + 1) % 2 == 0) {
+            } else if (rand % 3 == 0) {
                 String mediumPriority = Priority.MEDIUM_PRIORITY.getNameTopic();
-                logger.info("Topic of max priority is: " + mediumPriority);
+                logger.info("Topic of medium priority is: " + mediumPriority);
                 ProducerRecord<String, String> record = new ProducerRecord<>(Priority.MEDIUM_PRIORITY.getNameTopic(), String.valueOf(rand));
                 logger.info("Data is sent to Medium Priority Thread: " + record.value());
                 producers.get(Priority.MEDIUM_PRIORITY).send(record);
-            }
-
-            else if ((rand + 1) % 2 == 0) { //(rand % 7 == 0) {
+            } else if (rand % 5 == 0) {
                 String minPriority = Priority.MIN_PRIORITY.getNameTopic();
-                logger.info("Topic of max priority is: " + minPriority);
+                logger.info("Topic of min priority is: " + minPriority);
                 ProducerRecord<String, String> record = new ProducerRecord<>(Priority.MIN_PRIORITY.getNameTopic(), String.valueOf(rand));
                 logger.info("Data is sent to Min Priority Thread: " + record.value());
                 producers.get(Priority.MIN_PRIORITY).send(record);

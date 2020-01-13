@@ -28,18 +28,19 @@ public class MediumPriorityThread implements Runnable {
         logger.info("Running in a MediumPriorityThread.");
         while (true) {
             try {
-                ConsumerRecords<String, String> records = consumer.poll(100);
+                ConsumerRecords<String, String> records = this.consumer.poll(100);
                 synchronized (this.savedState) {
                     if (this.savedState.isNotMediumPriorityThreadRunnable() || records.isEmpty()) {
                         logger.info(this.savedState.toString());
                         this.savedState.isMediumPriorityThreadRunnable = false;
-                        logger.info("Sleep medium priority thread.");
+                        logger.info("Sleeping in medium priority thread.");
                         Thread.sleep(1000);
 //                        this.savedState.wait();
                         continue;
                     }
 
                     logger.info("Continue running medium priority thread.");
+                    logger.info("Records of medium priority thread is: " + records.count());
                     this.savedState.isMediumPriorityThreadRunnable = true;
 
                     logger.info(this.savedState.toString());

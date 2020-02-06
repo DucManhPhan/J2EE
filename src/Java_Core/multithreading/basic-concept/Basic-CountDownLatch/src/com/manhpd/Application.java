@@ -13,25 +13,19 @@ public class Application {
     private static final Logger logger = LogManager.getLogger(Application.class);
 
     public static void main(String[] args) throws InterruptedException {
-//        CountDownLatch countDownLatch = new CountDownLatch(5);
-//        ExecutorService executorService = Executors.newCachedThreadPool();
-//
-//        IntStream.range(1, 6)
-//                 .forEach(count -> {
-//                     executorService.execute(new CountDownLatchWorker(countDownLatch, count));
-//                 });
-//
-//        System.out.println("Main Thread is wating for workers to finish!!!!!!");
-//        countDownLatch.await();
-//
-//        System.out.println("Work of All Worker is Completed");
-//        executorService.shutdown();
+        CountDownLatch countDownLatch = new CountDownLatch(5);
+        ExecutorService executorService = Executors.newCachedThreadPool();
 
-        try {
-            int a = 5 / 0;
-        } catch (Exception ex) {
+        IntStream.range(1, 6)
+                 .forEach(count -> {
+                     executorService.execute(new CountDownLatchWorker(countDownLatch, count));
+                 });
 
-        }
+        System.out.println("Main Thread is wating for workers to finish!!!!!!");
+        countDownLatch.await();
+
+        System.out.println("Work of All Worker is Completed");
+        executorService.shutdown();
     }
 }
 

@@ -50,6 +50,7 @@
                 <version>0.0.3</version>
                 <configuration>
                     <mainClass>org.openjfx.App</mainClass>
+                    <executable>C:\Program Files\Java\jdk-11.0.4\bin\java</executable>
                 </configuration>
             </plugin>
         </plugins>

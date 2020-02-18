@@ -8,22 +8,24 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+
+        <version.javafx>11</version.javafx>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>13</version>
+            <version>${version.javafx}</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>13</version>
+            <version>${version.javafx}</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
-            <version>13</version>
+            <version>${version.javafx}</version>
         </dependency>
     </dependencies>
     <build>
@@ -42,6 +44,7 @@
                 <version>0.0.3</version>
                 <configuration>
                     <mainClass>com.manhpd.App</mainClass>
+                    <executable>C:\Program Files\Java\jdk-11.0.4\bin\java</executable>
                 </configuration>
             </plugin>
         </plugins>

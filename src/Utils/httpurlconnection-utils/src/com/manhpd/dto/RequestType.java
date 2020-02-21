@@ -1,4 +1,4 @@
-package com.manhpd;
+package com.manhpd.dto;
 
 public enum RequestType {
 

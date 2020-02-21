@@ -1,4 +1,4 @@
-package com.manhpd;
+package com.manhpd.dto;
 
 import lombok.Builder;
 import lombok.Data;
@@ -19,5 +19,9 @@ public class RequestContent {
     private File uploadedFile;
 
     private String bodyData;
+
+    private RequestType requestType;
+
+    private String contentType;
 
 }

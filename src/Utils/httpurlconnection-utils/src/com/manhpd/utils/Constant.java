@@ -1,4 +1,4 @@
-package com.manhpd;
+package com.manhpd.utils;
 
 public class Constant {
 
@@ -10,6 +10,8 @@ public class Constant {
     public static final String AUTHORIZATION_FIELD = "Authorization";
     public static final String CONTENT_TYPE_FIELD = "Content-Type";
     public static final String JSON_CONTENT_TYPE = "application/json";
+
+    public static final String ACCESS_TOKEN ="eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOlt7InJvbGVUeXBlIjoiUFJPVklERVJfQURNSU4iLCJhdXRob3JpdHkiOiJQUk9WSURFUl9BRE1JTiJ9XSwiZW5hYmxlIjpmYWxzZSwiZXhwIjoxNTgyMzI4MzkyLCJpYXQiOjE1ODIyOTk1OTJ9.m202IuqIiEhgZKx3AXJvOE_YT9s_LW1GTwscLMFRF1Xn3BGoRCNlF1dj0u8QxXNtsGkotIwnmTCwZBcEik1S3Q";
 
 
 }

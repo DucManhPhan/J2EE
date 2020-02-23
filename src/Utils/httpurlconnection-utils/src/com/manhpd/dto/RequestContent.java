@@ -1,5 +1,6 @@
 package com.manhpd.dto;
 
+import com.manhpd.utils.Constant;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,9 +13,11 @@ public class RequestContent {
 
     private Map<String, String> keyValueHeaders;
 
-    private String accessToken;
+    @Builder.Default
+    private String accessToken = Constant.ACCESS_TOKEN;
 
-    private String tokenType;
+    @Builder.Default
+    private String tokenType = Constant.DEFAULT_TOKEN_TYPE;
 
     private File uploadedFile;
 
@@ -22,6 +25,7 @@ public class RequestContent {
 
     private RequestType requestType;
 
-    private String contentType;
+    @Builder.Default
+    private String contentType = Constant.JSON_CONTENT_TYPE;
 
 }

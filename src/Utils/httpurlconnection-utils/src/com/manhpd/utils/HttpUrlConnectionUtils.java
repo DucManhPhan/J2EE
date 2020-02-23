@@ -1,13 +1,13 @@
 package com.manhpd.utils;
 
+import com.manhpd.dto.DownloadFileInfo;
 import com.manhpd.dto.RequestContent;
+import com.manhpd.dto.UploadFileInfo;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 import java.util.Objects;
@@ -29,48 +29,33 @@ import java.util.Objects;
  */
 public class HttpUrlConnectionUtils {
 
-    public static void getRequest(String path, RequestContent requestContent) throws IOException {
-        HttpURLConnection conn = HttpUrlConnectionUtils.createHttpUrlConnection(path, requestContent);
-        int responseCode = conn.getResponseCode();
-        System.out.println("Response code is: " + responseCode);
-
-        if (responseCode == HttpURLConnection.HTTP_OK) {
-            HttpUrlConnectionUtils.toResponseResult(conn);
-        } else {
-            System.out.println("Do not call this request");
-        }
-    }
-
-    public static void postRequest(String path, RequestContent requestContent) throws IOException {
-        HttpURLConnection conn = HttpUrlConnectionUtils.createHttpUrlConnection(path, requestContent);
-        conn.setDoOutput(true);
-
-        if (StringUtils.isNotEmpty(requestContent.getBodyData())) {
-            OutputStream os = conn.getOutputStream();
-            os.write(requestContent.getBodyData().getBytes());
-            os.flush();
-            os.close();
+    public static void sendBodyRequest(HttpURLConnection conn, RequestContent requestContent) throws IOException {
+        if (Objects.isNull(conn)) {
+            throw new IllegalArgumentException();
         }
 
-        int responseCode = conn.getResponseCode();
-        System.out.println("Response code is: " + responseCode);
-        if (responseCode == HttpURLConnection.HTTP_OK) {
-            HttpUrlConnectionUtils.toResponseResult(conn);
-        } else {
-            System.out.println("Do not call this request");
+        if (Objects.isNull(requestContent) || StringUtils.isEmpty(requestContent.getBodyData())) {
+            System.out.println("Do not exist request content or body data of request");
+            return;
         }
+
+        OutputStream os = conn.getOutputStream();
+        os.write(requestContent.getBodyData().getBytes());
+        os.flush();
+        os.close();
     }
 
-    public static void putRequest() {
-
-    }
-
-    public static void deleteRequest(String path, RequestContent requestContent) {
-
-    }
-
-    private static String toResponseResult(HttpURLConnection conn) throws IOException {
+    public static String toResponseResult(HttpURLConnection conn) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        return HttpUrlConnectionUtils.getResponseDataFromStream(in);
+    }
+
+    public static String toErrorResult(HttpURLConnection conn) throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+        return HttpUrlConnectionUtils.getResponseDataFromStream(in);
+    }
+
+    private static String getResponseDataFromStream(BufferedReader in) throws IOException {
         String inputLine = "";
         StringBuffer response = new StringBuffer();
 
@@ -83,7 +68,6 @@ public class HttpUrlConnectionUtils {
 
         return response.toString();
     }
-
 
     private static void setHeaderParameters(HttpURLConnection conn, Map<String, String> keyValueHeaders) {
         if (Objects.isNull(conn)) {
@@ -106,17 +90,66 @@ public class HttpUrlConnectionUtils {
         }
     }
 
-    private static HttpURLConnection createHttpUrlConnection(String path, RequestContent requestContent) throws IOException {
+    public static HttpURLConnection createHttpUrlConnection(String path, RequestContent requestContent) throws IOException {
         URL url = new URL(Constant.URL_VOCS + path);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
         conn.setRequestMethod(requestContent.getRequestType().getRequestMethod());
-        conn.setRequestProperty(Constant.CONTENT_TYPE_FIELD, Constant.JSON_CONTENT_TYPE);
+        conn.setRequestProperty(Constant.CONTENT_TYPE_FIELD, requestContent.getContentType());
 
         setHeaderParameters(conn, requestContent.getKeyValueHeaders());
         setAuthentication(conn, requestContent);
 
+        // Setting the connect and read timeouts
+        conn.setConnectTimeout(5000);
+        conn.setReadTimeout(5000);
+
         return conn;
+    }
+
+    public static HttpURLConnection createHttpUrlConnectionForUploadFile(UploadFileInfo uploadFileInfo, String requestURL) throws IOException {
+        // creates a unique boundary based on time stamp
+        uploadFileInfo.setBoundary("===" + System.currentTimeMillis() + "===");
+
+        URL url = new URL(requestURL);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setUseCaches(false);
+        conn.setDoOutput(true);
+        conn.setDoInput(true);
+        conn.setRequestProperty(Constant.CONTENT_TYPE_FIELD,
+                Constant.FORM_DATA_CONTENT_TYPE + "; boundary=" + uploadFileInfo.getBoundary());
+        conn.setRequestProperty(Constant.USER_AGENT_FIELD, "Upload file with HttpURLConnection");
+        uploadFileInfo.setOutputStream(conn.getOutputStream());
+        uploadFileInfo.setWriter(new PrintWriter(new OutputStreamWriter(uploadFileInfo.getOutputStream(),
+                                                                         uploadFileInfo.getCharset()),
+                                                                        true));
+
+        return conn;
+    }
+
+    /**
+     * Based on data from InputStream, we will save that data to local disk
+     *
+     * @param inputStream - Data that will be downloaded from other link
+     * @param fileInfo - contains saveDir - the directory that will be saved, fileName - the file's name that will be filled
+     * @throws IOException
+     */
+    public static void saveFileToLocal(InputStream inputStream, DownloadFileInfo fileInfo) throws IOException {
+        String saveFilePath = fileInfo.getSaveDir() + File.separator + fileInfo.getFileName();
+
+        // opens an output stream to save into file
+        FileOutputStream outputStream = new FileOutputStream(saveFilePath);
+
+        int bytesRead = -1;
+        byte[] buffer = new byte[Constant.BUFFER_SIZE];
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, bytesRead);
+        }
+
+        outputStream.close();
+        inputStream.close();
+
+        System.out.println("File downloaded");
     }
 
 }

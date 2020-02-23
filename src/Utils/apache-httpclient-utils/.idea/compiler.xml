@@ -6,8 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="httpclient-utils" />
+        <module name="apache-httpclient-utils" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="apache-httpclient-utils" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

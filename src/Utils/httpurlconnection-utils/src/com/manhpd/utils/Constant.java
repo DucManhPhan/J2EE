@@ -4,8 +4,8 @@ public class Constant {
 
     public static final String ERROR_HEADER_PARAMS = "Parameters are invalid - HttpURLConnection or values of header";
 
-    public static final String URL_VOCS = "http://dev.lifesup.com.vn:8088/com.viettel.vocs-service";
-    public static final String URL_VMANO = "http://dev.lifesup.com.vn:9999";
+    public static final String URL_VOCS = "...";
+    public static final String URL_VMANO = "...";
 
     public static final String OPEN_STACK_USERID_FIELD = "openStackUserId";
     public static final String PROJECT_ID_FIELD = "projectId";

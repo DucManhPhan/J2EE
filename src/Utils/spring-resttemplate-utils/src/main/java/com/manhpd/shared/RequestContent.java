@@ -1,14 +1,15 @@
 package com.manhpd.shared;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import org.springframework.http.codec.multipart.FilePart;
+import org.springframework.core.io.Resource;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
 
 @Data
-@AllArgsConstructor
+@Builder
 public class RequestContent {
 
     private String bodyData;
@@ -21,6 +22,15 @@ public class RequestContent {
 
     private Object updatedPartOfObject;
 
-    private FilePart file;
+    // In order to send file to other server, we need to save that file in our local file system
+    private Resource resource;
+
+    private String downloadedFileName;
+
+    // In Spring MVC, use MultipartFile type
+    private MultipartFile file;
+
+    // In Spring WebFlux, use FilePart type
+//    private FilePart file;
 
 }

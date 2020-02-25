@@ -1,7 +1,8 @@
 package com.manhpd.shared;
 
+import com.manhpd.configuration.StorageProperties;
 import com.manhpd.domain.value_object.Person;
-import org.apache.tomcat.util.bcel.Const;
+import org.apache.http.client.methods.HttpHead;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
@@ -9,6 +10,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RequestCallback;
 import org.springframework.web.client.ResponseExtractor;
@@ -17,7 +19,6 @@ import org.springframework.web.client.RestTemplate;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -29,10 +30,15 @@ import java.util.Objects;
 public class RestTemplateUtils {
 
     @Autowired
-    private static RestTemplate restTemplate;
+    private RestTemplate restTemplate;
 
-    public static String getRequest(String path, RequestContent requestContent) {
-        HttpHeaders headers = RestTemplateUtils.createHttpHeaders(requestContent);
+    @Autowired
+    private StorageProperties storageProperties;
+
+    public String getRequest(String path, RequestContent requestContent) {
+        HttpHeaders headers = this.createHttpHeaders(requestContent);
+//        headers.remove(Constant.CONTENT_TYPE_FIELD);
+        headers.remove(Constant.AUTHORIZATION_FIELD);
         HttpEntity <String> entity = new HttpEntity<String>(headers);
 
         ResponseEntity<String> response = restTemplate.exchange(Constant.URL + path,
@@ -50,8 +56,8 @@ public class RestTemplateUtils {
 
     // ===================== POST method ========================
     // 1st way - use exchange() method
-    public static void postRequest(String path, RequestContent requestContent) {
-        HttpHeaders headers = RestTemplateUtils.createHttpHeaders(requestContent);
+    public  String postRequest(String path, RequestContent requestContent) {
+        HttpHeaders headers = this.createHttpHeaders(requestContent);
         HttpEntity<String> httpEntity = new HttpEntity<String>(requestContent.getBodyData(), headers);
 
         try {
@@ -60,14 +66,17 @@ public class RestTemplateUtils {
                                                                     httpEntity,
                                                                     String.class);
             System.out.println("Response: " + response);
+            return response.getBody();
         } catch (HttpStatusCodeException exception) {
             System.out.println("Response: " + exception.getStatusCode().value());
         }
+
+        return "";
     }
 
     // 2nd way - use postForEntity() method that returns ResponseEntity - contains HttpStatus, real object that push, ...
-    public static void postRequestWithEntity(String path, RequestContent requestContent) {
-        HttpHeaders headers = RestTemplateUtils.createHttpHeaders(requestContent);
+    public  void postRequestWithEntity(String path, RequestContent requestContent) {
+        HttpHeaders headers = this.createHttpHeaders(requestContent);
         HttpEntity<Person> requestBody = new HttpEntity<>(new Person(), headers);
 
         ResponseEntity<Person> result
@@ -82,8 +91,8 @@ public class RestTemplateUtils {
     }
 
     // 3rd way - use postForObject() method that returns a specific object
-    public static void postRequestWithObject(String path, RequestContent requestContent) {
-        HttpHeaders headers = RestTemplateUtils.createHttpHeaders(requestContent);
+    public  void postRequestWithObject(String path, RequestContent requestContent) {
+        HttpHeaders headers = this.createHttpHeaders(requestContent);
         HttpEntity<Person> requestBody = new HttpEntity<>(new Person(), headers);
 
         Person person = restTemplate.postForObject(Constant.URL + path,
@@ -95,9 +104,9 @@ public class RestTemplateUtils {
         }
     }
 
-    public static void putRequest(String path, RequestContent requestContent) {
-        HttpHeaders headers = RestTemplateUtils.createHttpHeaders(requestContent);
-        HttpEntity<Person> httpEntity = new HttpEntity<>(new Person(), headers);
+    public  String putRequest(String path, RequestContent requestContent) {
+        HttpHeaders headers = this.createHttpHeaders(requestContent);
+        HttpEntity<String> httpEntity = new HttpEntity<String>(requestContent.getBodyData(), headers);
 
         try {
             // 1st way - use exchange() method for put request
@@ -109,13 +118,17 @@ public class RestTemplateUtils {
 
             // 2nd way - use put() method
 //            restTemplate.put(Constant.URL + path, httpEntity);
+
+            return response.getBody();
         } catch (HttpStatusCodeException exception) {
             System.out.println("Response: " + exception.getStatusCode().value());
         }
+
+        return "";
     }
 
-    public static void deleteRequest(String path, RequestContent requestContent) {
-        HttpHeaders headers = RestTemplateUtils.createHttpHeaders(requestContent);
+    public String deleteRequest(String path, RequestContent requestContent) {
+        HttpHeaders headers = this.createHttpHeaders(requestContent);
         HttpEntity<Person> httpEntity = new HttpEntity<>(headers);
 
         try {
@@ -128,13 +141,17 @@ public class RestTemplateUtils {
 
             // 2nd way - use delete() method
 //            restTemplate.delete(Constant.URL + path);
+
+            return response.getBody();
         } catch (HttpStatusCodeException exception) {
             System.out.println("Response: " + exception.getStatusCode().value());
         }
+
+        return "";
     }
 
-    public static void patchRequest(String path, RequestContent requestContent) throws MalformedURLException {
-        HttpHeaders headers = RestTemplateUtils.createHttpHeaders(requestContent);
+    public  void patchRequest(String path, RequestContent requestContent) throws MalformedURLException {
+        HttpHeaders headers = this.createHttpHeaders(requestContent);
         HttpEntity<Object> httpEntity = new HttpEntity<Object>(requestContent.getUpdatedPartOfObject(), headers);
 
         try {
@@ -149,16 +166,17 @@ public class RestTemplateUtils {
     }
 
     // 1st way - download normal file with exchange() method and HttpMethod.GET
-    public static void downloadRequest(String path, RequestContent requestContent) {
+    public void downloadRequest(String path, RequestContent requestContent) {
         try {
-            HttpHeaders headers = RestTemplateUtils.createHttpHeaders(requestContent);
+            HttpHeaders headers = this.createHttpHeaders(requestContent);
             headers.remove(Constant.CONTENT_TYPE_FIELD);
             headers.setAccept(Arrays.asList(MediaType.APPLICATION_OCTET_STREAM));
             HttpEntity<String> entity = new HttpEntity<>(headers);
             ResponseEntity<byte[]> response = restTemplate.exchange(Constant.URL + path,
                                                                     HttpMethod.GET,
                                                                     entity, byte[].class);
-            Files.write(Paths.get(Constant.DOWNLOAD_PATH + Constant.DOWNLOADED_FILE_NAME), response.getBody());
+            Files.write(Paths.get(this.storageProperties.getDownloadDir() + requestContent.getDownloadedFileName()),
+                                  response.getBody());
         }catch (Exception e){
             System.out.println("Error happens in download request: " + e);
         }
@@ -170,14 +188,14 @@ public class RestTemplateUtils {
     //
     // Note that you cannot simply return the InputStream from the extractor,
     // because by the time the execute method returns, the underlying connection and stream are already closed.
-    public static void downloadRequestWithLargeFile(String path, RequestContent requestContent) {
+    public void downloadRequestWithLargeFile(String path, RequestContent requestContent) {
         // Optional Accept header
         RequestCallback requestCallback = request -> request.getHeaders()
                 .setAccept(Arrays.asList(MediaType.APPLICATION_OCTET_STREAM, MediaType.ALL));
 
         // Streams the response instead of loading it all in memory
         ResponseExtractor<Void> responseExtractor = response -> {
-            Path saveDir = Paths.get(Constant.DOWNLOAD_PATH);
+            Path saveDir = Paths.get(this.storageProperties.getDownloadDir());
             Files.copy(response.getBody(), saveDir);
             return null;
         };
@@ -185,35 +203,15 @@ public class RestTemplateUtils {
         restTemplate.execute(Constant.URL + path, HttpMethod.GET, requestCallback, responseExtractor);
     }
 
-    public static void uploadRequest(String path, RequestContent requestContent) throws IOException {
-        // save file in local server
-        String pathLocal = Constant.UPLOAD_PATH;
-        File localFile = new File(path);
-        if (!localFile.exists())
-            localFile.mkdirs(); // or file.mkdir()
-
-        localFile = new File(pathLocal + "/" + requestContent.getFile().filename());
-        localFile.createNewFile();
-        requestContent.getFile().transferTo(localFile);
-
-        // work with headers
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-        headers.set(Constant.AUTHORIZATION_FIELD, Constant.ACCESS_TOKEN);
-        RestTemplateUtils.setParametersToRequestHeader(headers, requestContent.getHeaderParams());
-
-        // prepate for request body
-        Resource resource = new FileSystemResource(localFile);
-        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
-        body.add(Constant.FILE_PART_FIELD, resource);
-
-        HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
-        String serverUrl = Constant.URL + path;
+    public void uploadRequest(String path, RequestContent requestContent) throws IOException {
+        HttpHeaders headers = this.createHttpHeadersForUploadFile(requestContent);
+        HttpEntity requestEntity = this.createRequestForUploadFile(headers, requestContent.getResource());
         RestTemplate restTemplate = new RestTemplate();
 
-        // send file
         try {
-            ResponseEntity<String> response = restTemplate.postForEntity(serverUrl, requestEntity, String.class);
+            ResponseEntity<String> response = restTemplate.postForEntity(Constant.URL + path,
+                                                                        requestEntity,
+                                                                        String.class);
             System.out.println("Response: " + response);
         } catch (HttpStatusCodeException exception) {
             System.out.println("Response: " + exception.getStatusCode().value());
@@ -221,19 +219,41 @@ public class RestTemplateUtils {
     }
 
     // ========================== Utility methods =============================
-    private static void setParametersToRequestHeader(HttpHeaders headers, Map<String, String> paramHeaders) {
+    private  void setParametersToRequestHeader(HttpHeaders headers, Map<String, String> paramHeaders) {
+        if (Objects.isNull(paramHeaders)) {
+            System.out.println("Do not exist parameters in Http Header.");
+            return;
+        }
+
         for (Map.Entry<String, String> me : paramHeaders.entrySet()) {
             headers.set(me.getKey().toString(), me.getValue().toString());
         }
     }
 
-    private static HttpHeaders createHttpHeaders(RequestContent requestContent) {
+    private  HttpHeaders createHttpHeaders(RequestContent requestContent) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.set(Constant.AUTHORIZATION_FIELD, Constant.ACCESS_TOKEN);
-        RestTemplateUtils.setParametersToRequestHeader(headers, requestContent.getHeaderParams());
+        this.setParametersToRequestHeader(headers, requestContent.getHeaderParams());
 
         return headers;
+    }
+
+    private HttpHeaders createHttpHeadersForUploadFile(RequestContent requestContent) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+        headers.set(Constant.AUTHORIZATION_FIELD, Constant.ACCESS_TOKEN);
+        this.setParametersToRequestHeader(headers, requestContent.getHeaderParams());
+
+        return headers;
+    }
+
+    private HttpEntity createRequestForUploadFile(HttpHeaders headers, Resource resource) {
+        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+        body.add(Constant.FILE_PART_FIELD, resource);
+        HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+
+        return requestEntity;
     }
 
 }

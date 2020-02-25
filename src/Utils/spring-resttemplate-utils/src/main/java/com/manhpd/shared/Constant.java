@@ -2,10 +2,10 @@ package com.manhpd.shared;
 
 public class Constant {
 
-    public final static String URL = "...";
-    public final static String UPLOAD_PATH = "...";
-    public final static String DOWNLOAD_PATH = "...";
-    public final static String DOWNLOADED_FILE_NAME = "...";
+    public final static String URL = "http://localhost:8080";
+    public final static String UPLOAD_PATH = "C:\\upload";
+    public final static String DOWNLOAD_PATH = "C:\\download";
+    public final static String DOWNLOADED_FILE_NAME = "\\sample-1";
     public final static int REQUEST_TIME_OUT = 5000;
 
     public final static String AUTHORIZATION_FIELD = "Authorization";

@@ -18,6 +18,8 @@
         <java.version>11</java.version>
         <jackson.mapper.version>1.9.4</jackson.mapper.version>
         <apache.httpclient.version>4.5.11</apache.httpclient.version>
+        <reactor.core.version>3.0.1.RELEASE</reactor.core.version>
+        <gson.version>2.8.6</gson.version>
     </properties>
 
     <dependencies>
@@ -55,6 +57,16 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>${apache.httpclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-core</artifactId>
+            <version>${reactor.core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
         </dependency>
 
     </dependencies>

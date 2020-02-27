@@ -7,7 +7,6 @@
   <groupId>com.manhpd</groupId>
   <artifactId>string-utils</artifactId>
   <version>1.0-SNAPSHOT</version>
-
   <name>string-utils</name>
 
   <properties>

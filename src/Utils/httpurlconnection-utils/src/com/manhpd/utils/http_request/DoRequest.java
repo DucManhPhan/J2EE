@@ -4,8 +4,6 @@ import com.manhpd.dto.RequestContent;
 import com.manhpd.utils.HttpUrlConnectionUtils;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.net.HttpURLConnection;
 
 public abstract class DoRequest {

@@ -31,9 +31,9 @@ public class CreationOfStream {
 
 //        createStreamWithFileNio();
 
-//        checkLaziLoadOfIntermediateOperations();
+        checkLaziLoadOfIntermediateOperations();
 
-        createStreamWithRandom();
+//        createStreamWithRandom();
     }
 
     private static void createEmptyStream() {
@@ -95,14 +95,17 @@ public class CreationOfStream {
     }
 
     private static void checkLaziLoadOfIntermediateOperations() {
-        List<String> list = Arrays.asList("abc1", "abc2", "abc3");
-        List<String> lst = list.stream().filter(element -> {
-            System.out.println("filter() was called");
+        List<String> list = Arrays.asList("abc1", "abc2", "abc3", "abc21", "abc32", "abc13");
+        Stream<String> strStream = list.stream().filter(element -> {
+            System.out.println("filter() was called " + element);
             return element.contains("2");
         }).map(element -> {
-            System.out.println("map() was called");
+            System.out.println("map() was called " + element);
             return element.toUpperCase();
-        }).collect(Collectors.toList());
+        });
+
+        System.out.println("Starting with terminal operation");
+        List<String> lst = strStream.collect(Collectors.toList());
     }
 
     private static void createStreamWithRandom() {

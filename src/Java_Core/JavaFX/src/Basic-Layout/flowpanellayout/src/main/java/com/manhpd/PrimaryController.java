@@ -40,15 +40,18 @@ public class PrimaryController implements Initializable {
     }
 
     public void isOk(ActionEvent actionEvent) {
-
+        return;
     }
 
     public void displayName(ActionEvent actionEvent) {
+        return;
     }
 
     public void clickRdBtn(ActionEvent actionEvent) {
+        return;
     }
 
     public void clickCheckbox(ActionEvent actionEvent) {
+        return;
     }
 }

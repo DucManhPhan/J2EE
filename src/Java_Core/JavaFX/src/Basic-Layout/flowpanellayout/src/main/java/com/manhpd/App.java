@@ -17,6 +17,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+
         this.scene = new Scene(loadFXML("primary.fxml"), 640, 480);
         stage.setTitle("Example about showing date time");
         stage.setScene(scene);

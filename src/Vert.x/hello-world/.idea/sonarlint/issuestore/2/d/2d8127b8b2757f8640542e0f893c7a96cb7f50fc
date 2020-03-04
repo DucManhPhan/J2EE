@@ -1,4 +1,7 @@
 
-]squid:CallToDeprecatedMethod".Remove this use of "accept"; it is deprecated.( ŸçÔ8…§Œı‰.
-`squid:CallToDeprecatedMethod",Remove this use of "fail"; it is deprecated.(ñò†ùÿÿÿÿ8Ò’Œı‰.
-dsquid:CallToDeprecatedMethod"0Remove this use of "complete"; it is deprecated.(½Ê¡‚úÿÿÿÿ8Ò’Œı‰.
+K
+java:S1874".Remove this use of "accept"; it is deprecated.( ŸçÔ8§ÕåŠ.
+R
+java:S1874"0Remove this use of "complete"; it is deprecated.(½Ê¡‚úÿÿÿÿ8§ÕåŠ.
+N
+java:S1874",Remove this use of "fail"; it is deprecated.(ñò†ùÿÿÿÿ8§ÕåŠ.

@@ -1,8 +1,7 @@
 
-[
-squid:S106"9Replace this use of System.out or System.err by a logger.(½¦ÿÿÿÿÿ8 Ñü‰.
-Hsquid:S1068
-"*Remove this unused "logger" private field.(¢…ä«8”çı‰.
-usquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´¾ÛÍÿÿÿÿÿ8 Ñü‰.
-[
-squid:S106"9Replace this use of System.out or System.err by a logger.(«Ä÷Êùÿÿÿÿ8 Ñü‰.
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´¾ÛÍÿÿÿÿÿ8§ÕåŠ.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(½¦ÿÿÿÿÿ8§ÕåŠ.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(«Ä÷Êùÿÿÿÿ8§ÕåŠ.
+G
+java:S1068
+"*Remove this unused "logger" private field.(¢…ä«8§ÕåŠ.

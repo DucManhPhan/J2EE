@@ -13,3 +13,5 @@ Z
 *src/main/java/resource/conf/conf/conf.json,e\7\e729fcd969f3ba1f4a58cbb116f57175e72b4a5c
 d
 4src/main/java/com/manhpd/verticle/HelloVerticle.java,9\c\9c53e745463933b8afbf02d916d6db584efb334f
+U
+%src/test/java/com/manhpd/AppTest.java,0\3\03fbd70a835fcdeee671f301c13ccdd32ad2d842

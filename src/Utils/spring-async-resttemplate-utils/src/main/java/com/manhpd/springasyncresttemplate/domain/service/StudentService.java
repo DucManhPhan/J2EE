@@ -4,16 +4,27 @@ package com.manhpd.springasyncresttemplate.domain.service;
 import com.manhpd.springasyncresttemplate.domain.domain_object.Student;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class StudentService {
 
-    public List<Student> getAllStudents() {
+    private static final List<Student> students = new ArrayList<Student>() {{
+        add(new Student("Obama", 62, "NewYork"));
+        add(new Student("Bill Clinton", 62, "NewYork"));
+        add(new Student("Bill Gate", 62, "Ohama"));
+        add(new Student("Google", 62, "NewYork"));
+    }};
 
-        return Collections.EMPTY_LIST;
+    public String getAllStudents() {
+        return students.toString();
+    }
+
+    public String findStudentByName(String name) {
+        Optional<Student> optStudent = students.stream()
+                .filter(student -> student.getName().equals(name))
+                .findFirst();
+        return optStudent.isPresent() ? optStudent.get().toString() : "Do not exist student with " + name;
     }
 
 }

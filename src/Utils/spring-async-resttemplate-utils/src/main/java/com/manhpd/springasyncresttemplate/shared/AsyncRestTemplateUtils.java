@@ -1,6 +1,5 @@
 package com.manhpd.springasyncresttemplate.shared;
 
-
 import com.manhpd.springasyncresttemplate.domain.domain_object.RequestContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -35,7 +34,17 @@ public class AsyncRestTemplateUtils {
         return future;
     }
 
+    public Future<String> postRequest(RequestContent requestContent) {
+        HttpHeaders headers = this.createHttpHeaders(requestContent);
+        HttpEntity<String> entity = new HttpEntity<>(headers);
 
+        AsyncRequestCallback requestCallback = arg0 -> System.out.println(arg0.getURI());
+        ResponseExtractor<String> responseExtractor = arg0 -> arg0.getStatusText();
+
+        ListenableFuture<String> future = this.asyncRestTemplate.execute(requestContent.getUrl(),
+                                                HttpMethod.POST, requestCallback, responseExtractor);
+        return future;
+    }
 
     // ========================== Utility methods =============================
     private  void setParametersToRequestHeader(HttpHeaders headers, Map<String, String> paramHeaders) {

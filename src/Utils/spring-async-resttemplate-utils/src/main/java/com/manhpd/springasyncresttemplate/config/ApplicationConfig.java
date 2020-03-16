@@ -33,12 +33,6 @@ import java.util.List;
 @Configuration
 public class ApplicationConfig {
 
-    private static final int DEFAULT_MAX_TOTAL_CONNECTIONS = 100;
-
-    private static final int DEFAULT_MAX_CONNECTIONS_PER_ROUTE = 5;
-
-    private static final int DEFAULT_READ_TIMEOUT_MILLISECONDS = (60 * 1000);
-
     @Bean
     AsyncRestTemplate asyncRestTemplate() {
         AsyncRestTemplate asyncRestTemplate = new AsyncRestTemplate();
@@ -48,92 +42,6 @@ public class ApplicationConfig {
         asyncRestTemplate.getMessageConverters().add(converter);
 
         return asyncRestTemplate;
-    }
-
-//    @Bean
-//    public AsyncRestTemplate asyncRestTemplate() {
-//        AsyncRestTemplate restTemplate = new AsyncRestTemplate(
-//                asyncHttpRequestFactory(), restTemplate());
-//        return restTemplate;
-//    }
-
-    @Bean
-    public AsyncClientHttpRequestFactory asyncHttpRequestFactory() {
-        return new HttpComponentsAsyncClientHttpRequestFactory(
-                asyncHttpClient());
-    }
-
-    @Bean
-    public CloseableHttpAsyncClient asyncHttpClient() {
-        try {
-            PoolingNHttpClientConnectionManager connectionManager = new PoolingNHttpClientConnectionManager(
-                    new DefaultConnectingIOReactor(IOReactorConfig.DEFAULT));
-            connectionManager.setMaxTotal(DEFAULT_MAX_TOTAL_CONNECTIONS);
-            connectionManager
-                    .setDefaultMaxPerRoute(DEFAULT_MAX_CONNECTIONS_PER_ROUTE);
-            connectionManager.setMaxPerRoute(new HttpRoute(new HttpHost(
-                    "facebook.com")), 20);
-            connectionManager.setMaxPerRoute(new HttpRoute(new HttpHost(
-                    "twitter.com")), 20);
-            connectionManager.setMaxPerRoute(new HttpRoute(new HttpHost(
-                    "linkedin.com")), 20);
-            connectionManager.setMaxPerRoute(new HttpRoute(new HttpHost(
-                    "viadeo.com")), 20);
-            RequestConfig config = RequestConfig.custom()
-                    .setConnectTimeout(DEFAULT_READ_TIMEOUT_MILLISECONDS)
-                    .build();
-
-            CloseableHttpAsyncClient httpclient = HttpAsyncClientBuilder
-                    .create().setConnectionManager(connectionManager)
-                    .setDefaultRequestConfig(config).build();
-            return httpclient;
-        } catch (Exception e) {
-            throw Throwables.propagate(e);
-        }
-    }
-
-    @Bean
-    public ClientHttpRequestFactory httpRequestFactory() {
-        return new HttpComponentsClientHttpRequestFactory(httpClient());
-    }
-
-    @Bean
-    public RestTemplate restTemplate() {
-        RestTemplate restTemplate = new RestTemplate(httpRequestFactory());
-        List<HttpMessageConverter<?>> converters = restTemplate
-                .getMessageConverters();
-
-        for (HttpMessageConverter<?> converter : converters) {
-            if (converter instanceof MappingJackson2HttpMessageConverter) {
-                MappingJackson2HttpMessageConverter jsonConverter = (MappingJackson2HttpMessageConverter) converter;
-                jsonConverter.setObjectMapper(new ObjectMapper());
-            }
-        }
-
-        return restTemplate;
-    }
-
-    @Bean
-    public CloseableHttpClient httpClient() {
-        PoolingHttpClientConnectionManager connectionManager = new PoolingHttpClientConnectionManager();
-        connectionManager.setMaxTotal(DEFAULT_MAX_TOTAL_CONNECTIONS);
-        connectionManager
-                .setDefaultMaxPerRoute(DEFAULT_MAX_CONNECTIONS_PER_ROUTE);
-        connectionManager.setMaxPerRoute(new HttpRoute(new HttpHost(
-                "facebook.com")), 20);
-        connectionManager.setMaxPerRoute(new HttpRoute(new HttpHost(
-                "twitter.com")), 20);
-        connectionManager.setMaxPerRoute(new HttpRoute(new HttpHost(
-                "linkedin.com")), 20);
-        connectionManager.setMaxPerRoute(new HttpRoute(new HttpHost(
-                "viadeo.com")), 20);
-        RequestConfig config = RequestConfig.custom()
-                .setConnectTimeout(DEFAULT_READ_TIMEOUT_MILLISECONDS).build();
-
-        CloseableHttpClient defaultHttpClient = HttpClientBuilder.create()
-                .setConnectionManager(connectionManager)
-                .setDefaultRequestConfig(config).build();
-        return defaultHttpClient;
     }
 
 }

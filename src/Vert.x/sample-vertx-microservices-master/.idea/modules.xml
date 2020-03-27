@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/account-vertx-service/account-vertx-service.iml" filepath="$PROJECT_DIR$/account-vertx-service/account-vertx-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/customer-vertx-service/customer-vertx-service.iml" filepath="$PROJECT_DIR$/customer-vertx-service/customer-vertx-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample-vertx-microservices.iml" filepath="$PROJECT_DIR$/sample-vertx-microservices.iml" />
+    </modules>
+  </component>
+</project>

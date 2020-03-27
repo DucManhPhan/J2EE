@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Annotation profile for sample-vertx-microservices" enabled="true">
+        <sourceOutputDir name="src/main/generated" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <option name="outputDirectory" value="D:\ManhPD5\Git\J2EE\src\Vert.x\sample-vertx-microservices-master\customer-vertx-service/src/main" />
+        <processor name="io.vertx.codegen.CodeGenProcessor" />
+        <module name="customer-vertx-service" />
+      </profile>
+      <profile name="Annotation profile for account-vertx-service" enabled="true">
+        <sourceOutputDir name="src/main/generated" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <option name="outputDirectory" value="D:\ManhPD5\Git\J2EE\src\Vert.x\sample-vertx-microservices-master\account-vertx-service/src/main" />
+        <processor name="io.vertx.codegen.CodeGenProcessor" />
+        <module name="account-vertx-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="account-vertx-service" target="1.8" />
+      <module name="customer-vertx-service" target="1.8" />
+      <module name="sample-vertx-microservices" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="account-vertx-service" options="-AoutputDirectory=D:\ManhPD5\Git\J2EE\src\Vert.x\sample-vertx-microservices-master\account-vertx-service/src/main" />
+      <module name="customer-vertx-service" options="-AoutputDirectory=D:\ManhPD5\Git\J2EE\src\Vert.x\sample-vertx-microservices-master\customer-vertx-service/src/main" />
+    </option>
+  </component>
+</project>

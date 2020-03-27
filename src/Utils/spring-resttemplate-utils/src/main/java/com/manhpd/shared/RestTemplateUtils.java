@@ -41,7 +41,7 @@ public class RestTemplateUtils {
         headers.remove(Constant.AUTHORIZATION_FIELD);
         HttpEntity <String> entity = new HttpEntity<String>(headers);
 
-        ResponseEntity<String> response = restTemplate.exchange(Constant.URL + path,
+        ResponseEntity<String> response = restTemplate.exchange(Constant.URL, // + path,
                                                                 HttpMethod.GET,
                                                                 entity,
                                                                 String.class);

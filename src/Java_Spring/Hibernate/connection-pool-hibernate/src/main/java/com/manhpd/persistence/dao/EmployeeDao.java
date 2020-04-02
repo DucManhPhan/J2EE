@@ -21,7 +21,7 @@ public class EmployeeDao implements IEmployeeDao {
 
     @Override
     public List<Employee> findAll() {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         List<Employee> emps = Collections.emptyList();
         Transaction tx = null;
 

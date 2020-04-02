@@ -15,11 +15,12 @@ public enum DatabaseConfig {
 
     private static final Logger logger = LogManager.getLogger(DatabaseConfig.class);
 
-    public void loadDatabaseConfig() throws IOException {
+    public Properties loadDatabaseConfig() throws IOException {
         Properties prop = this.readPropertiesFile(Constant.DB_CONFIG_PATH);
+        return prop;
     }
 
-    private Properties readPropertiesFile(String fileName) throws IOException {
+    public Properties readPropertiesFile(String fileName) throws IOException {
         FileInputStream fis = null;
         Properties prop = null;
 

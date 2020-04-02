@@ -2,7 +2,8 @@ package com.manhpd.shared;
 
 public class Constant {
 
-    public final static String URL = "http://localhost:8080";
+//    public final static String URL = "http://localhost:8082";
+    public final static String URL = "https://ddc136ac-9a9e-451b-a029-2834f9a0322a.mock.pstmn.io/test/mm/auth/public/v1/sign-in/client";
     public final static String UPLOAD_PATH = "C:\\upload";
     public final static String DOWNLOAD_PATH = "C:\\download";
     public final static String DOWNLOADED_FILE_NAME = "\\sample-1";

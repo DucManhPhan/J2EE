@@ -1,0 +1,8 @@
+We are now going to complete our introduction to core Java I/O facilities by returning to the java.nio package.
+The name NIO stands for "New I/O" and, as we saw earlier in this chapter in our discussion of java.nio.file,
+one aspect of NIO is simply to update and enhance features of the legacy java.io package.
+Much of the general NIO functionality does indeed overlap with existing APIs.
+
+However, NIO was first introduced to address specific issues of scalability for large systems, especially in networked applications.
+
+The following section outlines the basic elements of NIO, which center on working with buffers and channels.

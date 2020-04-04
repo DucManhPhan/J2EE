@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -17,7 +18,15 @@ public class EmployeeDao implements IEmployeeDao {
 
     private final static Logger logger = LogManager.getLogger(EmployeeDao.class);
 
-    private static SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
+    private static SessionFactory sessionFactory;
+
+    static {
+        try {
+            sessionFactory = HibernateUtils.getSessionFactory();
+        } catch (IOException ex) {
+            logger.error("static block: ", ex);
+        }
+    }
 
     @Override
     public List<Employee> findAll() {

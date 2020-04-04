@@ -1,0 +1,7 @@
+Hello, world!!!
+
+How are you?
+
+This is the test for using Java NIO API.
+
+Vi?t nam th? v?i encoding khác.

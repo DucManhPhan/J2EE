@@ -25,6 +25,8 @@ public class CyclicBarrierWorker implements Runnable {
             Thread.sleep(random.nextInt(4000));
             System.out.println("Worker " + workerId + " Completed it's work, Reducing  count of cyclicBarrier " );
             cyclicBarrier.await();
+
+            System.out.println("Worker " + workerId + " process again.");
         } catch (InterruptedException | BrokenBarrierException e) {
             e.printStackTrace();
         }

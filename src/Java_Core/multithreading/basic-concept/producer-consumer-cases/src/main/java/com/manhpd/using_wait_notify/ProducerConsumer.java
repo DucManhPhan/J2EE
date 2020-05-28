@@ -1,22 +1,40 @@
 package com.manhpd.using_wait_notify;
 
+import java.util.stream.IntStream;
+
 public class ProducerConsumer {
 
     private static int[] buffer;
 
     private static int count;
 
+    private static Object lock = new Object();
+
     static class Producer {
-        void produce() {
-            while (isFull(buffer)) {}
-            buffer[count++] = 1;
+        void produce() throws InterruptedException {
+            synchronized (lock) {
+                while (isFull(buffer)) {
+                    lock.wait();
+                }
+
+                buffer[count++] = 1;
+                System.out.println("In the producer, count = " + count);
+                lock.notifyAll();
+            }
         }
     }
 
     static class Consumer {
-        void consumer() {
-            while (isEmpty(buffer)) {
+        void consumer() throws InterruptedException {
+            synchronized (lock) {
+                while (isEmpty(buffer)) {
+                    lock.wait();
+                }
+
                 buffer[--count] = 0;
+                System.out.println("In the consumer, count = " + count);
+
+                lock.notifyAll();
             }
         }
     }
@@ -38,7 +56,11 @@ public class ProducerConsumer {
 
         Runnable produceTask = () -> {
             for (int i = 0; i < 50; ++i) {
-                producer.produce();
+                try {
+                    producer.produce();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
 
             System.out.println("Done producing");
@@ -46,7 +68,11 @@ public class ProducerConsumer {
 
         Runnable consumeTask = () -> {
             for (int i = 0; i < 50; ++i) {
-                consumer.consumer();
+                try {
+                    consumer.consumer();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
 
             System.out.println("Done consuming");
@@ -62,6 +88,8 @@ public class ProducerConsumer {
         produceThread.join();
 
         System.out.println("Data in the buffer: " + count);
+
+        IntStream.of(buffer).forEach(item -> System.out.println(item + " "));
     }
 
 }

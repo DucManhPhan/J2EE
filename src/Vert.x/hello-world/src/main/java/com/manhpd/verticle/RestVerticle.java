@@ -16,14 +16,14 @@ public class RestVerticle extends AbstractVerticle {
                 .handler(this::getArticles);
 
         vertx.createHttpServer()
-                .requestHandler(router::accept)
-                .listen(config().getInteger("http.port", 8080), result -> {
-                    if (result.succeeded()) {
-                        future.complete();
-                    } else {
-                        future.fail(result.cause());
-                    }
-                });
+            .requestHandler(router::accept)
+            .listen(config().getInteger("http.port", 8080), result -> {
+                if (result.succeeded()) {
+                    future.complete();
+                } else {
+                    future.fail(result.cause());
+                }
+            });
     }
 
     private void getArticles(RoutingContext routingContext) {

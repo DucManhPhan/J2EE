@@ -6,8 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="datetime-utils" />
-        <module name="DateTimeUtils" />
+        <module name="connection-pool-hibernate" />
       </profile>
     </annotationProcessing>
   </component>

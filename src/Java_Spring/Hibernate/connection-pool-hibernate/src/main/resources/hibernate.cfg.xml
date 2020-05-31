@@ -1,0 +1,35 @@
+<!DOCTYPE hibernate-configuration SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/common</property>
+        <property name="hibernate.connection.useUnicode">true</property>
+        <property name="hibernate.connection.characterEncoding">UTF-8</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- configure for using c3p0 connection pool -->
+        <property name="hibernate.c3p0.min_size">10</property>
+        <property name="hibernate.c3p0.max_size">20</property>
+        <property name="hibernate.c3p0.acquire_increment">1</property>
+        <property name="hibernate.c3p0.max_statements">50</property>
+        <!-- Correct values need a timeout greater than the idle_test_period -->
+        <property name="hibernate.c3p0.timeout">5000</property>
+        <property name="hibernate.c3p0.idle_test_period">1500</property>
+
+        <!-- If another JDBC connection pool manager is being used, we can force our application to use c3p0.
+         Set provider_class to C3P0ConnectionProvider-->
+        <!-- we don't need to add hibernate.connection.provider_class if c3p0 dependency is added. -->
+<!--        <property name="hibernate.connection.provider_class">org.hibernate.service.-->
+<!--            jdbc.connections.internal.C3P0ConnectionProvider</property>-->
+
+        <!-- Mapping with entity -->
+        <mapping class="com.manhpd.persistence.entity.Employee"/>
+    </session-factory>
+</hibernate-configuration>

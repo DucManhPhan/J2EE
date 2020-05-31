@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="hibernate.properties/Hibernate" uuid="7b15c54c-4ee8-4fed-b422-eb145a8043e6">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+D:/OneDrive/Visual Studio/Github/Git_ManhPD5/J2EE/src/Java_Spring/Hibernate/connection-pool-hibernate/src/main/resources/hibernate.properties</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/common</jdbc-url>
+    </data-source>
+  </component>
+</project>

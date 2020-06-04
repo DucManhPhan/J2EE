@@ -29,8 +29,6 @@ public class ProducerConsumerWithLocks {
                 int count = 0;
                 while (count++ < 50) {
                     try {
-
-
                         lock.lock();
                         while (isEmpty(buffer)) {
                             // wait

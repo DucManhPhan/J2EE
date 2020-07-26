@@ -6,7 +6,9 @@ public enum TransactionStatus {
 
     FAILED,
 
-    PENDING
+    PENDING,
+
+    NO_DETERMINED
 
     ;
 

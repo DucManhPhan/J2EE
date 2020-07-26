@@ -22,7 +22,7 @@ CREATE TABLE transaction(
 	FOREIGN KEY (card_number) REFERENCES user_card(card_number)
 );
 
-# SELECT * FROM vds_transaction;
+SELECT * FROM transaction WHERE transaction_id = "1";
 
 INSERT INTO vds_transaction(transaction_id, card_number, withdraw_money, fee, status)
 VALUES

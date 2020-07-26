@@ -1,6 +1,8 @@
 package com.manhpd.persistence.entity;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -9,6 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "user_card")
 @Data
+@NoArgsConstructor
 public class UserCardEntity {
 
     public static final long serialVersionUID = 1L;
@@ -33,7 +36,7 @@ public class UserCardEntity {
     private LocalDateTime createdDate = LocalDateTime.now();
 
     @Column(name = "last_update")
-    private LocalDateTime lastUpdate = createdDate;
+    private LocalDateTime lastUpdate;
 
     @OneToMany(mappedBy = "userCard", orphanRemoval = true)
     private List<TransactionEntity> vdsTransactions;

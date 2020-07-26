@@ -3,7 +3,7 @@ SHOW GRANTS FOR 'root'@'localhost';
 DROP TABLE IF EXISTS vds_transaction;
 
 -- num_wrong_otp SMALLINT default 0,
-CREATE TABLE vds_transaction(
+CREATE TABLE transaction(
 	transaction_id VARCHAR(20) NOT NULL,
 	card_number VARCHAR(20) NOT NULL,
 	withdraw_money DECIMAL(10, 2) NOT NULL,

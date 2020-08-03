@@ -14,6 +14,14 @@ services:
       - mysqldb_data:/var/lib/mysql
     restart: always
 
+  redis:
+    image: redis:5.0.7
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_volume:/data
+    restart: always
+
   zookeeper-server:
     image: bitnami/zookeeper:latest
     container_name: zookeeper-server-dev
@@ -34,7 +42,8 @@ services:
       - 9092:9092
     environment:
       - ALLOW_PLAINTEXT_LISTENER=yes
-      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka-server:9092
+      - KAFKA_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper-server:2181
     restart: always
     depends_on:
@@ -55,6 +64,8 @@ volumes:
   zookeeper_data:
     driver: local
   kafka_data:
+    driver: local
+  redis_volume:
     driver: local
 
 networks:

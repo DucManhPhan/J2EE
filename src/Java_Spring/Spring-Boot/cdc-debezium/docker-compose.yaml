@@ -4,6 +4,7 @@ services:
   # https://hub.docker.com/_/mysql
   mysqldb:
     image: mysql:8.0
+    container_name: mysql
     ports:
       - 3307:3306
     command: --max-connections=1000
@@ -16,6 +17,7 @@ services:
 
   redis:
     image: redis:5.0.7
+    container_name: redis
     ports:
       - 6379:6379
     volumes:

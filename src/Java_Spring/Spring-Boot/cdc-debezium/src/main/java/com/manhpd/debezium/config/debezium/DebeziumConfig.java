@@ -25,6 +25,10 @@ public class DebeziumConfig {
 
     private String EMPLOYEE_DB_NAME = "employee_sample.employee";
 
+    private String EMPLOYEE_TABLE = "employee";
+
+    private String databaseServerName = "mysqlServer";
+
     @Bean
     public io.debezium.config.Configuration employeeConnector() {
          io.debezium.config.Configuration config =  io.debezium.config.Configuration.create()
@@ -33,9 +37,12 @@ public class DebeziumConfig {
                 .with("offset.storage.file.filename", "/home/manhpd/manhpd5/github/J2EE/src/Java_Spring/Spring-Boot/cdc-debezium/employee-offset.dat")
                 .with("offset.flush.interval.ms", 60000)
                 .with("name", "employee-mysql-connector")
+                .with("database.server.id", "185747")
+                .with("database.server.name", this.databaseServerName)
                 .with("debezium.source.database.history", "io.debezium.relational.history.MemoryDatabaseHistory")
 //                .with("debezium.source.database.history.file.filename", "/home/manhpd/manhpd5/github/J2EE/src/Java_Spring/Spring-Boot/cdc-debezium/db-history.dat")
-                .with("database.server.name", this.employeeDbHost + "-" + this.employeeDbname)
+                .with("database.history.kafka.topic", "dbhistory" + "." + this.EMPLOYEE_TABLE)
+                .with("database.history.kafka.bootstrap.servers", "localhost:9092")
                 .with("database.hostname", this.employeeDbHost)
                 .with("database.port", this.port)
                 .with("database.user", this.username)

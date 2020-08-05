@@ -83,33 +83,37 @@ public class CDCListener {
      * @param sourceRecord
      */
     private void handleEvent(SourceRecord sourceRecord) {
-        Struct sourceRecordValue = (Struct) sourceRecord.value();
+        try {
+            Struct sourceRecordValue = (Struct) sourceRecord.value();
 
-        if (sourceRecordValue != null) {
-            Operation operation = Operation.forCode((String) sourceRecordValue.get(OPERATION));
+            if (sourceRecordValue != null) {
+                Operation operation = Operation.forCode((String) sourceRecordValue.get(OPERATION));
 
-            //Only if this is a transactional operation.
-            if (operation != Operation.READ) {
+                //Only if this is a transactional operation.
+                if (operation != Operation.READ) {
 
-                Map<String, Object> message;
-                String record = AFTER; //For Update & Insert operations.
+                    Map<String, Object> message;
+                    String record = AFTER; //For Update & Insert operations.
 
-                if (operation == Operation.DELETE) {
-                    record = BEFORE; //For Delete operations.
+                    if (operation == Operation.DELETE) {
+                        record = BEFORE; //For Delete operations.
+                    }
+
+                    //Build a map with all row data received.
+                    Struct struct = (Struct) sourceRecordValue.get(record);
+                    message = struct.schema().fields().stream()
+                            .map(Field::name)
+                            .filter(fieldName -> struct.get(fieldName) != null)
+                            .map(fieldName -> Pair.of(fieldName, struct.get(fieldName)))
+                            .collect(toMap(Pair::getKey, Pair::getValue));
+
+                    //Call the service to handle the data change.
+                    this.employeeRedisService.interactWithRedisBasedOn(message, operation);
+                    System.out.println(String.format("Data Changed: %s with Operation: %s", message, operation.name()));
                 }
-
-                //Build a map with all row data received.
-                Struct struct = (Struct) sourceRecordValue.get(record);
-                message = struct.schema().fields().stream()
-                        .map(Field::name)
-                        .filter(fieldName -> struct.get(fieldName) != null)
-                        .map(fieldName -> Pair.of(fieldName, struct.get(fieldName)))
-                        .collect(toMap(Pair::getKey, Pair::getValue));
-
-                //Call the service to handle the data change.
-                this.employeeRedisService.interactWithRedisBasedOn(message, operation);
-                System.out.println(String.format("Data Changed: {} with Operation: {}", message, operation.name()));
             }
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
         }
     }
 }

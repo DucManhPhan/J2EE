@@ -33,9 +33,10 @@ VALUES
 
 SELECT * FROM vds_transaction;
 
-SELECT userCard.full_name, vdsTrans.withdraw_money, vdsTrans.fee, vdsTrans.`status`, vdsTrans.created_date FROM vds_transaction vdsTrans
+SELECT vdsTrans.transaction_id, userCard.full_name, vdsTrans.withdraw_money, vdsTrans.fee, vdsTrans.`status`, vdsTrans.created_date FROM transaction vdsTrans
 INNER JOIN user_card userCard
-ON userCard.card_number = vdsTrans.card_number;
+ON userCard.card_number = vdsTrans.card_number
+WHERE vdsTrans.transaction_id = "1";
 
 SELECT vdsTrans.transaction_id, userCard.full_name FROM vds_transaction vdsTrans, user_card userCard
 WHERE vdsTrans.card_number = userCard.card_number

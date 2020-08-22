@@ -1,0 +1,75 @@
+version: '3'
+
+services:
+  # https://hub.docker.com/_/mysql
+  mysqldb:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - 3307:3306
+    command: --max-connections=1000
+    environment:
+      - MYSQL_DATABASE=employee_sample
+      - MYSQL_ROOT_PASSWORD=12345
+    volumes:
+      - mysqldb_data:/var/lib/mysql
+    restart: always
+
+  redis:
+    image: redis:5.0.7
+    container_name: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_volume:/data
+    restart: always
+
+  zookeeper-server:
+    image: bitnami/zookeeper:latest
+    container_name: zookeeper-server-dev
+    ports:
+      - 2181:2181
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    restart: always
+    volumes:
+      - zookeeper_data:/bitnami
+    networks:
+      - backend
+
+  kafka-server:
+    image: bitnami/kafka:latest
+    container_name: kafka-server-dev
+    ports:
+      - 9092:9092
+    environment:
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper-server:2181
+    restart: always
+    depends_on:
+      - zookeeper-server
+    volumes:
+      - kafka_data:/bitnami
+    networks:
+      - backend
+
+# local means the volumes zookeeper_data, kafka_data are created on the same Docker host
+# where we run our container.
+# It is equivalent to:
+# docker volume create --driver local --name zookeeper_data
+# docker volume create --driver local --name kafka_data
+volumes:
+  mysqldb_data:
+    driver: local
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local
+  redis_volume:
+    driver: local
+
+networks:
+  backend:
+    driver: bridge

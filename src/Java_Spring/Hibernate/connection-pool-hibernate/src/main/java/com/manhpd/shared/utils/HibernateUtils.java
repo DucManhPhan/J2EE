@@ -38,7 +38,7 @@ public class HibernateUtils {
 
     private static SessionFactory makeSessionFactory(ServiceRegistry serviceRegistry) {
         MetadataSources metadataSources = new MetadataSources(serviceRegistry);
-        metadataSources.addPackage("com.baeldung.hibernate.pojo");
+        metadataSources.addPackage("com.manhpd.persistence.entity");
         metadataSources.addAnnotatedClass(Employee.class);
         Metadata metadata = metadataSources.getMetadataBuilder()
                 .build();

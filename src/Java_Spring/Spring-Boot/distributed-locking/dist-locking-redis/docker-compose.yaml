@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  mysqldb:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+    - 3307:3306
+    command: --max-connections=1000
+    environment:
+      - MYSQL_DATABASE=employee_sample
+      - MYSQL_ROOT_PASSWORD=12345
+    volumes:
+        - mysqldb_data:/var/lib/mysql
+    restart: always
+
+  redis:
+    image: redis:5.0.7
+    container_name: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_volume:/data
+    restart: always
+
+volumes:
+  mysqldb_data:
+    driver: local
+  redis_volume:
+    driver: local

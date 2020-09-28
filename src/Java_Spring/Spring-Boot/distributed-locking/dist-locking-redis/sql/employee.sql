@@ -9,3 +9,14 @@ CREATE TABLE IF NOT EXISTS employee (
     age int,
     primary key (id)
 );
+
+INSERT INTO employee(name, lastname, age) VALUES
+    ('Thang', 'Cao Ngoc', 27),
+    ('Hang', 'Nguyen Thu', 24),
+    ('Quan', 'Kieu', 15),
+    ('Quan', 'Le', 20),
+    ('Tony', 'Buzan', 19),
+    ('Trum', 'Donnal', 72),
+    ('Bill', 'Clinton', 58),
+    ('Zuckerberg', 'Mark', 18)
+;

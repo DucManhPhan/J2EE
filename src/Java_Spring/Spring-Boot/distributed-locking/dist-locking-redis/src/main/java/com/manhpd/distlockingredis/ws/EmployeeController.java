@@ -19,4 +19,9 @@ public class EmployeeController {
         return this.employeeService.findByAll();
     }
 
+    @GetMapping(value = "/start-job")
+    public void startScanJob() {
+
+    }
+
 }

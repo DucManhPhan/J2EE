@@ -30,8 +30,8 @@ public class SendingEmailUtilsApplication implements ApplicationRunner {
         log.info("Sending Email with Thymeleaf HTML Template Example");
 
         Mail mail = new Mail();
-        mail.setFrom("username@gmail.com");
-        mail.setTo("topersonmail@gmail.com");
+        mail.setFrom("noreply-email-notifications-gmail.com");
+        mail.setTo("to-user@gmail.com");
         mail.setSubject("Sending Email with Thymeleaf HTML Template Example");
 
         Map model = new HashMap();

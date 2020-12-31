@@ -1,0 +1,101 @@
+@startuml
+
+'left to right direction
+
+interface Converter {
+    <T> convert(type: Class<T>, value: Object): T
+}
+
+package converters {
+    class AbstractConverter implements Converter {
+        - useDefault: boolean = false
+        - defaultValue: Object = null
+        __
+        + {abstract} <T> convertToType(type: Class<T>, value: Object): T
+        + {abstract} getDefaultType(): Class<?>
+        ..
+        + convertToString(value: Object): String
+        + convertArray(value: Object): Object
+        + <T> handleError(type: Class<T>, value: Object, cause: Throwable): T
+        + <T> handleMissing(type: Class<T>): T
+        + setDefaultValue(defaultValue: Object): void
+        + getDefault(type: Class<?>): Object
+        + <T> convertToDefaultType(targetClass: Class<T>, value: Object): T
+        + conversionException(type: Class<?>, value: Object): ConversionException
+    }
+
+    class ArrayConverter extends AbstractConverter {
+        - defaultType: Class<?>
+        - elementConverter: Converter
+        - defaultSize: int
+        - dilimiter: char = ','
+        - allowedChars: char[] = ['.', '-']
+        - onlyFirstToString: boolean = true
+        __
+        - parseElements(type: Class<?>, value: String): List<String>
+    }
+
+    class NumberConverter extends AbstractConverter {
+        - {static} ZERO: int = 0
+        - {static} ONE: int = 1
+        - pattern: String
+        - allowedDecimals: boolean
+        - useLocaleFormat: boolean
+        - locale: Locale
+        __
+        - <T> toNumber(sourceType: Class<?>, targetType: Class<T>, value: Number): T
+        - <T> toNumber(sourceType: Class<?>, targetType: Class<T>, value: String): T
+        - getFormat(): NumberFormat
+        - parse(sourceType: Class<?>, targetType: Class<?>, value: String, format: NumberFormat): Number
+    }
+
+    class BigIntegerConverter extends NumberConverter {}
+    class ByteConverter extends NumberConverter {}
+    class DoubleConverter extends NumberConverter {}
+    class FloatConverter extends NumberConverter {}
+    class IntegerConverter extends NumberConverter {}
+    class LongConverter extends NumberConverter {}
+
+    class DateTimeConverter extends AbstractConverter {
+        - patterns: String[]
+        - displayPatterns: String
+        - locale: Locale
+        - timeZone: TimeZone
+        - useLocaleFormat: boolean
+        __
+        - <T> toDate(type: Class<T>, value: long): T
+        - <T> toDate(type: Class<T>, value: String): T
+        - getFormat(pattern: String): DateFormat
+        - parse(sourceType: Class<?>, targetType: Class<?>, value: String): Calendar
+        - parse(sourceType: Class<?>, targetType: Class<?>, value: String, format: DateFormat): Calendar
+        - getZoneId(): ZoneId
+        ~ getFormat(locale: Locale, timeZone: TimeZone): DateFormat
+    }
+
+    class DateConverter extends DateTimeConverter {}
+    class TimeConverter extends DateTimeConverter {}
+    class LocalDateConverter extends DateTimeConverter {}
+    class LocalTimeConverter extends DateTimeConverter {}
+    class LocalDateTimeConverter extends DateTimeConverter {}
+    class MonthDayConverter extends AbstractConverter {}
+
+    class BooleanConverter extends AbstractConverter {
+        - trueStrings: String[] = {"true", "yes", "y", "on", "1"}
+        - falseStrings: String[] = {"false", "no", "n", "off", "0"}
+        __
+        - copyStrings(src: String[]): String[]
+    }
+
+    class CharacterConverter extends AbstractConverter {}
+    class ClassConverter extends AbstractConverter {}
+
+    class ConverterFacade implements Converter {
+        - converter: Converter
+    }
+
+    class DurationConverter extends AbstractConverter {}
+    class EnumConverter extends AbstractConverter {}
+    class FileConverter extends AbstractConverter {}
+
+}
+@enduml

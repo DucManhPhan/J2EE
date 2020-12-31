@@ -1,0 +1,23 @@
+@startuml
+package expression {
+    interface Resolver {
+        getIndex(expression: String): int
+        getKey(expression: String): String
+        getProperty(expression: String): String
+        hasNested(expression: String): boolean
+        isMapped(expression: String): boolean
+        next(expression: String): String
+        remove(expression: String): String
+
+    }
+
+    class DefaultResolver implements Resolver {
+        - {static} NESTED: char = '.'
+        - {static} MAPPED_START: char = '('
+        - {static} MAPPED_END: char = ')'
+        - {static} INDEXED_START: char = '['
+        - {static} INDEXED_END: char = ']'
+        __
+    }
+}
+@enduml

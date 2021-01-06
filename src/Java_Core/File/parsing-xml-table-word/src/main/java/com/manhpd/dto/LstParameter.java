@@ -1,5 +1,6 @@
 package com.manhpd.dto;
 
+import com.alibaba.fastjson.JSON;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,16 +10,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LstParameter {
 
-    private String paramId;
+    private String PARAM_ID;
 
-    private String systemId;
+    private String SYSTEM_ID;
 
-    private String appCode;
+    private String APP_CODE;
 
-    private String paramName;
+    private String PARAM_NAME;
 
-    private String paramValue;
+    private String PARAM_VALUE;
 
-    private String paramMeaning;
+    private String PARAM_MEANING;
+
+    @Override
+    public String toString() {
+        return JSON.toJSONString(this);
+    }
 
 }

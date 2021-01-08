@@ -1,0 +1,60 @@
+@startuml
+
+class CompletableFromEmitter implements Completable.OnSubscribe {
+    - producer: Action1<CompletableEmitter>
+    __
+    + CompletableFromEmitter(producer: Action1<CompletableEmitter>)
+}
+
+class CompletableFromEmitter.FromEmitter extends AtomicBoolean implements CompletableEmitter, Subscription {
+    - actual: CompletableSubscriber
+    - resource: SequentialSubscription
+    __
+    + FromEmitter(actual: CompletableSubscriber)
+}
+
+class OnSubscribeAmb<T> implements OnSubscribe {
+    - sources: Iterable<? extends Observable<? extends T>>
+    __
+    - OnSubscribeAmb(sources: Iterable<? extends Observable<? extends T>>)
+    + {static} <T> amb(o1: Observable<? extends T>, o2: Observable<? extends T>): OnSubscribe<T>
+    + {static} <T> amb(o1: Observable<? extends T>, o2: Observable<? extends T>, o3: Observable<? extends T>): OnSubscribe<T>
+    + {static} <T> amb(o1: Observable<? extends T>, o2: Observable<? extends T>, o3: Observable<? extends T>, o4: Observable<? extends T>): OnSubscribe<T>
+    + {static} <T> amb(o1: Observable<? extends T>, o2: Observable<? extends T>, o3: Observable<? extends T>, o4: Observable<? extends T>, o5: Observable<? extends T>): OnSubscribe<T>
+    + {static} <T> amb(o1: Observable<? extends T>, o2: Observable<? extends T>, o3: Observable<? extends T>, o4: Observable<? extends T>, o5: Observable<? extends T>, o6: Observable<? extends T>): OnSubscribe<T>
+    + {static} <T> amb(o1: Observable<? extends T>, o2: Observable<? extends T>, o3: Observable<? extends T>, o4: Observable<? extends T>, o5: Observable<? extends T>, o6: Observable<? extends T>, o7: Observable<? extends T>): OnSubscribe<T>
+    + {static} <T> amb(o1: Observable<? extends T>, o2: Observable<? extends T>, o3: Observable<? extends T>, o4: Observable<? extends T>, o5: Observable<? extends T>, o6: Observable<? extends T>, o7: Observable<? extends T>, o8: Observable<? extends T>): OnSubscribe<T>
+    + {static} <T> amb(o1: Observable<? extends T>, o2: Observable<? extends T>, o3: Observable<? extends T>, o4: Observable<? extends T>, o5: Observable<? extends T>, o6: Observable<? extends T>, o7: Observable<? extends T>, o8: Observable<? extends T>, o9: Observable<? extends T>): OnSubscribe<T>
+    + {static} <T> amb(sources: Iterable<? extends Observable<? extends T>>): OnSubscribe<T>
+}
+
+class OnSubscribeAmb.AmbSubscriber<T> extends Subscriber {
+    - subscriber: Subscriber<? super T>
+    - selection: Selection<T>
+
+}
+
+class OnSubscribeAmb.Selection<T> extends AtomicReference {
+
+}
+
+class OnSubscribeFromArray<T> implements Observable.OnSubscribe {
+    - array: T[]
+    __
+    + OnSubscribeFromArray(array: T[])
+}
+
+class OnSubscribeFromArray.FromArrayProducer<T> extends AtomicLong implements Producer {
+    - child: Subscriber<? super T>
+    - array: T[]
+    - index: int
+    __
+    + FromArrayProducer(child: Subscriber<? super T>, array: T[])
+    + request(n: long): void
+    + fastPath(): void
+    + slowPath(r: long): void
+}
+
+!include ./subscriptions.puml
+
+@enduml

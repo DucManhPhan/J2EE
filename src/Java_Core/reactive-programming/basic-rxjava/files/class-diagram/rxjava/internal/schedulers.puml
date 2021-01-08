@@ -1,0 +1,70 @@
+@startuml
+
+class EventLoopScheduler extends Scheduler implements SchedulerLifeCycle {
+    ~ {static} KEY_MAX_THREADS: String = "rx.scheduler.max-computation-threads";
+    ~ {static} MAX_THREADS: int
+    ~ {static} SHUTDOWN_WORKER: PoolWorker
+    ~ {static} NONE: FixedSchedulerPool
+    ~ threadFactory: ThreadFactory
+    ~ pool: AtomicReference<FixedSchedulerPool>
+    __
+    + EventLoopScheduler(threadFactory: ThreadFactory)
+    + createWorker(): Worker
+    + start(): void
+    + shutdown(): void
+    + scheduleDirect(action: Action0): Subscription
+}
+
+class EventLoopScheduler.FixedSchedulerPool {
+    ~ corese: int
+    ~ eventloops: PoolWorker[]
+    ~ n: long
+    __
+    ~ FixedSchedulerPool(threadFactory: ThreadFactory, maxThreads: int)
+    + getEventLoop(): PoolWorker
+    + shutdown(): void
+}
+
+class EventLoopScheduler.EventLoopWorker extends Scheduler.Worker {
+    - serial: SubscriptionList
+    - timed: CompositeSubscription
+    - both: SubscriptionList
+    - poolWorker: PoolWorker
+    __
+    + EventLoopWorker(poolWorker: PoolWorker)
+    + unsubscribe(): void
+    + isUnsubscribed(): boolean
+    + schedule(action: Action0): Subscription
+    + schedule(action: Action0, delayTime: long, unit: TimeUnit): Subscription
+}
+
+class EventLoopScheduler.PoolWorker extends NewThreadWorker {
+    ~ PoolWorker(threadFactory: ThreadFactory)
+}
+
+EventLoopScheduler.EventLoopWorker o-- SubscriptionList
+EventLoopScheduler.EventLoopWorker o-- CompositeSubscription
+EventLoopScheduler.EventLoopWorker o-- PoolWorker
+
+EventLoopScheduler.FixedSchedulerPool o-- PoolWorker
+
+class NewThreadWorker extends Scheduler.Worker implements Subscription {
+    - executor: ScheduledExecutorService
+    - volatile isUnsubscribed: boolean
+    - {static} FREQUENCY_KEY: String
+    - {static} PURGE_FORCE_KEY: String
+    - {static} PURGE_THREAD_PREFIX: String
+    - {static} SHOULD_TRY_ENABLE_CANCEL_POLICY: boolean
+    + {static} PURGE_FREQUENCY: int
+    - {static} EXECUTORS: ConcurrentHashMap<ScheduledThreadPoolExecutor,ScheduledThreadPoolExecutor>
+    - {static} volatile PURGE: AtomicReference<ScheduledExecutorService>
+    - {static} volatile cachedSetRemoveOnCancelPolicyMethod: Object
+    - {static} SET_REMOVE_ON_CANCEL_POLICY_METHOD_NOT_SUPPORTED: Object
+    __
+    + {static} registerExecutor(service: ScheduledThreadPoolExecutor): void
+    + {static} deregisterExecutor(service: ScheduledExecutorService): void
+    ~ {static} purgeExecutors(): void
+    + {static} tryEnableCancelPolicy(service: ScheduledThreadPoolExecutor): boolean
+}
+
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+
+class CancellableSubscription extends AtomicReference implements Subscription {
+    + CancellableSubscription(cancellable: Cancallable)
+}
+
+CancellableSubscription o-- Cancallable
+
+class SequentialSubscription extends AtomicReference implements Subscription {
+    + SequentialSubscription()
+    + SequentialSubscription(initial: Subscription)
+    + current(): Subscription
+    + update(next: Subscription): boolean
+    + replace(next: Subscription): boolean
+    + updateWeak(next: Subscription): boolean
+    + replaceWeak(next: Subscription): boolean
+}
+
+enum UnSubscribed implements Subscription {
+    INSTANCE;
+}
+
+@enduml

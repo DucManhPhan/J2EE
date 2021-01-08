@@ -1,0 +1,110 @@
+@startuml
+
+interface Subscription {
+    + unsubscribe(): void
+    + isUnsubscribed(): void
+}
+
+interface Observer<T> {
+    + onCompleted(): void
+    + onError(e: Throwable): void
+    + onNext(t: T): void
+}
+
+class Observable<T> {
+    ~ onSubscribe: OnSubscribe<T>
+    __
+    # Observable(f: OnSubscribe<T>)
+    + {static} <T> create(f: OnSubscribe<T>): Observable<T>
+    + {static} <T> create(emitter: Action1<Emitter<T>>, backpressure: BackpressureMode)
+    + {static} <T> unsafeCreate(f: OnSubscribe<T>): Observable<T>
+    + {static} <S, T> create(syncOnSubscribe: SyncOnSubscribe<S, T>): Observable<T>
+    + {static} <S, T> create(asyncOnSubscribe: AsyncOnSubscribe<S, T>): Observable<T>
+    + <R> lift(operator: Operator<? extends R, ? super T>): Observable<R>
+    + <R> compose(transformer: Transformer<? super T, ? super R>): Observable<R>
+    + <R> to(converter: Func1<? super Observable<T>, R>): R
+    + toSingle(): Single<T>
+    + toCompletable(): Completable
+    + {static} <T> amb(sources: Iterable<? extends Observable<? extends T>>): Observable<T>
+
+}
+
+interface Observable.OnSubscribe<T> extends functions.Action1 {}
+
+interface Observable.Operator<R, T> extends functions.Func1 {}
+
+interface Observable.Transformer<T, R> extends functions.Func1 {}
+
+class Completable {
+    - onSubscribe: OnSubscribe
+    ~ COMPLETE: Completable
+    ~ NEVER: Completable
+    __
+    + {static} create(onSubscribe: OnSubscribe): Completable
+    + {static} amb(sources: Completable...): Completable
+    + {static} complete(): Completable
+    + {static} concat(sources: Completable...): Completable
+    + {static} concat(sources: Iterable<? extends Completable>): Completable
+    + {static} concat(sources: Observable<? extends Completable>): Completable
+    + {static} concat(sources: Observable<? extends Completable>, prefetch: int): Completable
+    + {static} defer(completableFunc0: Func0<? extends Completable>): Completable
+    + {static} error(errorFunc0: Func0<? extends Throwable>): Completable
+    + {static} error(error: Throwable): Completable
+    + fromAction(action: Action0): Completable
+    + {static} fromCallable(callable: Callable<?>): Completable
+    + {static} fromEmitter(producer: Action1<CompletableEmitter>): Completable
+    + {static} fromFuture(future: Future<?>): Completable
+}
+
+interface Completable.OnSubscribe extends functions.Action1 {}
+
+interface Completable.Operator extends functions.Func1 {}
+
+interface Completable.Transformer extends functions.Func1 {}
+
+interface CompletableSubscriber {
+    onCompleted(): void
+    onError(e: Throwable): void
+    onSubscribe(d: Subscription): void
+}
+
+interface Emitter<T> extends Observer {
+    setSubscription(s: Subscription): void
+    setCancellation(c: Cancellable): void
+    requested(): long
+}
+
+enum BackpressureMode {
+    NONE, ERROR, BUFFER, DROP, LATEST;
+}
+
+abstract class Scheduler {
+    + {abstract} createWorker(): Worker
+    + now(): long
+}
+
+class Scheduler.Worker implements Subscription {
+    + {abstract} schedule(action: Action0): Subscription
+    + {abstract} schedule(action: Action0, delayTime: long, unit: TimeUnit): Subscription
+    + schedulePeriodically(action: Action0, initialDaylay: long, period: long, unit: TimeUnit): Subscription
+    + now(): long
+    + <S extends Scheduler & Subscription> when(combine: Func1<Observable<Observable<Completable>>, Completable>): S
+}
+
+package functions {
+    !include ./functions.puml
+}
+
+package subscriptions {
+    !include ./subscriptions.puml
+}
+
+package internal.subscriptions {
+    !include ./internal/subscriptions.puml
+}
+
+package internal.operators {
+    !include ./internal/operators.puml
+}
+
+@enduml

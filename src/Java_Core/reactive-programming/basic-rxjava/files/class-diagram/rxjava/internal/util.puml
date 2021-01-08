@@ -1,0 +1,75 @@
+@startuml
+
+' classes that are relevant to the Observable
+class ScalarSynchronousObservable<T> extends Observable {
+    - t: T
+    - STRONG_MODE: boolean
+    __
+    # ScalarSynchronousObservable(t: T)
+    + {static} <T> createProducer(s: Subscriber<? super T>, v: T): Producer
+    + {static} <T> create(t: T): ScalarSynchronousObservable
+    + get(): T
+    + scalarScheduleOn(scheduler: Scheduler): Observable<T>
+}
+
+ScalarSynchronousObservable --> EventLoopScheduler
+
+
+' Classes that are related to Subscriber
+class ActionSubscriber<T> extends Subscriber {
+    ~ onNext: Action1<? super T>
+    ~ onError: Action1<Throwable>
+    ~ onCompleted: Action0
+    __
+    + ActionSubscriber(onNext: Action1<? super T>, onError: Action1<Throwable>, onCompleted: Action0)
+}
+
+class ActionObserver<T> implements Observer {
+    - onNext: Action1<? super T>
+    - onError: Action1<? super Throwable>
+    - onCompleted: Action0
+    __
+    + ActionObserver(onNext: Action1<? super T>, onError: Action1<? super Throwable>, onCompleted: Action0)
+}
+
+class ObserverSubscriber<T> extends Subscriber {
+    - observer: Observer<? super T>
+    __
+    + ObserverSubscriber(observer: Observer<? super T>
+}
+
+class UtilityFunctions {
+    - UtilityFunctions()
+    + {static} <T> alwaysTrue(): Func1<? super T, Boolean>
+    + {static} <T> alwaysFalse(): Func1<? super T, Boolean>
+    + {static} <T> identity(): Func1<T, T>
+}
+
+enum UtilityFunctions.AlwaysTrue implements Func1 {
+    INSTANCE;
+}
+
+enum UtilityFunctions.AlwaysFalse implements Func1 {
+    INSTANCE;
+}
+
+enum UtilityFunctions.Identity implements Func1 {
+    INSTANCE;
+}
+
+class SubscriptionList implements Subscription {
+    - subscriptions: List<Subscription>
+    - volatile unsubscribed: boolean
+    __
+    + SubscriptionList()
+    + SubscriptionList(subscriptions: Subscription...)
+    + SubscriptionList(s: Subscription)
+    + add(s: Subscription): void
+    + remove(s: Subscription): void
+    + clear(): void
+    + hasSubscriptions(): boolean
+    - {static} unsubscribeFromAll(subscriptions: Collection<Subscription>): void
+
+}
+
+@enduml

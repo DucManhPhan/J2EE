@@ -1,0 +1,45 @@
+@startuml
+' String[] letters = {"a", "b", "c", "d", "e", "f", "g"};
+' Observable<String> observable = Observable.from(letters);
+' observable.subscribe(System.out::println,
+'                      Throwable::printStackTrace,
+'                      () -> System.out.println("Completed"));
+participant User
+
+User -> Observable: from(array)
+|||
+alt array.length == 0
+    Observable -> Observable: empty()
+
+    activate Observable
+    Observable -> EmptyObservableHolder: instance()
+    deactivate Observable
+else array.length == 1
+    Observable -> Observable: just(array[0])
+
+    activate Observable
+    Observable -> ScalarSynchronousObserver: create(value)
+    Observable -> User: new ScalarSynchronousObserver()
+    deactivate Observable
+else array.length > 1
+    Observable -> OnSubscribeFromArray: constructor
+    activate OnSubscribeFromArray
+    |||
+    OnSubscribeFromArray -> Observable
+    deactivate OnSubscribeFromArray
+
+    Observable -> Observable: unsafeCreate(OnSubscribeFromArray)
+    activate Observable
+    Observable -> RxJavaHooks: onCreate(Observable.onSubscribe)
+
+    activate RxJavaHooks
+    RxJavaHooks -> Func1: call()
+    return Observable.onSubscribe
+    deactivate RxJavaHooks
+
+    deactivate Observable
+    |||
+    Observable -> User: new Observable(onSubscribe)
+end
+
+@enduml

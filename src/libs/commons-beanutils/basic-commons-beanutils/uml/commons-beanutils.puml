@@ -1,0 +1,677 @@
+@startuml
+
+interface Converter {
+    <T> convert(type: Class<T>, value: Object): T
+}
+
+class ConvertUtils {
+    + {static} convert(value: Object): String
+    + {static} convert(value: String, clazz: Class<?>): Object
+    + convert(values: String[], clazz: Class<?>): Object
+    + convert(value: Object, targetType: Class<?>): Object
+    + deregister(clazz: Class<?>): void
+    + lookup(clazz: Class<?>): Converter
+    + lookup(sourceType: Class<?>, targetType: Class<?>): Converter
+    + register(converter: Converter, clazz: Class<?>): void
+    + primitiveToWrapper(type: Class<T>): Class<T>
+}
+
+class ConvertUtilsBean {
+    - {static} ZERO: int = 0
+    - {static} SPACE: char = ' '
+    - converters: WeakFastHashMap<Class<?>>;
+    __
+    ~ {static} getInstance(): ConvertUtilsBean
+    + convert(value: Object): String
+    + convert(value: Object, clazz: Class<?>): Object
+    + convert(values: String[], clazz: Class<?>): Object
+    + convert(value: Object, targetType: Class<?>): Object
+    + deregister(): void
+    + register(throwException: boolean, defaultNull: boolean, defaultArraySize: int): void
+    + registerPrimitives(throwException: boolean): void
+    + registerStandard(throwException: boolean, defaultNull: boolean): void
+    + registerOther(throwException: boolean): void
+    + registerArrays(throwException: boolean, defaultArraySize: int): void
+    + registerArrayConverter(componentType: Class<?>, componentConverter: Converter, throwException: boolean, defaultArraySize: int): void
+    + deregister(clazz: Class<?>): void
+    + lookup(clazz: Class<?>): Converter
+    + lookup(sourceType: Class<?>, targetType: Class<?>): Converter
+    + register(converter: Converter, clazz: Class<?>): void
+}
+
+class ConvertUtilsBean2 extends ConvertUtilsBean {
+    + convert(value: Object): String
+    + convert(value: Object, clazz: Class<?>): Object
+    + convert(values: String[], clazz: Class<?>): Object
+}
+
+ConvertUtils --> ConvertUtilsBean
+ConvertUtilsBean *--> Converter
+
+class BeanUtils {
+    + {static} cloneBean(bean: Object): Object
+    + {static} copyProperties(dest: Object, orig: Object): void
+    + {static} copyProperty(bean: Object, name: String, value: Object): void
+    + {static} describe(bean: Object): Map<String, String>
+    + {static} getArrayProperty(bean: Object, name: String): String[]
+    + {static} getIndexedProperty(bean: Object, name: String): String
+    + {static} getIndexedProperty(bean: Object, name: String, index: int): String
+    + {static} getMappedProperty(bean: Object, name: String): String
+    + {static} getMappedProperty(bean: Object, name: String, key: String): String
+    + {static} getNestedProperty(bean: Object, name: String): String
+    + {static} getProperty(bean: Object, name: String): String
+    + {static} getSimpleProperty(bean: Object, name: String): String
+    + {static} populate(bean: Object, properties: Map<String, ? extends Object>): void
+    + {static} setProperty(bean: Object, name: String, value: Object): void
+    + {static} initCause(throwable: Throwable, cause: Throwable): boolean
+    + {static} <K, V> Map<K, V> createCache(): Map<K, V>
+}
+
+class BeanUtilsBean {
+    - {static} BEANS_BY_CLASSLOADER: ContextClassLoaderLocal<BeanUtilsBean>;
+    - {static} INIT_CAUSE_METHOD: Method = getInitCauseMethod();
+    - convertUtilsBean: ConvertUtilsBean
+    - propertyUtilsBean: PropertyUtilsBean
+    __
+    - convertForCopy(value: Object, type: Class<?>): Object
+    - {static} getInitCauseMethod(): Method
+    - {static} dynaPropertyType(dynaPropery: DynaProperty, value: Object): Class<?>
+    ..
+    + {static} getInstance(): BeanUtilsBean
+    + {static} setInstance(newInstance: BeanUtilsBean): void
+    + cloneBean(bean: Object): Object
+    + copyProperties(dest: Object, orig: Object): void
+    + copyProperty(bean: Object, name: String, value: Object): void
+    + describe(bean: Object): Map<String, String>
+    + getArrayProperty(bean: Object, name: String): String[]
+    + getIndexedProperty(bean: Object, name: String): String
+    + getIndexedProperty(bean: Object, name: String, index: int): String
+    + getMappedProperty(bean: Object, name: String): String
+    + getMappedProperty(bean: Object, name: String, key: String): String
+    + getNestedProperty(bean: Object, name: String): String
+    + getProperty(bean: Object, name: String): String
+    + getSimpleProperty(bean: Object, name: String): String
+    + populate(bean: Object, properties: Map<String, ? extends Object>): void
+    + setProperty(bean: Object, name: String, value: Object): void
+    + getConvertUtils(): ConvertUtilsBean
+    + getPropertyUtils(): PropertyUtilsBean
+    + initCause(throwable: Throwable, cause: Throwable): boolean
+    + convert(value: Object, type: Class<?>): Object
+}
+
+class BeanUtilsBean2 extends BeanUtilsBean {
+    + convert(value: Object, type: Class<?>): Object
+}
+
+BeanUtils --> BeanUtilsBean
+BeanUtilsBean o-- ConvertUtilsBean
+BeanUtilsBean o-- PropertyUtilsBean
+
+BeanUtilsBean --> object.DynaBean
+BeanUtilsBean --> object.DynaProperty
+BeanUtilsBean --> ContextClassLoaderLocal
+
+note top of ContextClassLoaderLocal: An instance of this class represents a value that is provided per (thread) context classloader
+class ContextClassLoaderLocal <<T>> {
+    - valueByClassLoader: Map<ClassLoader, T>
+    - globalValueInitialized: boolean
+    - globalValue: T
+    __
+    # initialValue(): T
+    + synchronized get(): T
+    + synchronized set(value: T): void
+    + synchronized unset(): void
+    + synchronized unset(classLoader: ClassLoader): void
+}
+
+class ConstructorUtils {
+    - {static} EMPTY_CLASS_PARAMETERS: Class<?>
+    - {static} EMPTY_OBJECT_ARRAY: Object[]
+    __
+    - {static} toArray(arg: Object): Object[]
+    - {static} <T> getMatchingAccessibleConstructor(clazz: Class<T>, parameterTypes: Class<?>[]): Constructor<T>;
+    + {static} <T> invokeConstructor(klass: Class<T>, arg: Object): T
+    + {static} <T> invokeConstructor(klass: Class<T>, args: Object[]): T
+    + {static} <T> invokeConstructor(klass: Class<T>, args: Object[], parameterTypes: Class<?>[]): T
+    + {static} <T> invokeExactConstructor(klass: Class<T>, arg: Object): T
+    + {static} <T> invokeExactConstructor(klass: Class<T>, args: Object[]): T
+    + {static} <T> invokeExactConstructor(klass: Class<T>, args: Object[], parameterTypes: Class<?>[]): T
+    + {static} <T> getAccessibleConstructor(klass: Class<T>, parameterType: Class<?>): Constructor<T>
+    + {static} <T> getAccessibleConstructor(klass: Class<T>, parameterTypes: Class<?>[]): Constructor<T>
+    + {static} <T> getAccessibleConstructor(ctor: Constructor<T>): Constructor<T>
+}
+
+class PropertyUtilsBean {
+    - resolver: Resolver = new DefaultResolver();
+    - descriptorsCache: WeakFastHashMap<Class<?>, BeanIntrospectionData>
+    - mappedDescriptorsCache: WeakFastHashMap<Class<?>, Map>
+    - introspectors: List<BeanIntrospector>
+    - {static} EMPTY_OBJECT_ARRAY: Object[]
+    __
+    - getIntrospectionData(beanClass: Class<?>): BeanIntrospectionData
+    - fetchIntrospectionData(beanClass: Class<?>): BeanIntrospectionData
+    - invokeMethod(method: Method, bean: Object, values: Object[]): Object
+    - {static} toObjectList(obj: Object): List<Object>
+    - {static} toPropertyMap(obj: Object): Map<String, Object>
+    # {static} getInstance(): PropertyUtilsBean
+    # setPropertyOfMapBean(bean: Map<String, Object>, propertyName: String, value: Object): void
+    + getResolver(): Resolver
+    + setResolver(resolver: Resolver): void
+    + resetBeanIntrospectors(): void
+    + addBeanIntrospector(introspector: BeanIntrospector): void
+    + removeBeanIntrospector(introspector: BeanIntrospector): boolean
+    + clearDescriptors(): void
+    + copyProperties(dest: Object, orig: Object): void
+    + describe(bean: Object): Map<String, Object>)
+    + getIndexedProperty(bean: Object, name: String): Object
+    + getIndexedProperty(bean: Object, name: String, index: int): Object
+    + getMappedProperty(bean: Object, name: String): Object
+    + getMappedProperty(bean: Object, name: String, key: String): Object
+    + getMappedPropertyDescriptors(beanClass: Class<?>): Map<Class<?>, Map>
+    + getMappedPropertyDescriptors(bean: Object): Map
+    + getNestedProperty(bean: Object, name: String): Object
+    + getPropertyOfMapBean(bean: Map<?, ?>, propertyName: String): Object
+    + getProperty(bean: Object, name: String): Object
+    + getPropertyDescriptor(bean: Object, name: String): PropertyDescriptor
+    + getPropertyDescriptors(beanClass: Class<?>): PropertyDescriptor[]
+    + getPropertyDescriptors(bean: Object): PropertyDescriptor[]
+    + getPropertyEditorClass(bean: Object, name: String): Class<?>
+    + getPropertyType(bean: Object, name: String): Class<?>
+    + getReadMethod(descriptor: PropertyDescriptor): Method
+    + getReadMethod(clazz: Class<?>, descriptor: PropertyDescriptor): Method
+    + getSimpleProperty(bean: Object, name: String): Object
+    + getWriteMethod(descriptor: PropertyDescriptor): Method
+    + getWriteMethod(clazz: Class<?>, descriptor: PropertyDescriptor): Method
+    + isReadable(bean: Object, name: String): boolean
+    + isWriteable(bean: Object, name: String): boolean
+    + setIndexedProperty(bean: Object, name: String, value: Object): void
+    + setIndexedProperty(bean: Object, name: String, index: int, value: Object): void
+    + setMappedProperty(bean: Object, name: String, value: Object): void
+    + setMappedProperty(bean: Object, name: String, index: int, value: Object): void
+    + setNestedProperty(bean: Object, name: String, index: int, value: Object): void
+    + setPropertyOfMapBean(bean: Map<String, Object>, propertyName: String, value: Object): void
+    + setProperty(bean: Object, name: String, value: Object): void
+    + setSimpleProperty(bean: Object, name: String, value: Object): void
+}
+
+class MethodUtils {
+    - {static} CACHE_METHODS: boolean
+    - {static} EMPTY_CLASS_PARAMETERS: Class<?>[]
+    - {static} EMPTY_OBJECT_ARRAY: Object[]
+    - cache: Map<MethodDescriptor,
+    __
+    -
+
+}
+
+package object {
+
+interface DynaBean {
+    + contains(name: String, key:String): boolean
+    + get(name: String): Object
+    + get(name: String, index: int): Object
+    + get(name: String, key: String): Object
+    + getDynaClass(): DynaClass
+    + remove(name: String, key: String): void
+    + set(name: String, value: Object): void
+    + set(name: String, index: int, value: Object): void
+    + set(name: String, key: String, value: Object): void
+}
+
+DynaBean --> DynaClass
+
+class BasicDynaBean implements DynaBean, Serializable {
+    - {static} SHORT_ZERO: Short;
+    - {static} LONG_ZERO: Long;
+    - {static} INTEGER_ZERO: Integer;
+    - {static} FLOAT_ZERO: Float;
+    - {static} DOUBLE_ZERO: Double;
+    - {static} CHARACTER_ZERO: Character;
+    - {static} BYTE_ZERO: Byte;
+    # dynaClass: DynaClass
+    # values: HashMap<String, Object>
+    # mapDecorator: Map<String, Object>
+    __
+    + getMap(): Map<String, Object>
+}
+
+BasicDynaBean o-- DynaClass
+
+class LazyDynaBean implements DynaBean {
+    # {static} BigInteger_ZERO: BigInteger
+    # {static} BigDecimal_ZERO: BigDecimal
+    # {static} Character_SPACE: Character
+    # {static} Byte_ZERO: Byte
+    # {static} Short_ZERO: Short
+    # {static} Integer_ZERO: Integer
+    # {static} Long_ZERO: Long
+    # {static} Float_ZERO: Float
+    # {static} Double_ZERO: Double
+    # values: Map<String, Object>
+    - mapDecorator: Map<String, Object>
+    # dynaClass: MutableDynaClass
+    __
+    + LazyDynaBean()
+    + LazyDynaBean(name: String)
+    + LazyDynaBean(dynaClass: DynaClass)
+    + getMap(): Map<String, Object>
+    + size(name: Strirng): int
+    # growIndexedProperty(name: String, indexedProperty, index: int): Object
+    # createProperty(name: String, type: Class<?>): Object
+    # createIndexedProperty(name: String, type: Class<?>): Object
+    # createMappedProperty(name: String, type: Class<?>): Object
+    # createDynaProperty(name: String, type: Class<?>): Object
+    # createNumberProperty(name: String, type: Class<?>): Object
+    # createOtherProperty(name: String, type: Class<?>): Object
+    # defaultIndexedProperty(name: String): Object
+    # defaultMappedProperty(name: String): Object
+    # isDynaProperty(name: String): boolean
+    # isAssignable(dest: Class<?>, source: Class<?>): boolean
+    # newMap(): Map<String, Object>
+}
+
+interface Map<K, Object> {
+}
+
+interface Entry<K, Object> {
+}
+
+class MapEntry<K> implements Entry {
+    - key: K
+    - value: Object
+    __
+    + equals(o: Object): boolean
+    + hashCode(): int
+    + getKey(): K
+    + getValue(): Object
+    + setValue(value: Object): Object
+}
+
+class BaseDynaMapDecorator implements Map {
+    - dynaBean: DynaBean
+    - readOnly: boolean
+    - keySet: Set<K>
+    __
+    - getDynaProperties(): DynaProperty[]
+    # {abstract} convertKey(propertyName: String): K
+    + BaseDynaMapDecorator(dynaBean: DynaBean)
+    + BaseDynaMapDecorator(dynaBean: DynaBean,readOnly: boolean)
+    + isReadonly(): boolean
+    + clear(): void
+    + containsKey(key: Object): boolean
+    + containsValue(value: Object): boolean
+    + entrySet(): Set<Map, Entry<K, Object>>
+    + get(key: Object): Object
+    + isEmpty(): boolean
+    + keySet(): Set<K>
+    + put(key: K, value: Object): Object
+    + putAll(map: Map<? extends K, ? extends Object>): void
+    + remove(key: Object): Object
+    + size(): int
+    + values(): Collection<Object>
+    + getDynaBean(): DynaBean
+}
+
+BaseDynaMapDecorator --> DynaProperty
+
+class DynaBeanPropertyMapDecorator extends BaseDynaMapDecorator {
+    + DynaBeanPropertyMapDecorator(dynaBean: DynaBean, readOnly: boolean)
+    + DynaBeanPropertyMapDecorator(dynaBean: DynaBean)
+    + convertKey(propertyName: String): String
+}
+
+interface DynaClass {
+    getName(): String
+    getDynaProperty(name: String): DynaProperty
+    getDynaProperties(): DynaProperty[]
+    newInstance(): DynaBean
+}
+
+interface MutableDynaClass {
+    add(name: String): void
+    add(name: String, type: Class<?>): void
+    add(name: String, type: Class<?>, readable: boolean, writeable: boolean): void
+    isRestricted(): boolean
+    remove(name: String): void
+    setRestricted(restricted: boolean): void
+}
+
+class DynaProperty implements Serializable {
+    - {static} BOOLEAN_TYPE: int = 1;
+    - {static} BYTE_TYPE: int = 2;
+    - {static} CHAR_TYPE: int = 3;
+    - {static} DOUBLE_TYPE: int = 4;
+    - {static} FLOAT_TYPE: int = 5;
+    - {static} INT_TYPE: int = 6;
+    - {static} LONG_TYPE: int = 7;
+    - {static} SHORT_TYPE: int = 8;
+    __
+    + DynaProperty(name: String)
+    + DynaProperty(name: String, type: Class<?>)
+    + DynaProperty(name: String,type: Class<?>, contentType: Class<?>)
+    + getName(): String
+    + getType(): Class<?>
+    + getContentType(): Class<?>
+    + isIndexed(): boolean
+    + isMapped(): boolean
+    + equals(obj: Object): boolean
+    + hashCode(): int
+    + toString(): String
+    + writeObject(out: ObjectOutputStream): void
+    + writeAnyClass(clazz: Class<?>, out: ObjectOutputStream): void
+    + readObject(in: ObjectInputStream): void
+    + readAnyClass(in: ObjectInputStream): Class<?>
+}
+
+class JDBCDynaClass implements DynaClass {
+    # lowerCase: boolean
+    - useColumnLabel: boolean
+    # properties: DynaProperty[]
+    # propertiesMap: Map<String, DynaProperty>
+    - columnNameXref: Map<String, String>
+    __
+    + setUseColumnLabel(useColumnLabel: boolean): void
+    # loadClass(className: String): Class<?>
+    # createDynaProperty(metadata: ResultSetMetaData, i: int): DynaProperty
+    # introspect(resultSet: ResultSet): void
+    # getObject(resultSet: ResultSet, name: String): Object
+    # getColumnName(name: String): String
+}
+
+class ResultSetDynaClass extends JDBCDynaClass {
+    # resultSet: ResultSet
+    #
+    __
+    + ResultSetDynaClass(resultSet: ResultSet)
+    + ResultSetDynaClass(resultSet: ResultSet, lowerCase: boolean)
+    + ResultSetDynaClass(resultSet: ResultSet, lowerCase: boolean, userColumnLabel: boolean)
+    + iterator(): Iterator<DynaBean>
+    + getObjectFromResultSet(name: String): Object
+    + getResultSet(): ResultSet
+    # loadClass(className: String): Class<?>
+}
+
+class RowSetDynaClass extends JDBCDynaClass {
+    # limit: int
+    # rows: List<DynaBean>
+    __
+    + RowSetDynaClass(resultSet: ResultSet)
+    + RowSetDynaClass(resultSet: ResultSet, limit: int)
+    + RowSetDynaClass(resultSet: ResultSet, lowerCase: boolean)
+    + RowSetDynaClass(resultSet: ResultSet, lowerCase: boolean, limit: int)
+    + RowSetDynaClass(resultSet: ResultSet, lowerCase: boolean, useColumnLabel: boolean)
+    + RowSetDynaClass(resultSet: ResultSet, lowerCase: boolean, limit: int, useColumnLabel: boolean)
+    + getRows(): List<DynaBean>
+    # copy(resultSet: ResultSet): void
+    # createDynaBean(): DynaBean
+}
+
+RowSetDynaClass o-- DynaBean
+
+class BasicDynaClass implements DynaClass, Serializable {
+    # constructor: Constructor<?>
+    # constructorValues: Object[]
+    # dynaBeanClass: Class<?> = BasicDynaBean.clas
+    # name: String
+    # properties: DynaProperty[]
+    # propertiesMap: HashMap<String, DynaProperty>
+    __
+    + BasicDynaClass()
+    + BasicDynaClass(name: String, dynaBeanClass: Class<?>)
+    + BasicDynaClass(name: String, dynaBeanClass: Class<?>, properties: DynaProperty[])
+    + getDynaBeanClass(): Class<?>
+    # setDynaBeanClass(dynaBeanClass: Class<?>): void
+    # setProperties(properties: DynaProperty[]): void
+}
+
+class LazyDynaClass extends BasicDynaClass implements MutableDynaClass {
+    # restricted: boolean
+    # returnNull: boolean
+    __
+    + LazyDynaClass()
+    + LazyDynaClass(name: String)
+    + LazyDynaClass(name: String, dynaBeanClass: Class<?>)
+    + LazyDynaClass(name: String, properties: DynaProperty[])
+    + LazyDynaClass(name: String, dynaBeanClass: Class<?>, properties: DynaProperty[])
+    + isRestricted(): boolean
+    + remove(name: String): void
+    + setRestricted(restricted: boolean): void
+    + isReturnNull(): boolean
+    + setReturnNull(returnNull: boolean): void
+    + add(name: String): void
+    + add(name: String, type: Class<?>): void
+    + add(name: String, type: Class<?>, readable: boolean, writeable: boolean): void
+    + add (property: DynaProperty): void
+    + getDynaProperty(name: String): DynaProperty
+    + isDynaProperty(name: String): boolean
+}
+
+class WrapDynaBean implements DynaBean, Serializable {
+    # dynaClass: WrapDynaClass
+    # instance: Object
+    __
+    + WrapDynaBean(instance: Object)
+    + WrapDynaBean(instance: Object, cls: WrapDynaClass)
+    + getInstance(): Object
+    + getDynaProperty(name: String): DynaProperty
+    + getPropertyUtils(): PropertyUtilsBean
+}
+
+WrapDynaBean o-- WrapDynaClass
+
+class WrapDynaClass implements DynaClass {
+    - beanClassName: String
+    - beanClassRef: Reference<Class<?>>
+    - descriptors: PropertyDescriptor[]
+    - descriptorsMap: HashMap<String, PropertyDescriptor>
+    - properties: DynaProperty[]
+    - propertiesMap: HashMap<String, DynaProperty>
+    - CLASSLOADER_CACHE: ContextClassLoaderLocal<Map<CacheKey, WrapDynaClass>>
+    __
+    - getClassesCache(): Map<CacheKey, WrapDynaClass>
+    - WrapDynaClass(beanClass: Class<?>, propUtils: PropertyUtilsBean)
+    # getBeanClas(): Class<?>
+    + getPropertyDescriptor(name: String): PropertyDescriptor
+    + {static} clear(): void
+    + {static} createDynaClass(beanClass: Class<?>): WrapDynaClass
+    + {static} createDynaClass(beanClass: Class<?>, pu: PropertyUtilsBean): WrapDynaClass
+    + getPropertyUtilsBean(): PropertyUtilsBean
+    # introspect(): void
+}
+
+class CacheKey {
+    - beanClass: Class<?>
+    - propUtils: PropertyUtilsBean
+    __
+    + CacheKey(beanCls: Class<?>, pu: PropertyUtilsBean)
+    + hashCode(): int
+    + equals(obj: Object): boolean
+}
+
+WrapDynaClass --> CacheKey
+
+class AbstractMap<String, Object> {
+}
+
+class BeanMap extends AbstractMap implements Cloneable {
+    - bean: Object
+    - readMethods: HashMap<String, Method>
+    - writeMethods: HashMap<String, Method>
+    - types: HashMap<String, Class<? extends Object>>
+    __
+    - {static} typeTransformers: Map<Class<? extends Object>, Function<?, ?>>
+    + {static} NULL_ARGUMENTS: Object[]
+    - {static} createTypeTransformers(): Map<Class<? extends Object, Function<?, ?>>
+    + BeanMap()
+    + BeanMap(bean: Object)
+    + clone(): Object
+    + putAllWriteable(map: BeanMap): void
+    + clear(): void
+    + containsKey(name: Object): boolean
+    + containsValue(value: Object): boolean
+    + get(name: Object): Object
+    + put(name: String, value: Object): Object
+    + size(): int
+    + entrySet(): Set<Map.Entry<String, Object>
+    + values(): Collection<Object>
+    + getType(name: String): Class<?>
+    + keyIterator(): Iterator<String>
+    + valueIterator(): Iterator<Object>
+    + entryIterator(): Iterator<Map.Entry<String, Object>>
+    + getBean(): Object
+    + setBean(newBean: Object): void
+    + getReadMethod(name: String): Method
+    + getWriteMethod(name: String): Method
+    + getReadMethod(name: Object): Method
+    + getWriteMethod(name: Object): Method
+    + reinitialize(): void
+    + initialise(): void
+    # firePropertyChange(key: Object, oldValue: Object, newValue: Object): void
+    # createWriteMethodArguments(method: Method, value: Object): Object[]
+    # convertType(newType: Class<?>, value: Object): Object
+    # getTypeTransformer(aType: Class<?>): Function
+    # logInfo(ex: Exception): void
+    # logWarn(ex: Exception): void
+}
+
+class SimpleEntry<String, Object> {
+}
+
+note top of Entry: Map Entry used by BeanMap
+class Entry extends SimpleEntry {
+    - owner: BeanMap
+    __
+    # Entry(owner: BeanMap, key: String, value: Object)
+    + setValue(value: Object): Object
+}
+
+class HashMap<K, V> {
+
+}
+
+abstract class CollectionView<E> implements Collection {
+    # {abstract} get(map: Map<K, V>): Collection<E>
+    # {abstract} iteratorNext(entry: Map.Entry<K, V>
+    + CollectionView()
+    + clear(): void
+    + remove(o: Object): boolean
+    + removeAll(o: Collection<?>): boolean
+    + retainAll(o: Collection<?>): boolean
+    + size(): int
+    + isEmpty(): boolean
+    + contains(o: Object): boolean
+    + containsAll(o: Collection<?>): boolean
+    + <T> toArray(o: T[]): T[]
+    + toArray(): Object[]
+    + equals(o: Object): boolean
+    + hashCode(): int
+    + add(o: E): boolean
+    + addAll(c: Collection<? extends E>): boolean
+    + iterator(): Iterator<E>
+}
+
+class Iterator<E> {
+
+}
+
+class CollectionViewIterator<E> implements Iterator {
+    - expected: Map<K, V>
+    - lastReturned: Map.Entry<K, V>
+    - iterator: Iterator<Map.Entry<K, V>>
+    __
+    + CollectionViewIterator()
+    + hasNext(): boolean
+    + next(): E
+    + remove(): void
+}
+
+class KeySet extends CollectionView implements Set {
+    # get(map: Map<K, V>): Collection<K>
+    # iteratorNext(entry: Map.Entry<K, V>>): K
+}
+
+class Values extends CollectionView {
+    # get(map: Map<K, V>): Collection<K>
+    # iteratorNext(entry: Map.Entry<K, V>>): K
+}
+
+class EntrySet extends CollectionView implements Set {
+    # get(map: Map<K, V>): Collection<K>
+    # iteratorNext(entry: Map.Entry<K, V>>): K
+}
+
+class WeakFastHashMap<K, V> extends HashMap {
+    - volatile map: Map<K, V>
+    - fast: boolean
+    __
+    + WeakFastHashMap()
+    + WeakFastHashMap(capacity: int)
+    + WeakFastHashMap(capacity: int, factor: float)
+    + WeakFastHashMap(map: Map<? extends K, ? extends V>
+    + getFast(): boolean
+    + setFast(fast: boolean): void
+    + get(key: Object): V
+    + size(): int
+    + isEmpty(): boolean
+    + containsKey(key: Object): boolean
+    + containsValue(value: Object): boolean
+    + put(key: K, value: V): V
+    + putAll(in: Map<? extends K, ? extends V): void
+    + remove(key: Object): V
+    + clear(): void
+    + equals(o: Object): boolean
+    + hashCode(): int
+    + clone(): Object
+    + entrySet(): Set<Map.Entry<K, V>>
+    + keySet(): Set<K>
+    # createMap(): Map<K, V>
+    # createMap(capacity: int): Map<K, V>
+    # createMap(capacity: int, factor: float): Map<K, V>
+    # createMap(map: Map<? extends K, ? extends V>): Map<K, V>
+    # cloneMap(map: Map<? extends K, ? extends V>): Map<K, V>
+}
+
+class LazyDynaList extends ArrayList {
+    - elementDynaClass: DynaClass
+    - wrapDynaClass: WrapDynaClass
+    - elementType: Class<?>
+    - elementDynaBeanType: Class<?>
+    __
+    + LazyDynaList()
+    + LazyDynaList(capacity: int)
+    + LazyDynaList(elementDynaClass: DynaClass)
+    + LazyDynaList(elementType: Class<?>)
+    + LazyDynaList(collection: Collection<?>)
+    + LazyDynaList(index: int, element: Object)
+    + add(index: int, element: Object): void
+    + add(element: Object): boolean
+    + addAll(collection: Collection<?>): boolean
+    + addAll(index: int, collection: Collection<?>): boolean
+    + get(index: int): Object
+    + set(index: int, element: Object): Object
+    + toArray(): Object[]
+    + <T> toArray(model: T[]): T[]
+    + toDynaBeanArray(): DynaBean[]
+    + setElementType(elementType: Class<?>): void
+    + setElementDynaClass(elementDynaClass: DynaClass): void
+    + growList(requiredSize: int): void
+    + transform(element: Object): DynaBean
+    + createDynaBeanForMapProperty(value: Object): LazyDynaMap
+    + getDynaClass(): DynaClass
+}
+
+class BeanPredicate<T> implements Predicate {
+    - propertyname: String
+    - predicate: Predicate<T>
+    __
+    + BeanPredicate(propertyName: String, predicate: Predicate<T>)
+    + test(object: Object): boolean
+    + getPropertyName(): String
+    + setPropertyName(propertyName: String): void
+    + getPredicate(): Predicate<T>
+    + setPredicate(predicate: Predicate<T>): void
+}
+
+}
+
+@enduml

@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+<row>
+  <PARAM_ID>8586223713</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.SVB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"SVB","fullName":"Ngân hàng TNHH MTV Shinhan (Việt Nam)","dataType":"ISSUE_DATE","bin":"970424","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang ShinhanBank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223714</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.ABBANK</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"ABBANK","fullName":"Ngân hàng TMCP An Bình","dataType":"ISSUE_DATE","bin":"970425","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang AB Bank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223715</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.BIDV</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"BIDV","fullName":"Ngân hàng TMCP Đầu tư và phát triển Việt Nam","dataType":"ISSUE_DATE","bin":"970418","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang BIDV</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223716</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.SHB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"SHB","fullName":"Ngân hàng TMCP Sài Gòn Hà Nội","dataType":"ISSUE_DATE","bin":"970443","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang SHB</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223717</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.VCCB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"VCCB","fullName":"Ngân hàng TMCP Bản Việt","dataType":"ISSUE_DATE","bin":"970454","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang VietCapitalBank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223718</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>RTMTQ_DEBIT_NEGATIVE</PARAM_NAME>
+  <PARAM_VALUE>-1;-11;-2;-7;-12;-13</PARAM_VALUE>
+  <PARAM_MEANING>Len cong no theo Level</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223719</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>RTMTQ_RECHARGE_BCCS</PARAM_NAME>
+  <PARAM_VALUE>3;2;1;-3;-14;-9</PARAM_VALUE>
+  <PARAM_MEANING>Tru tien level</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223720</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>RTMTQ_CONFIG_MAX_RETRY</PARAM_NAME>
+  <PARAM_VALUE>3</PARAM_VALUE>
+  <PARAM_MEANING>Max retry </PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223721</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.NASB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"NASB","fullName":"Ngân hàng TMCP Bắc Á","dataType":"ISSUE_DATE","bin":"970409","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang Bac A Bank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223722</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.EAB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"EAB","fullName":"Ngân hàng TMCP Đông Á","dataType":"ISSUE_DATE","bin":"970406","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang Dong A Bank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223723</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>RTMTQ_CUSTOMER_FEE_CONFIG</PARAM_NAME>
+  <PARAM_VALUE>{"roundingUnit":"1000","minWithdraw":"10000","maxWithdraw":"10000000","additionalCharge":["3000"],"customerFee":"0.0072","chargingLevel":["2000000"],"chargingMode":"DOWN"}</PARAM_VALUE>
+  <PARAM_MEANING>cau hinh cua de tinh phi giao dich:
+- chargingMode: chi duoc Up hoac Down</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223724</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.MB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"MB","fullName":"Ngân hàng TMCP Quân đội","dataType":"ISSUE_DATE","bin":"970422","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang MB_Bank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223725</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.VTB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"VTB","fullName":"Ngân hàng TMCP Công thương Việt Nam","dataType":"ISSUE_DATE","bin":"970415","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang ViettinBank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223726</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.HDB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"HDB","fullName":"Ngân hàng TMCP phát triển TPHCM","dataType":"ISSUE_DATE","bin":"970437","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang HDBANK</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223727</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.NCB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"NCB","fullName":"Ngân hàng TMCP Quốc dân","dataType":"ISSUE_DATE","bin":"970419","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang NCB</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223728</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.MSB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"MSB","fullName":"Ngân hàng TMCP Hàng Hải Việt Nam","dataType":"ISSUE_DATE","bin":"970426","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang MSB</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223729</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.VAB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"VAB","fullName":"Ngân hàng TMCP Việt Á","dataType":"NOT_REQUIRED","bin":"970427","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang VietABank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223730</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.EIB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"EIB","fullName":"Ngân hàng TMCP Xuất nhập khẩu Việt Nam","dataType":"ISSUE_DATE","bin":"970431","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang EximBank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223731</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.ACB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"ACB","fullName":"Ngân hàng TMCP Á châu","dataType":"ISSUE_DATE","bin":"970416","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang ACB</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223732</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.STB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"STB","fullName":"Ngân hàng TMCP Sài gòn Thương tín","dataType":"EXPIRY_DATE","bin":"970403","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang Sacombank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223733</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.VPB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"VPB","fullName":"Ngân hàng TMCP Việt Nam Thịnh vượng","dataType":"ISSUE_DATE","bin":"970432","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang VPBank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223734</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.PGB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"PGB","fullName":"Ngân hàng TNHH MTV Xăng dầu Petrolimex","dataType":"ISSUE_DATE","bin":"970430","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang PGBank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223735</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.UOB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"UOB","fullName":"Ngân hàng TNHH MTV United Overseas Bank (Việt Nam)","dataType":"NOT_REQUIRED","bin":"970458","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang UOB</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223736</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.BVB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"BVB","fullName":"Ngân hàng TMCP Bảo Việt","dataType":"ISSUE_DATE","bin":"970438","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang BVB</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223737</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.LPB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"LPB","fullName":"Ngân hàng TMCP Bưu điện Liên Việt","dataType":"NOT_REQUIRED","bin":"970449","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang LienViet</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223738</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.TPB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"TPB","fullName":"Ngân hàng TMCP Tiên Phong","dataType":"ISSUE_DATE","bin":"970423","bankRequired":"FALSE"}
+</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang TPBank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223700</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.VBA</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"VBA","fullName":"Ngân hàng Nông Nghiệp và PTNT Việt Nam","dataType":"ISSUE_DATE","bin":"970405","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang AgriBank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223701</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.SCB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"SCB","fullName":"Ngân hàng TMCP Sài Gòn","dataType":"ISSUE_DATE","bin":"970429","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang SCB</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223702</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.KLB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"KLB","fullName":"Ngân hàng TMCP Kiên Long","dataType":"ISSUE_DATE","bin":"970452","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang KienLongBank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223703</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.SEAB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"SEAB","fullName":"Ngân hàng TMCP Đông Nam Á","dataType":"EXPIRY_DATE","bin":"970440","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang SeABank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223704</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.VRB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"VRB","fullName":"Ngân hàng Liên doanh Việt Nga","dataType":"ISSUE_DATE","bin":"970421","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang VRB</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223705</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.PBVN</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"PBVN","fullName":"Ngân hàng TNHH MTV PUBLIC Việt Nam","dataType":"ISSUE_DATE","bin":"970439","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang PBVN</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223706</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.NAB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"NAB","fullName":"Ngân hàng TMCP Nam Á","dataType":"ISSUE_DATE","bin":"970428","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang NamABank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223707</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.PVC</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"PVC","fullName":"Ngân hàng TMCP Đại Chúng Việt Nam","dataType":"NOT_REQUIRED","bin":"970412","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang PVcombank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223708</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.SGB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"SGB","fullName":"Ngân hàng Sài Gòn Công Thương","dataType":"ISSUE_DATE","bin":"970400","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang SaigonBank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223709</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.TCB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"TCB","fullName":"Ngân hàng TMCP Kỹ thương Việt Nam","dataType":"ISSUE_DATE","bin":"970407","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang TechcomBank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223710</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.OSB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"OCB","fullName":"Ngân hàng TMCP Phương Đông","dataType":"ISSUE_DATE","bin":"970448","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang OCB</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223711</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.IVB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"IVB","fullName":"Ngân hàng TNHH Indovina","dataType":"ISSUE_DATE","bin":"970434","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang IVB</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223712</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.WRB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"WRB","fullName":"Ngân hàng TNHH Woori bank","dataType":"ISSUE_DATE","bin":"970457","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang WooriBank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223739</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.VCB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"VCB","fullName":"Ngân hàng TMCP Ngoại thương Việt Nam","dataType":"ISSUE_DATE","bin":"970436","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang Vietcombank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223740</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.VIB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"VIB","fullName":"Ngân hàng TMCP Quốc tế","dataType":"ISSUE_DATE","bin":"970441","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang VIB</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223741</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.GPB</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"GPB","fullName":"Ngân hàng TNHH MTV Dầu khí toàn cầu","dataType":"ISSUE_DATE","bin":"970408","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang GP Bank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223742</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>BANK_CONFIG.OCEAN_BANK</PARAM_NAME>
+  <PARAM_VALUE>{"tradingName":"OJB","fullName":"Ngân hàng TMCP Đại Dương","dataType":"ISSUE_DATE","bin":"970414","bankRequired":"FALSE"}</PARAM_VALUE>
+  <PARAM_MEANING>Ngan hang OceanBank</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223809</PARAM_ID>
+  <SYSTEM_ID>3</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>RTMTQ_CASHBACK_CONFIG</PARAM_NAME>
+  <PARAM_VALUE>[{"param":"CHANNEL_TYPE_ID_CHTT","level":"-12","type":"staff"},{"param":"LST_CHANNEL_CALL_REVENUE_BCCS","level":"-13","type":"shop"},{"param":"LST_CHANNEL_CALL_IMPACT_BCCS","level":"-14","type":"shop"}]</PARAM_VALUE>
+  <PARAM_MEANING>Cấu hình hoàn tiền RTMTQ</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223761</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>NAPAS_FORM_CONFIG</PARAM_NAME>
+  <PARAM_VALUE>{"merchantId":"MBCE","clientIP":"192.168.1.1","deviceId":"0968579862","environment":"WebApp","cardScheme":"AtmCard","enable3DSecure":"false","orderId":"VIETTEL%s","dataKey":"%s","napasKey":"%s","apiOperation":"PURCHASE_OTP","orderAmount":"%s","orderCurrency":"VND","orderReference":"CASHIN ORD%s","channel":"7399","sourceOfFundsType":"CARD"}</PARAM_VALUE>
+  <PARAM_MEANING>Gia tri mac dinh truyen vao form NAPAS</PARAM_MEANING>
+</row>
+<row>
+  <PARAM_ID>8586223762</PARAM_ID>
+  <SYSTEM_ID>1</SYSTEM_ID>
+  <APP_CODE>RTMTQ</APP_CODE>
+  <PARAM_NAME>RTMTQ_TIMEOUT_REDIS</PARAM_NAME>
+  <PARAM_VALUE>86400</PARAM_VALUE>
+  <PARAM_MEANING>Thời gian tồn tại của TransactionId với số lần Retry</PARAM_MEANING>
+</row>
+</data>

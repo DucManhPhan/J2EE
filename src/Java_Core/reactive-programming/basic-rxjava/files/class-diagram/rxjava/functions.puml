@@ -1,0 +1,152 @@
+@startuml
+interface Function {}
+
+interface Action extends Function {}
+
+interface Action0 extends Action {
+    call(): void
+}
+
+interface Action1<T> extends Action {
+    call(t: T): void
+}
+
+interface Action2<T1, T2> extends Action {
+    call(t1: T1, t2: T2): void
+}
+
+interface Action3<T1, T2, T3> extends Action {
+    call(t1: T1, t2: T2, t3: T3): void
+}
+
+interface Action4<T1, T2, T3, T4> extends Action {
+    call(t1: T1, t2: T2, t3: T3, t4: T4): void
+}
+
+interface Action5<T1, T2, T3, T4, T5> extends Action {
+    call(t1: T1, t2: T2, t3: T3, t4: T4, t5: T5): void
+}
+
+interface Action6<T1, T2, T3, T4, T5, T6> extends Action {
+    call(t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6:T6): void
+}
+
+interface Action7<T1, T2, T3, T4, T5, T6, T7> extends Action {
+    call(t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6:T6, t7: T7): void
+}
+
+interface Action8<T1, T2, T3, T4, T5, T6, T7, T8> extends Action {
+    call(t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6:T6, t7: T7, t8: T8): void
+}
+
+interface Action9<T1, T2, T3, T4, T5, T6, T7, T8, T9> extends Action {
+    call(t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6:T6, t7: T7, t8: T8, t9: T9): void
+}
+
+interface ActionN extends Action {
+    call(args: Object...): void
+}
+
+class Actions {
+    - {static} EMPTY_ACTION: EmptyAction = new EmptyAction()
+    __
+    - Actions()
+    + {static} <T0, T1, T2, T3, T4, T5, T6, T7, T8> empty(): EmptyAction<T0, T1, T2, T3, T4, T5, T6, T7, T8>
+    + {static} toFunc(action: Action0): Func0<Void>
+    + {static} <T1> toFunc(action: Action1<T1>): Func1<T1, Void>
+    + {static} <T1, T2> toFunc(action: Action2<T1, T2>): Func2<T1, T2, Void>
+    + {static} <T1, T2, T3> toFunc(action: Action3<T1, T2, T3>): Func2<T1, T2, T3, Void>
+    + {static} <T1, T2, T3, T4> toFunc(action: Action4<T1, T2, T3, T4>): Func2<T1, T2, T3, T4, Void>
+    + {static} <T1, T2, T3, T4, T5> toFunc(action: Action5<T1, T2, T3, T4, T5>): Func2<T1, T2, T3, T4, T5, Void>
+    + {static} <T1, T2, T3, T4, T5, T6> toFunc(action: Action6<T1, T2, T3, T4, T5, T6>): Func2<T1, T2, T3, T4, T5, T6, Void>
+    + {static} <T1, T2, T3, T4, T5, T6, T7> toFunc(action: Action7<T1, T2, T3, T4, T5, T6, T7>): Func2<T1, T2, T3, T4, T5, T6, T7, Void>
+    + {static} <T1, T2, T3, T4, T5, T6, T7, T8> toFunc(action: Action8<T1, T2, T3, T4, T5, T6, T7, T8>): Func2<T1, T2, T3, T4, T5, T6, T7, T8, Void>
+    + {static} <T1, T2, T3, T4, T5, T6, T7, T8, T9> toFunc(action: Action9<T1, T2, T3, T4, T5, T6, T7, T8, T9>): Func2<T1, T2, T3, T4, T5, T6, T7, T8, T9, Void>
+    + {static} toFunc(action: ActionN): FuncN<Void>
+    + {static} <R> toFunc(action: Action0, result: R): Func0<R>
+    + {static} <T1, R> toFunc(action: Action1<T1>, result: R): Func1<T1, R>
+    + {static} <T1, T2, R> toFunc(action: Action2<T1, T2>, result: R): Func2<T1, T2, R>
+    + {static} <T1, T2, T3, R> toFunc(action: Action3<T1, T2, T3>, result: R): Func2<T1, T2, T3, R>
+    + {static} <T1, T2, T3, T4, R> toFunc(action: Action4<T1, T2, T3, T4>, result: R): Func2<T1, T2, T3, T4, R>
+    + {static} <T1, T2, T3, T4, T5, R> toFunc(action: Action5<T1, T2, T3, T4, T5>, result: R): Func2<T1, T2, T3, T4, T5, R>
+    + {static} <T1, T2, T3, T4, T5, T6, R> toFunc(action: Action6<T1, T2, T3, T4, T5, T6>, result: R): Func2<T1, T2, T3, T4, T5, T6, R>
+    + {static} <T1, T2, T3, T4, T5, T6, T7, R> toFunc(action: Action7<T1, T2, T3, T4, T5, T6, T7>, result: R): Func2<T1, T2, T3, T4, T5, T6, T7, R>
+    + {static} <T1, T2, T3, T4, T5, T6, T7, T8, R> toFunc(action: Action8<T1, T2, T3, T4, T5, T6, T7, T8>, result: R): Func2<T1, T2, T3, T4, T5, T6, T7, T8, R>
+    + {static} <T1, T2, T3, T4, T5, T6, T7, T8, T9 R> toFunc(action: Action9<T1, T2, T3, T4, T5, T6, T7, T8, T9>, result: R): Func2<T1, T2, T3, T4, T5, T6, T7, T8, T9, R>
+    + {static} <R> toFunc(action: ActionN, result: R): FuncN<R>
+    + {static} <T> toAction1(action: Action0): Action1<T>
+}
+
+class EmptyAction<T0, T1, T2, T3, T4, T5, T6, T7, T8> implements Action0, Action1, Action2, Action3, Action4, Action5, Action6, Action7, Action8, Action9, ActionN {}
+
+interface Cancelable {
+    cancel(): void
+}
+
+interface Callable<R> {
+    call(): R
+}
+
+interface Func0<R> extends Function, Callable {
+    call(): R
+}
+
+interface Func1<T, R> extends Function {
+    call(t: T): R
+}
+
+interface Func2<T1, T2, R> extends Function {
+    call(t1: T1, t2: T2): R
+}
+
+interface Func3 <T1, T2, T3, R> extends Function {
+    call(t1: T1, t2: T2, t3: T3): R
+}
+
+interface Func4 <T1, T2, T3, T4, R> extends Function {
+    call(t1: T1, t2: T2, t3: T3, t4: T4): R
+}
+
+interface Func5 <T1, T2, T3, T4, T5, R> extends Function {
+    call(t1: T1, t2: T2, t3: T3, t4: T4, t5: T5): R
+}
+
+interface Func6 <T1, T2, T3, T4, T5, T6, R> extends Function {
+    call(t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6): R
+}
+
+interface Func7 <T1, T2, T3, T4, T5, T6, T7, R> extends Function {
+    call(t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6, t7: T7): R
+}
+
+interface Func8 <T1, T2, T3, T4, T5, T6, T7, T8, R> extends Function {
+    call(t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6, t7: T7, t8: T8): R
+}
+
+interface Func9 <T1, T2, T3, T4, T5, T6, T7, T8, T9, R> extends Function {
+    call(t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6, t7: T7, t8: T8, t9: T9): R
+}
+
+interface FuncN<R> extends Function {
+    call(args: Object...): R
+}
+
+class Functions {
+    - Functions()
+    + {static} <R> fromFunc(f: Func0<? extends R>): FuncN<R>
+    + {static} <T0, R> fromFunc(f: Func1<? super T0, ? extends R>): FuncN<R>
+    + {static} <T0, T1, R> fromFunc(f: Func2<? super T0, ? super T1, ? extends R>): FuncN<R>
+    + {static} <T0, T1, T2, R> fromFunc(f: Func3<? super T0, ? super T1, ? super T2, ? extends R>): FuncN<R>
+    + {static} <T0, T1, T2, T3, R> fromFunc(f: Func4<? super T0, ? super T1, ? super T2, ? super T3, ? extends R>): FuncN<R>
+    + {static} <T0, T1, T2, T3, T4, R> fromFunc(f: Func5<? super T0, ? super T1, ? super T2, ? super T3, ? super T4, ? extends R>): FuncN<R>
+    + {static} <T0, T1, T2, T3, T4, T5, R> fromFunc(f: Func6<? super T0, ? super T1, ? super T2, ? super T3, ? super T4, ? super T5, ? extends R>): FuncN<R>
+    + {static} <T0, T1, T2, T3, T4, T5, T6, R> fromFunc(f: Func7<? super T0, ? super T1, ? super T2, ? super T3, ? super T4, ? super T5, ? super T6, ? extends R>): FuncN<R>
+    + {static} <T0, T1, T2, T3, T4, T5, T6, T7, R> fromFunc(f: Func8<? super T0, ? super T1, ? super T2, ? super T3, ? super T4, ? super T5, ? super T6, ? super T7, ? extends R>): FuncN<R>
+    + {static} <T0, T1, T2, T3, T4, T5, T6, T7, T8, R> fromFunc(f: Func9<? super T0, ? super T1, ? super T2, ? super T3, ? super T4, ? super T5, ? super T6, ? super T7, ? super T8, ? extends R>): FuncN<R>
+    + {static} fromAction(f: Action0): FuncN<Void>
+    + {static} <T0> fromAction(f: Action1<? super T0>): FuncN<Void>
+    + {static} <T0, T1> fromAction(f: Action2<? super T0, ? super T1>): FuncN<Void>
+    + {static} <T0, T1, T2> fromAction(f: Action3<? super T0, ? super T1, ? super T2>): FuncN<Void>
+}
+
+@enduml

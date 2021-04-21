@@ -1,0 +1,89 @@
+@startuml
+class BooleanSubscription implements Subscription {
+    - actionRef: AtomicReference<Action0>
+    ~ EMPTY_ACTION: Action0
+    __
+    + BooleanSubscription()
+    + BooleanSubscription(action: Action0)
+    + {static} create(): BooleanSubscription
+    + {static} create(onUnsubscribe: Action0): BooleanSubscription
+}
+
+class CompositeSubscription implements Subscription {
+    - subscriptions: Set<Subscription>
+    - volatile unsubscribed: boolean
+    __
+    + CompositeSubscription()
+    + CompositeSubscription(subscriptions: Subscription...)
+    + add(s: Subscription): void
+    + addAll(subscriptions: Subscription...): void
+    + remove(s: Subscription): void
+    + clear(): void
+    + {static} unsubscribeFromAll(subscriptions: Collection<Subscription>): void
+    + hasSubscriptions(): boolean
+}
+
+class MultipleAssignmentSubscription implements Subscription {
+    - state: SequentialSubscription
+    __
+    + set(s: Subscription): void
+    + get(): Subscription
+}
+
+MultipleAssignmentSubscription o-- SequentialSubscription
+
+class RefCountSubscription implements Subscription {
+    - actual: Subscription
+    ~ {static} EMPTY_STATE: State = new State(false, 0)
+    ~ state: AtomicReference<State>
+    __
+    + RefCountSubscription(s: Subscription)
+    + get(): Subscription
+    - unsubscribeActualIfApplicable(state: State): void
+    ~ unsubscribeAChild(): void
+}
+
+class RefCountSubscription.InnerSubscription extends AtomicInteger implements Subscription {
+    ~ parent: RefCountSubscription
+    __
+    + InnerSubscription(parent: RefCountSubscription)
+}
+
+class RefCountSubscription.State {
+    ~ isUnsubscribed: boolean
+    ~ children: int
+    __
+    ~ State(u: boolean, c: int)
+    ~ addChild(): State
+    ~ removeChild(): State
+    ~ unsubscribe(): State
+}
+
+class SerialSubscription implements Subscription {
+    - state: SequentialSubscription
+    __
+    + set(s: Subscription): void
+    + get(): Subscription
+}
+
+class Subscriptions {
+    - {static} UNSUBSCRIBED: Unsubscribed
+    __
+    - Subscriptions()
+    + {static} empty(): Subscription
+    + {static} unsubscribed(): Subscription
+    + {static} create(unsubscribe: Action0): Subscription
+    + {static} from(f: Future<?>): Subscription
+    + {static} from(subscriptions: Subscription...): CompositeSubscription
+}
+
+class Subscriptions.Unsubscribed implements Subscription {}
+
+class Subscriptions.FutureSubscription implements Subscription {
+    ~ f: Future<?>
+    __
+    + FutureSubscription(f: Future<?>)
+}
+
+!include ./internal/subscriptions.puml
+@enduml

@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 public class App {
     public static void main(String[] args) {
-        streamEvents();
+        useIntermediateOperator();
     }
 
     public static void streamData() {
@@ -32,13 +32,35 @@ public class App {
 
     public static void useCreateObservable() {
         Observable<String> source = Observable.create(emitter -> {
-            emitter.onNext("alpha");
-            emitter.onNext("beta");
-            emitter.onNext("gamma");
-            emitter.onComplete();
+            try {
+                emitter.onNext("alpha");
+                emitter.onNext("beta");
+                emitter.onNext("gamma");
+                emitter.onComplete();
+            } catch (Throwable e) {
+                emitter.onError(e);
+            }
         });
 
-        source.subscribe(s -> System.out.println("RECEIVED: " + s));
+        source.subscribe(s -> System.out.println("RECEIVED: " + s),
+                         Throwable::printStackTrace);
+    }
+
+    public static void useIntermediateOperator() {
+        Observable<String> source = Observable.create(emitter -> {
+            try {
+                emitter.onNext("alpha");
+                emitter.onNext("beta");
+                emitter.onNext("gamma");
+                emitter.onComplete();
+            } catch (Throwable e) {
+                emitter.onError(e);
+            }
+        });
+
+        Observable<Integer> lengths = source.map(String::length);
+        Observable<Integer> filtered = lengths.filter(i -> i >= 5);
+        filtered.subscribe(s -> System.out.println("RECEIVED: " + s));
     }
 
 }

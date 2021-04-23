@@ -1,0 +1,21 @@
+
+c
+java:S1192"FDefine a constant instead of duplicating this literal "gamma" 3 times.(¤îº¶8 ¾ëÊ/
+N
+java:S1612",Replace this lambda with a method reference.(æ÷÷Ùøÿÿÿÿ8ïÆ’É/
+c
+java:S1192"FDefine a constant instead of duplicating this literal "alpha" 3 times.(¤îº¶8 ¾ëÊ/
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(æ÷÷Ùøÿÿÿÿ8ïÆ’É/
+I
+java:S1612",Replace this lambda with a method reference.(ı‡•Œ8ïÆ’É/
+G
+java:S11818"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ8 ¾ëÊ/
+h
+java:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(è®ã¶øÿÿÿÿ8Úş—É/
+G
+java:S1181("%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ8ø°ØÊ/
+Z	java:S106-"9Replace this use of System.out or System.err by a logger.(ìªÓĞşÿÿÿÿ8Ù´Ê/
+U	java:S106?"9Replace this use of System.out or System.err by a logger.(¶é¯©8ÃÀïÊ/
+I
+java:S1612",Replace this lambda with a method reference.(ë´şù8Úş—É/
+U	java:S106"9Replace this use of System.out or System.err by a logger.(ë´şù8Úş—É/

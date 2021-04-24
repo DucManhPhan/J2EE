@@ -7,7 +7,8 @@ public class UsingActionOperator {
     public static void main(String[] args) {
 //        usingDoOnNext();
 //        usingDoAfterNext();
-        usingDoOnComplete();
+//        usingDoOnComplete();
+        usingDoOnError();
     }
 
     public static void usingDoOnNext() {
@@ -31,6 +32,15 @@ public class UsingActionOperator {
                 .doOnComplete(() -> System.out.println("Source is done emitting"))
                 .map(String::length)
                 .subscribe(i -> System.out.println("Received: " + i));
+    }
+
+    public static void usingDoOnError() {
+        Observable.just(5, 2, 4, 0, 3, 2, 8)
+                .doOnError(e -> System.out.println("Source failed!"))
+                .map(i -> 10 / i)
+                .doOnError(e -> System.out.println("Division failed!"))
+                .subscribe(i -> System.out.println("RECEIVED: " + i),
+                        e -> System.out.println("RECEIVED ERROR: " + e));
     }
 
 }

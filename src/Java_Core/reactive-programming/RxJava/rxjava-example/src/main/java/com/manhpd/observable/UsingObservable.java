@@ -1,4 +1,4 @@
-package com.manhpd;
+package com.manhpd.observable;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.Disposable;

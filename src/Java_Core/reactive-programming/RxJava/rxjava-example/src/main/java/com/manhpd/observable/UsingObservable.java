@@ -1,5 +1,6 @@
 package com.manhpd.observable;
 
+import com.manhpd.utils.ReactiveUtils;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.observables.ConnectableObservable;
@@ -42,7 +43,7 @@ public class UsingObservable {
         Observable<Long> secondIntervals = Observable.interval(1, TimeUnit.SECONDS);
         secondIntervals.subscribe(s -> System.out.println(s));
 
-        sleep(5000);
+        ReactiveUtils.sleep(5000);
     }
 
     public static void useFromIterable() {
@@ -52,13 +53,6 @@ public class UsingObservable {
         source.subscribe(s -> System.out.println(s));
     }
 
-    private static void sleep(long millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        }
-    }
 
     public static void useCreateObservable() {
         Observable<String> source = Observable.create(emitter -> {
@@ -111,7 +105,7 @@ public class UsingObservable {
                     }
                 });
 
-        sleep(500);
+        ReactiveUtils.sleep(500);
         // the sequence can now be disposed via dispose()
         d.dispose();
     }
@@ -159,10 +153,10 @@ public class UsingObservable {
         Observable<Long> seconds = Observable.interval(1, TimeUnit.SECONDS);
 
         seconds.subscribe(s -> System.out.println("Observer 1: " + s));
-        sleep(3000);
+        ReactiveUtils.sleep(3000);
 
         seconds.subscribe(s -> System.out.println("Observer 2: " + s));
-        sleep(3000);
+        ReactiveUtils.sleep(3000);
     }
 
     public static void usingObservableFuture() {
@@ -184,7 +178,7 @@ public class UsingObservable {
         empty.subscribe(System.out::println,
                 Throwable::printStackTrace,
                 () -> System.out.println("Done!"));
-        sleep(3000);
+        ReactiveUtils.sleep(3000);
     }
 
     public static void usingObservableError() {

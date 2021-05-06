@@ -1,0 +1,47 @@
+@startuml
+
+class ThreadLocal<T> {
+    - {static} threadLocalHashCode: int
+    - {static} nextHashCode: AtomicInteger
+    - {static} HASH_INCREMENT: int
+
+    __
+
+    + ThreadLocal()
+    - {static} nextHashCode(): int
+    # initialValue(): T
+    + {static} withInitial(var0: Supplier<? extends S>): ThreadLocal<S>
+    + get(): T
+    - setInitialValue(): T
+    + set(var1: T): void
+    + remove(): void
+    ~ getMap(var1: Thread): ThreadLocalMap
+    ~ createMap(var1: Thread, var2: T): void
+    ~ createInheriteMap(var0: ThreadLocalMap): ThreadLocalMap
+    ~ childValue(var1: T): T
+}
+
+class ThreadLocalMap {
+    - {static} INITIAL_CAPACITY: int
+    - table: Entry[]
+}
+
+'SuppliedThreadLocal <|-- ThreadLocal
+'
+'class SuppliedThreadLocal {
+'    - supplier: Supplier<? extends T>
+'    __
+'
+'    ~ SuppliedThreadLocal(var1: Supplier<? extends T>
+'    # initialValue(): T
+'}
+'
+'class Entry {
+'    # value: Object
+'
+'    __
+'
+'    # Entry(var1: ThreadLocal<?>, var2: Object)
+'}
+
+@enduml

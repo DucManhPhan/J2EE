@@ -3,4 +3,4 @@ docker run \
 --publish 1414:1414 \
 --publish 9443:9443 \
 --detach \
-ibmcom/mq
+ibmcom-mq-dev

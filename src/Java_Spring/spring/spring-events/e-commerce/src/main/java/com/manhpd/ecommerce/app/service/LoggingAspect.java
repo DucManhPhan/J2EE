@@ -11,8 +11,7 @@ import org.springframework.util.StopWatch;
 @Slf4j
 @Aspect
 @Component
-public class LoggingAspect
-{
+public class LoggingAspect {
 
     //AOP expression for which methods shall be intercepted
     @Around("execution(* com.manhpd.ecommerce..*(..)))")

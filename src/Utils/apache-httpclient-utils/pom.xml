@@ -16,7 +16,7 @@
     <maven.compiler.target>1.7</maven.compiler.target>
 
     <version.junit>4.11</version.junit>
-    <version.httpclient>4.5.11</version.httpclient>
+    <version.httpclient>4.5.13</version.httpclient>
     <version.guava>19.0</version.guava>
   </properties>
 

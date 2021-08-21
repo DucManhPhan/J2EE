@@ -1,6 +1,7 @@
 package com.manhpd.ecommerce.app.service;
 
 import com.manhpd.ecommerce.app.events.CustomerRegisteredEvent;
+import com.manhpd.ecommerce.app.events.CustomerRemovedEvent;
 import com.manhpd.ecommerce.persist.entity.Customer;
 import com.manhpd.ecommerce.persist.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,5 +23,6 @@ public class CustomerService {
 
     public void remove(Customer customer) {
         this.customerRepository.delete(customer);
+        this.publisher.publishEvent(new CustomerRemovedEvent(customer));
     }
 }

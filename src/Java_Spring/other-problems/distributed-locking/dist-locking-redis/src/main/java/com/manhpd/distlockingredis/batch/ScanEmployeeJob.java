@@ -24,12 +24,9 @@ public class ScanEmployeeJob implements Runnable {
 
     @Override
     public void run() {
-
         List<EmployeeDto> employeeDtos = this.employeeService.findByAll();
         if (CollectionUtils.isEmpty(employeeDtos)) {
             // release lock
         }
-
-
     }
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/camel-microservice-a/camel-microservice-a.iml" filepath="$PROJECT_DIR$/camel-microservice-a/camel-microservice-a.iml" />
+      <module fileurl="file://$PROJECT_DIR$/camel-microservice-b/camel-microservice-b.iml" filepath="$PROJECT_DIR$/camel-microservice-b/camel-microservice-b.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/camel-microservices.iml" filepath="$PROJECT_DIR$/.idea/camel-microservices.iml" />
+    </modules>
+  </component>
+</project>

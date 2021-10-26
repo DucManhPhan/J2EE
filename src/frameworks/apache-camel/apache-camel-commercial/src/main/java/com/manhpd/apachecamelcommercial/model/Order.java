@@ -20,7 +20,7 @@ public class Order {
     private double orderPrice;
 
     public void addOrderLine(OrderLine orderLine) {
-        if (Objects.isNull(orderLine)) {
+        if (Objects.isNull(orderLines)) {
             this.orderLines = new ArrayList<>();
         }
 

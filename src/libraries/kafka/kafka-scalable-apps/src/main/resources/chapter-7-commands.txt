@@ -1,0 +1,15 @@
+## Creating the Topic
+
+        ./kafka-topics.sh \
+            --zookeeper zookeeper:2181 \
+            --create \
+            --topic kafka.usecase.students \
+            --partitions 3 \
+            --replication-factor 2
+
+## Describe the Topic
+
+        ./kafka-topics.sh \
+            --zookeeper zookeeper:2181 \
+            --topic kafka.usecase.students \
+            --describe

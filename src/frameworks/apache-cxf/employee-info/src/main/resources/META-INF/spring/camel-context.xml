@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:spring="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--Define base package for component scanning-->
+    <context:component-scan base-package="com.manhpd" />
+
+    <!--Database configuration-->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+        <property name="driverClassName" value="${database.driveClassName}" />
+        <property name="url" value="${database.url}" />
+        <property name="username" value="${database.username}" />
+        <property name="password" value="${database.password}" />
+    </bean>
+
+    <bean class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" id="sessionFactory">
+        <property name="dataSource" ref="dataSource" />
+        <property name="packagesToScan">
+            <list>
+                <value>com.manhpd.entity</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.orm.hibernate4.HibernateTransactionManager" id="transactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <!--Define path for JAX.RS with Apache CXF-->
+    <cxf:rsServer address="${endpoint.api.main}" id="apiSecureEndpoint"
+        loggingFeatureEnabled="true" serviceClass="com.manhpd.ws.EmployeeController">
+        <cxf:providers>
+            <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
+        </cxf:providers>
+    </cxf:rsServer>
+
+    <!--Define CamelContext-->
+    <camelContext id="MainRoutes" useMDCLogging="true" xmlns="http://camel.apache.org/schema/spring">
+        <route id="AuthGateway">
+            <from id="AuthGateway" uri="cxfrs://bean://apiSecureEndpoint" />
+            <onException>
+                <exception>java.lang.Exception</exception>
+                <handled>
+                    <constant>true</constant>
+                </handled>
+                <log id="_log1" message="OnException invoked exception = ${exception}" />
+                <log id="_log2" message="OnException invoked headers = ${headers}" />
+                <log id="_log3" message="OnException invoked body = ${body}" />
+            </onException>
+            <choice id="_choice1">
+                <when id="_when1">
+                    <simple>${in.header.operationName} == 'get-employees'</simple>
+                    <to id="_to1" uri="direct:getEmployees" />
+                </when>
+                <when id="_when2">
+                    <simple>${in.header.operationName} == 'update-employee-id'</simple>
+                    <to id="_to2" uri="direct:updateEmployeeWithId" />
+                </when>
+                <when id="_when3">
+                    <simple>${in.header.operationName} == 'ping'</simple>
+                    <to id="_to3" uri="direct:ping" />
+                </when>
+            </choice>
+        </route>
+
+        <route id="getEmployees">
+            <from id="_from1" uri="direct:getEmployees" />
+            <bean id="_bean1" method="getEmployees" ref="employeeService" />
+        </route>
+        <route id="updateEmployeeWithId">
+            <from id="_from2" uri="direct:updateEmployeeWithId" />
+            <bean id="_bean2" method="updateEmployeeWithId" ref="employeeService" />
+        </route>
+        <route id="ping">
+            <from id="_from3" uri="direct:ping"/>
+            <setBody id="_setBody1">
+                <simple>{"Code": "200", "Status": "Successfully Connected"}</simple>
+            </setBody>
+        </route>
+    </camelContext>
+
+    <!--Define Service classes-->
+    <bean class="com.manhpd.service.EmployeeService" id="employeeService" />
+
+    <!--Define Common, Utilities classes-->
+    <bean class="org.apache.camel.spring.spi.BridgePropertyPlaceholderConfigurer" id="bridgePropertyPlaceholder">
+        <property name="locations">
+            <list>
+                <value>file:/opt/shared/esb/configuration/esb-configuration.properties</value>
+                <value>file:/opt/shared/esb/configuration/database.properties</value>
+            </list>
+        </property>
+        <property name="ignoreResourceNotFound" value="true"/>
+    </bean>
+
+</beans>

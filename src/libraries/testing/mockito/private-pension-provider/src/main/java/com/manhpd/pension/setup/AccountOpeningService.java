@@ -1,6 +1,6 @@
-package com.pluralsight.pension.setup;
+package com.manhpd.pension.setup;
 
-import com.pluralsight.pension.AccountRepository;
+import com.manhpd.pension.AccountRepository;
 
 import java.io.IOException;
 import java.time.LocalDate;

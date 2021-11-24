@@ -1,6 +1,6 @@
-package com.pluralsight.pension.setup;
+package com.manhpd.pension.setup;
 
-import com.pluralsight.pension.AccountRepository;
+import com.manhpd.pension.AccountRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,13 +21,12 @@ class AccountOpeningServiceTest {
 
     @BeforeEach
     void setUp() {
-        underTest = new AccountOpeningService(backgroundCheckService,referenceIdsManager,accountRepository);
+        underTest = new AccountOpeningService(backgroundCheckService, referenceIdsManager, accountRepository);
     }
 
     @Test
     public void shouldOpenAccount() throws IOException {
         final AccountOpeningStatus accountOpeningStatus = underTest.openAccount("John", "Smith", "123XYZ9", LocalDate.of(1990, 1, 1));
         assertEquals(AccountOpeningStatus.OPENED, accountOpeningStatus);
-
     }
 }

@@ -1,4 +1,4 @@
-package com.pluralsight.pension.setup;
+package com.manhpd.pension.setup;
 
 public enum AccountOpeningStatus {
     OPENED,

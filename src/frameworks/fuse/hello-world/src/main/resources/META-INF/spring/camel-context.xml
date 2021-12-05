@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xmlns:osgi="http://www.springframework.org/schema/osgi"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:cxf-core="http://cxf.apache.org/core"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf-2.8.3.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
+
+    <context:component-scan base-package="com" />
+
+    <camelContext id="camelRouteId" useMDCLogging="true" xmlns="http://camel.apache.org/schema/spring">
+        <route id="AuthGateway">
+            <from id="AuthGateway" uri="cxfrs://bean://apiEndpoint" />
+            <to uri="direct:helloworld" />
+        </route>
+        <route id="helloworld">
+            <from id="_from1" uri="direct:helloworld" />
+            <bean id="bean1" method="helloWorld" ref="helloworldService" />
+        </route>
+    </camelContext>
+
+    <cxf:rsServer address="${endpoint.api.main}" id="apiEndpoint"
+                  serviceClass="com.manhpd.api.Interfaces">
+        <cxf:providers>
+            <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
+        </cxf:providers>
+    </cxf:rsServer>
+
+    <cxf-core:bus bus="myBus" id="mybus">
+        <cxf-core:properties>
+            <entry key="skip.default.json.provider.registration" value="true"/>
+        </cxf-core:properties>
+    </cxf-core:bus>
+
+    <bean class="com.manhpd.service.HelloworldService" id="helloworldService" />
+
+</beans>

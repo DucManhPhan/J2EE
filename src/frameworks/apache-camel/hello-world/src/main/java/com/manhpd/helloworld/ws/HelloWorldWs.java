@@ -31,10 +31,10 @@ public class HelloWorldWs extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        onException(InvalidFormatException.class)
-                .process(this.parseExceptionHandler)
-                .handled(true)
-                .stop();
+//        onException(InvalidFormatException.class)
+//                .process(this.parseExceptionHandler)
+//                .handled(true)
+//                .stop();
 
 //        CamelContext context = new DefaultCamelContext();
         restConfiguration().contextPath(this.contextPath)

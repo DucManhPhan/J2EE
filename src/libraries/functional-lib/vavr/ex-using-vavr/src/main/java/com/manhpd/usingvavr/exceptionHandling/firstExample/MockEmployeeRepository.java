@@ -1,4 +1,4 @@
-package com.manhpd.usingvavr.exceptionHandling.eithermonad;
+package com.manhpd.usingvavr.exceptionHandling.firstExample;
 
 import io.vavr.control.Either;
 import io.vavr.control.Option;

@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Entity
+@Table(name = "author")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,7 +20,7 @@ public class Author implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;

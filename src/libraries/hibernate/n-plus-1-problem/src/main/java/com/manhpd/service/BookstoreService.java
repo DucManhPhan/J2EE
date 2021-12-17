@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookstoreService {
@@ -40,4 +41,21 @@ public class BookstoreService {
             System.out.println("Author: " + author.getName() + " Books: " + books);
         }
     }
+
+    public void insertBookToAuthor(long authorId, BookData data) {
+        Author author = this.authorRepository.findById(authorId);
+        Book book = this.buildBookEntity(data, author);
+        long bookId = this.bookRepository.saveBookEntity(book);
+        book.setId(bookId);
+    }
+
+    private Book buildBookEntity(BookData data, Author author) {
+        Book currentBook = new Book();
+        currentBook.setIsbn(data.getIsbn());
+        currentBook.setTitle(data.getTitle());
+        currentBook.setAuthor(author);
+
+        return currentBook;
+    }
+
 }

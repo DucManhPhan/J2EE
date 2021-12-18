@@ -17,7 +17,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<log4j-2x.version>2.16.0</log4j-2x.version>
+		<log4j-2x.version>2.17.0</log4j-2x.version>
 	</properties>
 
 	<dependencies>

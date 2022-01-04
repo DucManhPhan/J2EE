@@ -16,7 +16,7 @@
 
     <junit.version>4.11</junit.version>
     <javafaker.version>1.0.1</javafaker.version>
-    <log4j.version>2.12.1</log4j.version>
+    <log4j.version>2.17.1</log4j.version>
   </properties>
 
   <dependencies>

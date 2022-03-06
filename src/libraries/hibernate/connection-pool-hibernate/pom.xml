@@ -21,7 +21,7 @@
     <junit.version>4.11</junit.version>
 
     <!-- Note that the version of the hibernate-c3p0 dependency should match the Hibernate's compatible version. -->
-    <hibernate-core.version>4.3.6.Final</hibernate-core.version>
+    <hibernate-core.version>5.4.24.Final</hibernate-core.version>
     <hibernate-c3p0.verson>4.3.6.Final</hibernate-c3p0.verson>
     <c3p0.version>0.9.1.2</c3p0.version>
     <commons-lang3.version>3.10</commons-lang3.version>

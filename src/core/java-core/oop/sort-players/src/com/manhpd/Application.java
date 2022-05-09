@@ -8,7 +8,7 @@ public class Application {
 
     public static void main(String[] args) {
 //        sortList();
-        sortPriorityQueueByIncreasedRanking();
+        sortPriorityQueueByDecreasedRanking();
 //        sortPriorityQueueByDecreasedAge();
     }
 
@@ -33,21 +33,24 @@ public class Application {
      * The highest ranking at the 0.
      * If the players has the same ranking, based on the insertion order.
      */
-    private static void sortPriorityQueueByIncreasedRanking() {
+    private static void sortPriorityQueueByDecreasedRanking() {
         Player player1 = new Player(59, "John", 20, ++counter);
         Player player2 = new Player(67, "Roger1", 22, ++counter);
         Player player3 = new Player(67, "Roger2", 22, ++counter);
         Player player4 = new Player(45, "Steven", 24, ++counter);
 
-        Comparator<Player> byIncreasedRanking = (p1, p2) -> {
-            if (p1.getRanking() != p2.getRanking()) {
-                return Integer.compare(p2.getRanking(), p1.getRanking());
+        Comparator<Player> byDecreasedRanking = (p1, p2) -> {
+            final int ranking1 = p1.getRanking();
+            final int ranking2 = p2.getRanking();
+
+            if (ranking1 != ranking2) {
+                return Integer.compare(ranking2, ranking1);
             } else {
                 return Integer.compare(p1.getLogicalTimer(), p2.getLogicalTimer());
             }
         };
 
-        PriorityQueue<Player> playersByRanking = new PriorityQueue<>(byIncreasedRanking);
+        PriorityQueue<Player> playersByRanking = new PriorityQueue<>(byDecreasedRanking);
         playersByRanking.offer(player1);
         playersByRanking.offer(player2);
         playersByRanking.offer(player3);
@@ -63,13 +66,13 @@ public class Application {
      * The lowest age will be at the 0 index.
      * If the players has the same age, based on the insertion order.
      */
-    private static void sortPriorityQueueByDecreasedAge() {
+    private static void sortPriorityQueueByIncreasedAge() {
         Player player1 = new Player(59, "John", 20, ++counter);
         Player player2 = new Player(67, "Roger1", 22, ++counter);
         Player player3 = new Player(67, "Roger2", 22, ++counter);
         Player player4 = new Player(45, "Steven", 24, ++counter);
 
-        Comparator<Player> byIncreasedRanking = (p1, p2) -> {
+        Comparator<Player> byIncreasedAge = (p1, p2) -> {
             if (p1.getAge() != p2.getAge()) {
                 return Integer.compare(p1.getAge(), p2.getAge());
             } else {
@@ -77,15 +80,15 @@ public class Application {
             }
         };
 
-        PriorityQueue<Player> playersByRanking = new PriorityQueue<>(byIncreasedRanking);
-        playersByRanking.offer(player1);
-        playersByRanking.offer(player2);
-        playersByRanking.offer(player3);
-        playersByRanking.offer(player4);
+        PriorityQueue<Player> playersByAge = new PriorityQueue<>(byIncreasedAge);
+        playersByAge.offer(player1);
+        playersByAge.offer(player2);
+        playersByAge.offer(player3);
+        playersByAge.offer(player4);
 
-        System.out.println(playersByRanking.poll().toString());
-        System.out.println(playersByRanking.poll().toString());
-        System.out.println(playersByRanking.poll().toString());
-        System.out.println(playersByRanking.poll().toString());
+        System.out.println(playersByAge.poll().toString());
+        System.out.println(playersByAge.poll().toString());
+        System.out.println(playersByAge.poll().toString());
+        System.out.println(playersByAge.poll().toString());
     }
 }

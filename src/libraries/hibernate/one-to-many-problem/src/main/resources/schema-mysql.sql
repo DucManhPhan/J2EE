@@ -1,0 +1,19 @@
+CREATE TABLE IF NOT EXISTS football_club (
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    stadium_name VARCHAR(255) NOT NULL,
+
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS player (
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    number INTEGER NOT NULL,
+
+    address VARCHAR(255) NOT NULL,
+    club_id INTEGER NOT NULL,
+
+    PRIMARY KEY (id),
+    FOREIGN KEY (club_id) REFERENCES football_club(id)
+);

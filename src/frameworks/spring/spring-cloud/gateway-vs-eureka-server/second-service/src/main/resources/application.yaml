@@ -1,0 +1,12 @@
+
+spring:
+  application:
+    name: second-service
+
+server:
+  port: 8082
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8083/eureka

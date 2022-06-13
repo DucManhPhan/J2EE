@@ -1,0 +1,15 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.manhpd</groupId>
+    <artifactId>gateway-vs-eureka-server</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>gateway-service</module>
+        <module>discovery-service</module>
+        <module>first-service</module>
+        <module>second-service</module>
+    </modules>
+
+</project>

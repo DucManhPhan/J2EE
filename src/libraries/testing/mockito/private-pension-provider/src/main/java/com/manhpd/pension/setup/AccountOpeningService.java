@@ -8,10 +8,10 @@ import java.time.LocalDate;
 public class AccountOpeningService {
 
     private static final String UNACCEPTABLE_RISK_PROFILE = "HIGH";
+
     private BackgroundCheckService backgroundCheckService;
     private ReferenceIdsManager referenceIdsManager;
     private AccountRepository accountRepository;
-
 
     public AccountOpeningService(BackgroundCheckService backgroundCheckService,
                                  ReferenceIdsManager referenceIdsManager,
@@ -20,7 +20,6 @@ public class AccountOpeningService {
         this.referenceIdsManager = referenceIdsManager;
         this.accountRepository = accountRepository;
     }
-
 
     public AccountOpeningStatus openAccount(String firstName, String lastName, String taxId, LocalDate dob)
             throws IOException {

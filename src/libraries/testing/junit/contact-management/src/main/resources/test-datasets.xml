@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <customer_contact id="1" first_name="Jenny" email="jenny@myemail.com" />
+    <customer_contact id="2" first_name="Elaine" email="elaine@myemail.com" />
+    <customer_contact id="3" first_name="Susan" email="susan@myemail.com" />
+    <customer_contact id="4" first_name="Bernard" email="bernard@myemail.com" />
+</dataset>

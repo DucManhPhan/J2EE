@@ -26,7 +26,7 @@ public class ContactsManagementControllerIntegrationTest {
         String outcome = this.contactsManagementController.processAddContactSubmit(aContact);
 
         // Assert that the outcome is as expected
-        Assert.assertThat(outcome, CoreMatchers.is(CoreMatchers.equalTo("success")));
+        Assert.assertThat(outcome, CoreMatchers.is(CoreMatchers.equalTo("/addContactForm")));
     }
 
     @Test
@@ -35,7 +35,7 @@ public class ContactsManagementControllerIntegrationTest {
 
         String outcome = this.contactsManagementController.processAddContactSubmit(aContact);
 
-        Assert.assertThat(outcome, CoreMatchers.is(CoreMatchers.equalTo("failure")));
+        Assert.assertThat(outcome, CoreMatchers.is(CoreMatchers.equalTo("redirect:/showAddContact")));
     }
 
 }

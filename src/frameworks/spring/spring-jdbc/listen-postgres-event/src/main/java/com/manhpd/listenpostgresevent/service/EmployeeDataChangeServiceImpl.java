@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -52,6 +53,7 @@ public class EmployeeDataChangeServiceImpl implements EmployeeDataChangeService 
         }
     }
 
+    @PreDestroy
     public void destroy() throws Throwable {
         Statement unlistenerStatement = this.pgConnection.createStatement();
         unlistenerStatement.execute("UNLISTEN " + CREATE_EMPLOYEE_DATA_EVENT);

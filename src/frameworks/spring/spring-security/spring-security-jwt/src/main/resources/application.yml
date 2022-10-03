@@ -1,0 +1,4 @@
+
+# JWT configuration
+jwt:
+  secret: letsdoit

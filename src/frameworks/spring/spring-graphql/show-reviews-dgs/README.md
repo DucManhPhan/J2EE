@@ -55,3 +55,6 @@
 References:
 
 [https://github.com/Netflix/dgs-examples-java](https://github.com/Netflix/dgs-examples-java)
+
+[https://github.com/deweyjose/graphqlcodegen](https://github.com/deweyjose/graphqlcodegen)
+

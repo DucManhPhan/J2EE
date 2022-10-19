@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <jackson-databind.version>2.9.7</jackson-databind.version>
+        <jackson-databind.version>2.13.4.1</jackson-databind.version>
         <junit-jupiter-enginer.version>5.4.0</junit-jupiter-enginer.version>
         <mockito-core.version>2.27.0</mockito-core.version>
         <lombok.version>1.18.20</lombok.version>

@@ -23,7 +23,7 @@
     <poi.version>4.1.2</poi.version>
     <junit.version>4.11</junit.version>
     <lombok.version>1.18.16</lombok.version>
-    <fastjson-alibaba.version>1.2.75</fastjson-alibaba.version>
+    <fastjson-alibaba.version>1.2.83</fastjson-alibaba.version>
   </properties>
 
   <dependencies>

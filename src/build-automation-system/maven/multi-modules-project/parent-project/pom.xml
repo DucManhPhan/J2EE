@@ -40,7 +40,7 @@
     <version.spring.data.elasticsearch>3.2.0.M1</version.spring.data.elasticsearch>
     <version.lombok>1.18.2</version.lombok>
     <version.validation-api>2.0.1.Final</version.validation-api>
-    <version.gson>2.8.5</version.gson>
+    <version.gson>2.8.9</version.gson>
     <version.javafx-controls>11.0.1-ea+1</version.javafx-controls>
   </properties>
 

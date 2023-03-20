@@ -2,6 +2,8 @@ package com.manhpd.studentdashboard.controller;
 
 import com.manhpd.studentdashboard.model.Student;
 import com.manhpd.studentdashboard.service.StudentService;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +13,14 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path = "/api/v1")
 public class StudentController {
+
+    private Counter hitCounter;
+
+    public StudentController(MeterRegistry meterRegistry) {
+        this.hitCounter = Counter.builder("hit_counter")
+                                 .description("Number of Hits")
+                                 .register(meterRegistry);
+    }
 
     @Autowired
     private StudentService studentService;
@@ -22,6 +32,7 @@ public class StudentController {
 
     @GetMapping("/student")
     public List<Student> getAllStudents() {
+        this.hitCounter.increment();
         return studentService.getAllStudents();
     }
 

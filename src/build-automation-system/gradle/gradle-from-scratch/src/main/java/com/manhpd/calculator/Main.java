@@ -1,4 +1,4 @@
-package main.java.com.manhpd.calculator;
+package com.manhpd.calculator;
 
 public class Main {
     public static void main(String[] args) {

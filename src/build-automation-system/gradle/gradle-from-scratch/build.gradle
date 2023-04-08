@@ -1,24 +1,12 @@
-
-plugins {
-    id 'java'
-    id 'application'
+allprojects {
+    version = '1.0.0'
 }
 
-version = '1.0.0'
+subprojects {
+    apply plugin: 'java'
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
-}
-
-application {
-    mainClass = 'com.manhpd.calculator.Main'
-}
-
-compileJava {
-    options.compilerArgs << '-Werror'
-}
-
-jar {
-    archiveBaseName = 'calculator'
+    java {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
 }

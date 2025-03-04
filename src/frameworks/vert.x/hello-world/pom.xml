@@ -17,7 +17,7 @@
     <lombok.version>1.18.2</lombok.version>
     <logback-classic.version>1.2.3</logback-classic.version>
     <slf4j-api.version>1.7.30</slf4j-api.version>
-    <junit.version>4.12</junit.version>
+    <junit.version>4.13.1</junit.version>
   </properties>
 
   <dependencies>

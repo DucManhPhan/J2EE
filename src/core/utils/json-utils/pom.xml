@@ -20,7 +20,7 @@
     <version.junit>4.11</version.junit>
     <version.lombok>1.18.10</version.lombok>
     <version.commons-lang3>3.9</version.commons-lang3>
-    <version.log4j2>2.12.1</version.log4j2>
+    <version.log4j2>2.16.0</version.log4j2>
   </properties>
 
   <dependencies>

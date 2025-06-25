@@ -10,7 +10,7 @@
 ## Send request from client-service
 
 ```
-http://localhost:8080/config-service/account-service/default
+http://localhost:8080/config-service/client-service/default
 ```
 
 

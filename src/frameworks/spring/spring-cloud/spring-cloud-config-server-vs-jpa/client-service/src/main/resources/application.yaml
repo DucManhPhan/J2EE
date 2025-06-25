@@ -14,14 +14,14 @@ spring:
   cloud:
     bus:
       enabled: true
-      destination: portal-be-parameters-topic
+      destination: config-be-parameters-topic
     stream:
       kafka:
         binder:
           brokers: ${KAFKA_SERVER:localhost:9092}
       bindings:
         springCloudBusInput:
-          destination: portal-be-parameters-topic
+          destination: config-parameters-topic
           group: client-service-group
           consumer:
             auto-offset-reset: latest

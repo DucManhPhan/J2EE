@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    config:
+      name: client-service
+#      uri: http://localhost:8081/config-service
+      uri: http://localhost:8080/api/hdb-onboard-acct-portal-service/config
+#      username: local_admin
+#      password: local_password
+      headers:
+        X-Request-ID: ${random.uuid}
+        X-Correlation-ID: ${random.uuid}
+        Content-Type: application/json
+      retry:
+        max-attempts: 5
+        initial-interval: 1000
+      fail-fast: true

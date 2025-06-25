@@ -1,0 +1,81 @@
+server:
+  port: ${PORT:8081}
+  servlet:
+    context-path: /${spring.application.name}
+
+spring:
+  application:
+    name: config-service
+  # Basic Authentication
+#  security:
+#    basic:
+#      enabled: true
+#      path: /**
+#    user:
+#      name: ${CONFIG_USER:local_admin}
+#      password: ${CONFIG_PASSWORD:local_password}
+  # Postgres connection
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/postgres}
+    username: ${DB_USER:admin}
+    password: ${DB_PASSWORD:password}
+    driver-class-name: org.postgresql.Driver
+  # JPA
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    database: POSTGRESQL
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+  kafka:
+    bootstrap-servers: ${KAFKA_SERVER:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+  # Spring cloud config-server
+  cloud:
+    bus:
+      enabled: true
+      destination: portal-be-parameters-topic
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_SERVER:localhost:9092}
+      bindings:
+        springCloudBusOutput:
+          destination: portal-be-parameters-topic
+    config:
+      server:
+        git:
+          enabled: false # Enable using JPA
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    refresh:
+      enabled: true
+    busrefresh:
+      enabled: true
+  health:
+    diskspace:
+      enabled: false
+  info:
+    build:
+      enabled: false
+
+logging:
+  level:
+    org.springframework.cloud.bus: DEBUG
+    org.springframework.cloud.stream: DEBUG
+    org.springframework.kafka: DEBUG

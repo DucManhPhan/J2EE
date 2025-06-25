@@ -1,0 +1,48 @@
+server:
+  port: ${PORT:8082}
+  servlet:
+    context-path: /client-service
+
+spring:
+  application:
+    name: client-service
+  kafka:
+    bootstrap-servers: ${KAFKA_SERVER:localhost:9092}
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+  cloud:
+    bus:
+      enabled: true
+      destination: portal-be-parameters-topic
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_SERVER:localhost:9092}
+      bindings:
+        springCloudBusInput:
+          destination: portal-be-parameters-topic
+          group: client-service-group
+          consumer:
+            auto-offset-reset: latest
+  config:
+    import: configserver:http://localhost:8081/config-service
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, bus-refresh # allow endpoint actuator/refresh
+  endpoint:
+    refresh:
+      enabled: true
+
+logging:
+  level:
+    org.springframework.cloud.bus: DEBUG
+    org.springframework.cloud.stream: DEBUG
+    org.springframework.kafka: DEBUG
+    org.springframework.cloud.stream.config: DEBUG
+    org.springframework.cloud.config: TRACE
+    org.springframework.web.client: DEBUG
+    org.springframework.http.client: TRACE

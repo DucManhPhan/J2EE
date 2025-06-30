@@ -41,14 +41,14 @@ spring:
   cloud:
     bus:
       enabled: true
-      destination: portal-be-parameters-topic
+      destination: config-parameters-topic
     stream:
       kafka:
         binder:
           brokers: ${KAFKA_SERVER:localhost:9092}
       bindings:
         springCloudBusOutput:
-          destination: portal-be-parameters-topic
+          destination: config-parameters-topic
     config:
       server:
         git:

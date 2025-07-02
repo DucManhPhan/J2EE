@@ -19,14 +19,19 @@ spring:
       kafka:
         binder:
           brokers: ${KAFKA_SERVER:localhost:9092}
+          # Performance optimizations
+          consumer-properties:
+            fetch.min.bytes: 1024
+            fetch.max.wait.ms: 100
+            max.poll.records: 10
       bindings:
         springCloudBusInput:
           destination: config-parameters-topic
-          group: client-service-group
+          # No group = broadcast to all instances
           consumer:
             auto-offset-reset: latest
   config:
-    import: configserver:http://localhost:8081/config-service
+    import: 'classpath:client-service-info.yaml'
 
 management:
   endpoints:

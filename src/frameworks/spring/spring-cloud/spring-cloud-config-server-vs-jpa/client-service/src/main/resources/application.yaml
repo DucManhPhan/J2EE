@@ -15,6 +15,7 @@ spring:
     bus:
       enabled: true
       destination: config-be-parameters-topic
+      id: ${spring.application.name}-${random.uuid}
     stream:
       kafka:
         binder:

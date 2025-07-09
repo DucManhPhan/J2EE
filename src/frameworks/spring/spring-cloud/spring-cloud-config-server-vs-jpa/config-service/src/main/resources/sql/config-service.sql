@@ -18,4 +18,4 @@ values
 (3, 'client-service', 'acc.key2', 'value3_as', 'active')
 ;
 
-select * from public.config_parameter cp;
+--select * from public.config_parameter cp;

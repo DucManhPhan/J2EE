@@ -42,6 +42,7 @@ spring:
     bus:
       enabled: true
       destination: config-parameters-topic
+      id: ${spring.application.name}:${random.uuid}
     stream:
       kafka:
         binder:
@@ -53,19 +54,23 @@ spring:
       server:
         git:
           enabled: false # Enable using JPA
+        prefix: /config # Add prefix for config server endpoints
 
 management:
   endpoints:
     web:
       base-path: /actuator
       exposure:
-        include: "*"
+        include: health,metrics,prometheus,refresh,bus-refresh
   endpoint:
     health:
+      probes:
+        enabled: true # Enable liveness and readiness
       show-details: always
+      show-components: always
     refresh:
       enabled: true
-    busrefresh:
+    bus-refresh:
       enabled: true
   health:
     diskspace:

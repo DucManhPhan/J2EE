@@ -1,0 +1,64 @@
+server:
+  port: ${PORT:8081}
+  servlet:
+    context-path: /${spring.application.name}
+
+spring:
+  application:
+    name: config-service
+  # Basic Authentication
+#  security:
+#    basic:
+#      enabled: true
+#      path: /**
+#    user:
+#      name: ${CONFIG_USER:local_admin}
+#      password: ${CONFIG_PASSWORD:local_password}
+  # Postgres connection
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/postgres}
+    username: ${DB_USER:admin}
+    password: ${DB_PASSWORD:password}
+    driver-class-name: org.postgresql.Driver
+  # JPA
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    database: POSTGRESQL
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+  cloud:
+    config:
+      server:
+        git:
+          enabled: false  # Enable using JPA
+        prefix: /config
+  redis:
+    host: localhost
+    port: 6379
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: health,metrics,prometheus,refresh
+  endpoint:
+    health:
+      probes:
+        enabled: true # Enable liveness and readiness
+      show-details: always
+      show-components: always
+    refresh:
+      enabled: true
+  health:
+    diskspace:
+      enabled: false
+  info:
+    build:
+      enabled: false

@@ -1,0 +1,22 @@
+server:
+  port: ${PORT:8082}
+  servlet:
+    context-path: /client-service
+
+spring:
+  application:
+    name: client-service
+  redis:
+    host: localhost
+    port: 6379
+  config:
+    import: 'classpath:client-service-info.yaml'
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
+  endpoint:
+    refresh:
+      enabled: true

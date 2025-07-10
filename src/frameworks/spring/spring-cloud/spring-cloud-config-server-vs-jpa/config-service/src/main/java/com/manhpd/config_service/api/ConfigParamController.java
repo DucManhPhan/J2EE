@@ -4,6 +4,8 @@ import com.manhpd.config_service.persistence.entity.ConfigParameter;
 import com.manhpd.config_service.persistence.repository.ConfigParameterRepository;
 import com.manhpd.config_service.persistence.repository.JpaEnvironmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.cloud.bus.BusBridge;
 import org.springframework.cloud.bus.event.RefreshRemoteApplicationEvent;
 import org.springframework.cloud.endpoint.RefreshEndpoint;
@@ -12,17 +14,19 @@ import org.springframework.core.env.MapPropertySource;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertySource;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.cache.concurrent.ConcurrentMapCache;
+import org.springframework.cloud.config.environment.Environment;
 
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentMap;
 
 @RestController
 @RequestMapping("/config")
 public class ConfigParamController {
+
+    private static final String CACHE_NAME = "config-environments";
 
     @Autowired
     private ConfigParameterRepository configParameterRepository;
@@ -38,6 +42,9 @@ public class ConfigParamController {
 
     @Autowired
     private BusBridge busBridge;
+
+    @Autowired
+    private CacheManager cacheManager;
 
     @PutMapping
     public ResponseEntity<String> updateConfigParameter(
@@ -62,21 +69,6 @@ public class ConfigParamController {
         );
         this.configParameterRepository.save(updateOrNewConfigParameter);
 
-        System.out.println("Refresh data in memory of config-service");
-        PropertySource newPropertySource =
-                this.environmentRepository.findOne(serviceName, null, null)
-                        .getPropertySources().stream()
-                        .filter(ps -> ps.getName().equals(serviceName))
-                        .map(ps -> new MapPropertySource(serviceName, (Map<String, Object>) ps.getSource()))
-                        .findFirst().orElseThrow();
-        MutablePropertySources propertySources = this.environment.getPropertySources();
-        if (propertySources.contains(serviceName)) {
-            propertySources.replace(serviceName, newPropertySource);
-        } else {
-            propertySources.addFirst(newPropertySource);
-        }
-        this.refreshEndpoint.refresh();
-
         System.out.println("Send refresh events to client-services through Spring Cloud Bus");
         this.busBridge.send(
                 new RefreshRemoteApplicationEvent(this, "config-service", serviceName)
@@ -98,5 +90,58 @@ public class ConfigParamController {
         configParameter.setStatus(status);
 
         return configParameter;
+    }
+
+    @GetMapping("/cache/debug")
+    public ResponseEntity<String> debugCache() {
+        StringBuilder result = new StringBuilder("Cache Contents:\n");
+        
+        Cache cache = cacheManager.getCache(CACHE_NAME);
+        if (cache != null) {
+            result.append("Cache: config-environments\n");
+            result.append("Cache implementation: ").append(cache.getClass().getSimpleName()).append("\n");
+            
+            if (cache instanceof ConcurrentMapCache) {
+                ConcurrentMapCache mapCache = (ConcurrentMapCache) cache;
+                ConcurrentMap<Object, Object> nativeCache = mapCache.getNativeCache();
+                result.append("Cache size: ").append(nativeCache.size()).append("\n");
+                
+                nativeCache.forEach((key, value) -> {
+                    result.append("Cache Key: ").append(key).append("\n");
+                    
+                    if (value instanceof Environment) {
+                        Environment env = (Environment) value;
+                        result.append("Application: ").append(env.getName()).append("\n");
+                        result.append("Profiles: ").append(env.getProfiles()).append("\n");
+                        result.append("Label: ").append(env.getLabel()).append("\n");
+                        result.append("Properties:\n");
+                        
+                        env.getPropertySources().forEach(ps -> {
+                            result.append("  PropertySource: ").append(ps.getName()).append("\n");
+                            if (ps.getSource() instanceof Map) {
+                                Map<String, Object> props = (Map<String, Object>) ps.getSource();
+                                props.forEach((propKey, propValue) -> {
+                                    result.append("    ").append(propKey).append(" = ").append(propValue).append("\n");
+                                });
+                            }
+                        });
+                    } else {
+                        result.append("Value: ").append(value).append("\n");
+                    }
+                    result.append("---\n");
+                });
+            }
+        } else {
+            result.append("Cache '" + CACHE_NAME + "' not found\n");
+        }
+        
+        return ResponseEntity.ok(result.toString());
+    }
+
+    @GetMapping("/cache/test/{application}")
+    public ResponseEntity<String> testCache(@PathVariable String application) {
+        // Trigger cache population
+        environmentRepository.findOne(application, "default", null);
+        return ResponseEntity.ok("Cache populated for: " + application);
     }
 }
